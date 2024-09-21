@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyVision : MonoBehaviour
@@ -9,6 +10,7 @@ public class EnemyVision : MonoBehaviour
     public LayerMask targetMask;
     public LayerMask obstacleMask;
 
+    public List <Transform> foundTargets = new List<Transform>();
     private void Start()
     {
         StartCoroutine(FindTarget());
@@ -19,12 +21,14 @@ public class EnemyVision : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(.2f);
-            VisblePlayer();
+            FOV();
         }
     }
 
-    private void VisblePlayer()
+    private void FOV()
     {
+        foundTargets.Clear();
+
         Collider2D[] visibleTargets = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
 
         for (int i = 0; i < visibleTargets.Length; i++)
@@ -38,7 +42,7 @@ public class EnemyVision : MonoBehaviour
 
                 if(!Physics2D.Raycast (transform.position, dirToTarget, distance, obstacleMask))
                 {
-                    print("found");
+                    foundTargets.Add (target);
                 }
             }
         }
@@ -48,7 +52,7 @@ public class EnemyVision : MonoBehaviour
     {
         if (!isAngleGlobal)
         {
-            angleInDegrees += transform.eulerAngles.z;
+            angleInDegrees -= transform.eulerAngles.z;
         }
 
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);

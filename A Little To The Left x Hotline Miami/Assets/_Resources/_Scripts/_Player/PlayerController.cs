@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private GameObject bullet;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private AudioSource bulletSFx;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GetInput();
-        Shoot();
+        //Shoot();
     }
 
     private void FixedUpdate()
