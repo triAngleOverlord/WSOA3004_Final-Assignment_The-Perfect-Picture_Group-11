@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using static PlayerInteraction;
 
-public class Gun : PlayerInteraction
+public class Gun : MonoBehaviour
 {
     [SerializeField] int Damage;
 
@@ -30,11 +31,12 @@ public class Gun : PlayerInteraction
     private bool reloading;
     private bool canShoot;
 
-
+    PlayerInteraction playerInteraction;
 
      // Start is called before the first frame update
     private void Start()
     {
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
         bulletsLeft = magSize;
         canShoot = true;
     }
@@ -56,7 +58,7 @@ public class Gun : PlayerInteraction
              Reload();
         }
 
-        if (  canShoot && shooting && !reloading && bulletsLeft > 0)
+        if (playerInteraction.hasWeapon && playerInteraction.weaponType == WeaponType.ranged && canShoot && shooting && !reloading && bulletsLeft > 0)
         {
             Shoot();
         }
