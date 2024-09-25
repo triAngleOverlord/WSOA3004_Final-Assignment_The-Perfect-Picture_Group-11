@@ -20,6 +20,7 @@ public class PlayerInteraction : MonoBehaviour
     private BoxCollider2D equippedWeaponBC;
 
     [SerializeField] private float throwPower;
+    [SerializeField] private float dropPower;
     [SerializeField] private float spinningSpeed;
 
     internal WeaponType weaponType;
@@ -78,6 +79,21 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponBC.enabled = true;
                     equippedWeaponRB.AddForce (transform.up * throwPower, ForceMode2D.Impulse);
                     equippedWeaponRB.AddTorque (spinningSpeed, ForceMode2D.Impulse);
+                    equippedWeaponRB.angularDrag = 2f;
+                    equippedWeapon = null;
+                }
+
+                hasWeapon = false;
+            }
+
+            if (Input.GetKeyDown (KeyCode.G))
+            {
+                if (equippedWeapon != null)
+                {
+                    equippedWeapon.parent = null;
+                    equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
+                    equippedWeaponBC.enabled = true;
+                    equippedWeaponRB.AddForce(transform.right* dropPower, ForceMode2D.Impulse);
                     equippedWeaponRB.angularDrag = 2f;
                     equippedWeapon = null;
                 }
