@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float tiltSpeed;
 
     private float tiltInput;
-
+    Vector3 lastPos;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
@@ -62,15 +62,14 @@ public class CameraController : MonoBehaviour
         
         if (state == CameraState.panning)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 hasSetInitialPos = true;
 
                 if (hasSetInitialPos && !camOnInitialPos)
                 {
                     Vector3 onLeftShiftDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    transform.position = onLeftShiftDownPos;
-                    camOnInitialPos = true;
+                    transform.position = Vector3.Lerp(transform.position, onLeftShiftDownPos, Time.deltaTime * 1f);
 
                     dragOrigin = Camera.main.ScreenToWorldPoint(-Input.mousePosition);
                 }
