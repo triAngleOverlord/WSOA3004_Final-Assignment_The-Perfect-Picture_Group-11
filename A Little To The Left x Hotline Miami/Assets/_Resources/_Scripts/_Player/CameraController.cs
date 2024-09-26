@@ -9,16 +9,19 @@ public class CameraController : MonoBehaviour
     }
 
     private Vector3 dragOrigin;
-
+    private Vector3 onLeftShiftDownPos;
     private Transform player;
     [SerializeField] private float lerpTime;
-    [SerializeField] private bool hasSetInitialPos;
+
     [SerializeField] private bool camOnInitialPos;
 
     [SerializeField] private float tiltAmount;
     [SerializeField] private float tiltSpeed;
 
     private float tiltInput;
+
+    //cam clamp values
+    [SerializeField] private float minX, maxX, minY,maxY;
 
     void Start()
     {
@@ -64,31 +67,33 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                hasSetInitialPos = true;
-
-                if (hasSetInitialPos && !camOnInitialPos)
-                {
-                    Vector3 onLeftShiftDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    transform.position = onLeftShiftDownPos;
-                    camOnInitialPos = true;
-
-                    dragOrigin = Camera.main.ScreenToWorldPoint(-Input.mousePosition);
-                }
-
+                onLeftShiftDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                camOnInitialPos = true;          
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (camOnInitialPos)
             {
+                Vector3 camNewPos = onLeftShiftDownPos;
+                transform.position = Vector3.Lerp(transform.position, camNewPos, Time.deltaTime * lerpTime);
+
+                if (Vector3.Distance (transform.position, camNewPos) < 0.1f)
+                {
+                    camOnInitialPos = false;
+                    dragOrigin = Camera.main.ScreenToWorldPoint (-Input.mousePosition);
+                }
+            }
+
+            else if (Input.GetKey(KeyCode.LeftShift))
+           {
                 Vector3 diff = dragOrigin - Camera.main.ScreenToWorldPoint(-Input.mousePosition);
-                transform.position += diff;
+                Vector3 lerpCamPos = transform.position + diff;
+                transform.position = Vector3.Lerp(transform.position, lerpCamPos, Time.deltaTime * lerpTime);
             }
         }
         else
         {
             Vector3 playerPos = new Vector3(player.position.x, player.position.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.smoothDeltaTime * lerpTime);
-
-            hasSetInitialPos = false;
             camOnInitialPos = false;
         }
     }

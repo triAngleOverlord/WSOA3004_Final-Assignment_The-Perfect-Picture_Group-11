@@ -713,6 +713,10 @@ MonoBehaviour:
   camOnInitialPos: 0
   tiltAmount: 2
   tiltSpeed: 2
+  minX: -15
+  maxX: 20
+  minY: 30
+  maxY: -10
 --- !u!1 &743426270
 GameObject:
   m_ObjectHideFlags: 0
@@ -13742,6 +13746,37 @@ Transform:
   - {fileID: 445326614}
   m_Father: {fileID: 743426271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1258059538
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258059539}
+  m_Layer: 8
+  m_Name: firepoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1258059539
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258059538}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05000019, y: 1.245, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3651966590461250372}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1353711399
 GameObject:
   m_ObjectHideFlags: 0
@@ -17293,6 +17328,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7656432051366802363}
+<<<<<<< Updated upstream
+=======
+  - {fileID: 1258059539}
+>>>>>>> Stashed changes
   m_Father: {fileID: 1103065062581938897}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &3710891149361882101
@@ -17761,6 +17800,7 @@ MonoBehaviour:
   equippedWeapon: {fileID: 0}
   hasWeapon: 0
   throwPower: 50
+  dropPower: 7
   spinningSpeed: 20
 --- !u!4 &6084652968140420938
 Transform:
@@ -17887,6 +17927,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.35206413, y: 1.6231198}
   m_EdgeRadius: 0
+<<<<<<< Updated upstream
+=======
+--- !u!114 &7397748824691707776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513264185278460907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc63c122b747b8843bfaa113d404b551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 100
+  shootingCooldown: 1
+  spread: 10
+  reloadTime: 2
+  shootForce: 50
+  amountofBullets: 8
+  magSize: 6
+  isAutomatic: 0
+  AutoReload: 0
+  firePoint: {fileID: 1258059539}
+  bulletPrefab: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 0
+>>>>>>> Stashed changes
 --- !u!1 &7643083395212064059
 GameObject:
   m_ObjectHideFlags: 0
