@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -9,20 +10,20 @@ public class CameraController : MonoBehaviour
     }
 
     private Vector3 dragOrigin;
-
+    private Vector3 onLeftShiftDownPos;
     private Transform player;
     [SerializeField] private float lerpTime;
-    [SerializeField] private bool hasSetInitialPos;
+
     [SerializeField] private bool camOnInitialPos;
 
     [SerializeField] private float tiltAmount;
     [SerializeField] private float tiltSpeed;
 
     private float tiltInput;
-    Vector3 lastPos;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Transform>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     private void Update()
@@ -32,7 +33,7 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        HandleCameraState(); 
+        HandleCameraState();
         HandleScreenRotation();
     }
 
@@ -52,42 +53,45 @@ public class CameraController : MonoBehaviour
         float targetAngle = -tiltInput;
         targetAngle = Mathf.Clamp(targetAngle, -tiltAmount, tiltAmount);
 
-        float lerpedAngle = Mathf.Lerp (currentAngle, targetAngle, Time.deltaTime * tiltSpeed);
-        transform.rotation = Quaternion.Euler (0, 0, lerpedAngle);
+        float lerpedAngle = Mathf.Lerp(currentAngle, targetAngle, Time.deltaTime * tiltSpeed);
+        transform.rotation = Quaternion.Euler(0, 0, lerpedAngle);
     }
 
     private void HandleCameraState()
     {
-        state = Input.GetKey (KeyCode.LeftShift) ? CameraState.panning : CameraState.onPlayer;
-        
+        state = Input.GetKey(KeyCode.LeftShift) ? CameraState.panning : CameraState.onPlayer;
+
         if (state == CameraState.panning)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
-                hasSetInitialPos = true;
-
-                if (hasSetInitialPos && !camOnInitialPos)
-                {
-                    Vector3 onLeftShiftDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    transform.position = Vector3.Lerp(transform.position, onLeftShiftDownPos, Time.deltaTime * 1f);
-
-                    dragOrigin = Camera.main.ScreenToWorldPoint(-Input.mousePosition);
-                }
-
+                onLeftShiftDownPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                camOnInitialPos = true;
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (camOnInitialPos)
+            {
+                Vector3 camNewPos = onLeftShiftDownPos;
+                transform.position = Vector3.Lerp(transform.position, camNewPos, Time.deltaTime * lerpTime);
+
+                if (Vector3.Distance(transform.position, camNewPos) < 0.1f)
+                {
+                    camOnInitialPos = false;
+                    dragOrigin = Camera.main.ScreenToWorldPoint(-Input.mousePosition);
+                }
+            }
+
+            else if (Input.GetKey(KeyCode.LeftShift))
             {
                 Vector3 diff = dragOrigin - Camera.main.ScreenToWorldPoint(-Input.mousePosition);
-                transform.position += diff;
+                Vector3 lerpCamPos = transform.position + diff;
+                transform.position = Vector3.Lerp(transform.position, lerpCamPos, Time.deltaTime * lerpTime);
             }
         }
         else
         {
             Vector3 playerPos = new Vector3(player.position.x, player.position.y, transform.position.z);
             transform.position = Vector3.Lerp(transform.position, playerPos, Time.smoothDeltaTime * lerpTime);
-
-            hasSetInitialPos = false;
             camOnInitialPos = false;
         }
     }

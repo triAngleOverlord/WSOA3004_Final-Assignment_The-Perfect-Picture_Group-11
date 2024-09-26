@@ -17826,6 +17826,7 @@ MonoBehaviour:
   equippedWeapon: {fileID: 0}
   hasWeapon: 0
   throwPower: 50
+  dropPower: 10
   spinningSpeed: 20
 --- !u!4 &6084652968140420938
 Transform:
@@ -17964,17 +17965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc63c122b747b8843bfaa113d404b551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactRadius: 0
-  targetWeaponMask:
-    serializedVersion: 2
-    m_Bits: 0
-  foundWeapons: []
-  meleeWeaponPos: {fileID: 0}
-  rangedWeaponPos: {fileID: 0}
-  equippedWeapon: {fileID: 0}
-  hasWeapon: 0
-  throwPower: 0
-  spinningSpeed: 0
   Damage: 10
   shootingCooldown: 2
   spread: 7
