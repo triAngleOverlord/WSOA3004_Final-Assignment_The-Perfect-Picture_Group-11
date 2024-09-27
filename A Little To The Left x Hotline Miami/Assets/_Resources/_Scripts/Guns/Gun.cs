@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using static PlayerInteraction;
 
@@ -15,6 +16,8 @@ public class Gun : MonoBehaviour
 
     [SerializeField] float amountofBullets;
 
+    
+
     [SerializeField] int magSize;
     [SerializeField] bool isAutomatic;
     [SerializeField] bool AutoReload;
@@ -22,6 +25,10 @@ public class Gun : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask whatIsEnemy;
+
+    public string target1;
+    public string target2;
+    private Rigidbody2D rb;
 
     private float amountOfSpread;
 
@@ -58,7 +65,7 @@ public class Gun : MonoBehaviour
              Reload();
         }
 
-        if (playerInteraction.hasWeapon && playerInteraction.weaponType == WeaponType.ranged && canShoot && shooting && !reloading && bulletsLeft > 0)
+        if (this.gameObject.name == playerInteraction.obj && playerInteraction.hasWeapon && playerInteraction.weaponType == WeaponType.ranged && playerInteraction.weaponType != WeaponType.melee && canShoot && shooting && !reloading && bulletsLeft > 0)
         {
             Shoot();
         }

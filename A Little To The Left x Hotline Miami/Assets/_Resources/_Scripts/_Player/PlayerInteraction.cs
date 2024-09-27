@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [SerializeField] private float interactRadius;
+   [SerializeField] private float interactRadius;
 
     [SerializeField] private LayerMask targetWeaponMask;
 
@@ -15,9 +15,13 @@ public class PlayerInteraction : MonoBehaviour
 
     [SerializeField] private Transform equippedWeapon;
 
+    public string obj;
+
     public bool hasWeapon;
-    private Rigidbody2D equippedWeaponRB;
+    public Rigidbody2D equippedWeaponRB;
     private BoxCollider2D equippedWeaponBC;
+
+    private Animator animator;
 
     [SerializeField] private float throwPower;
     [SerializeField] private float dropPower;
@@ -72,16 +76,21 @@ public class PlayerInteraction : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                if (equippedWeapon!= null)
+                 if (equippedWeapon!= null)
                 {
                     equippedWeapon.parent = null;
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
-                    equippedWeaponBC.enabled = true;
-                    equippedWeaponRB.AddForce (transform.up * throwPower, ForceMode2D.Impulse);
-                    equippedWeaponRB.AddTorque (spinningSpeed, ForceMode2D.Impulse);
-                    equippedWeaponRB.angularDrag = 2f;
-                    equippedWeapon = null;
+                    
+                    equippedWeaponBC.isTrigger = false;
+                    if(weaponType == WeaponType.melee)
+                {
+                    animator = equippedWeapon.GetComponent<Animator>();
+                    animator.enabled = false;
                 }
+                    StartCoroutine(waiter());
+                    
+                }
+
 
                 hasWeapon = false;
             }
@@ -92,10 +101,17 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     equippedWeapon.parent = null;
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
-                    equippedWeaponBC.enabled = true;
+                    
+                    equippedWeaponBC.isTrigger = false;
+                    if(weaponType == WeaponType.melee)
+                {
+                    animator = equippedWeapon.GetComponent<Animator>();
+                    animator.enabled = false;
+                }
                     equippedWeaponRB.AddForce(transform.right* dropPower, ForceMode2D.Impulse);
                     equippedWeaponRB.angularDrag = 2f;
                     equippedWeapon = null;
+
                 }
 
                 hasWeapon = false;
@@ -111,15 +127,23 @@ public class PlayerInteraction : MonoBehaviour
             {
                 hasWeapon = true;
 
-                equippedWeapon = foundWeapons[0];
+                 equippedWeapon = foundWeapons[0];
+                obj = equippedWeapon.gameObject.name;
                 equippedWeaponRB = equippedWeapon.GetComponent<Rigidbody2D>();
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-                equippedWeaponBC.enabled = false;
+                if(weaponType == WeaponType.melee)
+                {
+                    animator = equippedWeapon.GetComponent<Animator>();
+                    animator.enabled = true;
+                }
+                
                 equippedWeapon.parent = weaponType == WeaponType.ranged? rangedWeaponPos : meleeWeaponPos;
                 equippedWeapon.localRotation = Quaternion.identity;
                 equippedWeapon.localPosition = Vector3.zero;
+                equippedWeaponBC.isTrigger = true;
+                
             }
         }
 
@@ -134,5 +158,16 @@ public class PlayerInteraction : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, weapon.position);
         }
+    }
+
+    IEnumerator waiter()
+    {   
+   
+        equippedWeaponRB.AddForce (transform.up * throwPower, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.05f);
+        equippedWeaponRB.AddTorque (spinningSpeed, ForceMode2D.Impulse);
+        equippedWeaponRB.angularDrag = 2f;
+        equippedWeapon = null;
+   
     }
 }

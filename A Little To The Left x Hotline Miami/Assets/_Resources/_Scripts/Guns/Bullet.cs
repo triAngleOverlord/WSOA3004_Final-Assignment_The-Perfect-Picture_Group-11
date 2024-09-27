@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
 {
     public string target1;
     public string target2;
+
+    [SerializeField] private float damage;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -22,10 +24,16 @@ public class Bullet : MonoBehaviour
         if(target1 == collision.name)
         {
             Debug.Log("Collision with wall detected");
+            Destroy(gameObject);
         }
         if(target2 == collision.name)
         {
             Debug.Log("Collision with enemy detected");
+             Destroy(gameObject);
+        }
+         if(collision.tag == "Enemy" ) {
+            collision.GetComponent<Helath>().TakeDamage(damage);
+            Debug.Log("Enemy Hit");        
         }
         
     }

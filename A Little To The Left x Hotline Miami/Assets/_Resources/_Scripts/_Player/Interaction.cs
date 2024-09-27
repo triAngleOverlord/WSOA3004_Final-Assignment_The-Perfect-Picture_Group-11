@@ -86,7 +86,7 @@ public class Interaction : MonoBehaviour
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-                equippedWeaponBC.enabled = false;
+                equippedWeaponBC.enabled = true;
                 equippedWeapon.parent = weaponPos;
                 equippedWeapon.localRotation = Quaternion.identity;
                 equippedWeapon.localPosition = Vector3.zero;
