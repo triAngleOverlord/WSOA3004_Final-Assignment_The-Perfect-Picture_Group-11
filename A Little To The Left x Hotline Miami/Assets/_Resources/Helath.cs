@@ -13,7 +13,7 @@ public class Helath : MonoBehaviour
 
         if(health <= 0f)
         {
-            Destroy(gameObject);
+            Debug.Log("hit enemy");
         }
     }
 }

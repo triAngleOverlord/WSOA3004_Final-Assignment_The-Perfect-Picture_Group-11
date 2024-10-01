@@ -161,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb0fce8a9260d9443ad95f99c5a33fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
+  bloodImpact: {fileID: 6108736480388457181, guid: acd48948bd115e642a1e8f830106b10f, type: 3}
+  wallImpact: {fileID: 3827888657332732091, guid: 47cae49b793d7714b9753733baf45391, type: 3}
   target1: Walls etc
   target2: Enemy
   damage: 50

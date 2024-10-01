@@ -82,7 +82,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                    if(weaponType == WeaponType.melee)
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
@@ -103,7 +103,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                    if(weaponType == WeaponType.melee)
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
@@ -133,11 +133,12 @@ public class PlayerInteraction : MonoBehaviour
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-                if(weaponType == WeaponType.melee)
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = true;
                 }
+                
                 
                 equippedWeapon.parent = weaponType == WeaponType.ranged? rangedWeaponPos : meleeWeaponPos;
                 equippedWeapon.localRotation = Quaternion.identity;

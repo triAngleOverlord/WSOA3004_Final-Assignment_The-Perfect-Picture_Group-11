@@ -26,6 +26,8 @@ public class Gun : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask whatIsEnemy;
 
+    
+
     public string target1;
     public string target2;
     private Rigidbody2D rb;
@@ -37,8 +39,14 @@ public class Gun : MonoBehaviour
     private bool shooting;
     private bool reloading;
     private bool canShoot;
+    
+      [SerializeField]  public float speed1;
 
     PlayerInteraction playerInteraction;
+
+    
+
+    
 
      // Start is called before the first frame update
     private void Start()
@@ -46,11 +54,13 @@ public class Gun : MonoBehaviour
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         bulletsLeft = magSize;
         canShoot = true;
+        
     }
 
     // Update is called once per frame
     private void Update()
     {
+        bulletPrefab.GetComponent<Bullet>().speed = speed1;
         if(isAutomatic)
         {
             shooting = Input.GetKey(KeyCode.Mouse0);

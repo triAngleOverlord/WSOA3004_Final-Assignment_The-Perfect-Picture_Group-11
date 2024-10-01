@@ -9,6 +9,9 @@ public class MeleeSys : MonoBehaviour
     public string target2;
     private Rigidbody2D rb;
 
+    private bool checker = false;
+
+
     PlayerInteraction playerInteraction;
 
     [SerializeField] private Animator anim;
@@ -24,13 +27,16 @@ public class MeleeSys : MonoBehaviour
     private void Update(){
         if (timeUntilMelee <= 0f)
         {
+            
             if(  Input.GetMouseButtonDown(0)  )
             {
                 
-
+                checker = true;
                 anim.SetTrigger("Attack");
                 timeUntilMelee = meleeSpeed;
+                StartCoroutine(meleedelay());
             }
+            
         }
         else {
             timeUntilMelee -= Time.deltaTime;
@@ -38,10 +44,14 @@ public class MeleeSys : MonoBehaviour
     }
     
 
-
+    private IEnumerator meleedelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        checker = false;
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Enemy" ) {
+        if( checker == true && other.tag == "Enemy" ) {
             other.GetComponent<Helath>().TakeDamage(damage);
             Debug.Log("Enemy Hit");        
         }
