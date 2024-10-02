@@ -648,7 +648,7 @@ MonoBehaviour:
     m_Bits: 0
   target1: 
   target2: 
-  speed1: 0
+  speed1: 3000
 --- !u!61 &264222086
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -721,6 +721,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!1 &403616340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 403616341}
+  m_Layer: 0
+  m_Name: WoodenAxe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &403616341
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 403616340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1966404672789437602}
+  m_Father: {fileID: 1103065062581938897}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &423625356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,7 +1270,7 @@ MonoBehaviour:
     m_Bits: 0
   target1: 
   target2: 
-  speed1: 100000000
+  speed1: 4000
 --- !u!61 &699024772
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15291,6 +15323,7 @@ GameObject:
   - component: {fileID: 1353711402}
   - component: {fileID: 1353711404}
   - component: {fileID: 1353711405}
+  - component: {fileID: 1353711406}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -15420,7 +15453,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4b48eb2affed143b20ee9ebb0eed1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 49.9
+--- !u!114 &1353711406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353711399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203883ffaf06f4f4cb3692cd37829a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockedDown: {fileID: 1255855593, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  stabbed: {fileID: 290837868, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  bulletWound: {fileID: 637537481, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  backUp: {fileID: 21300000, guid: b4b709859eb6fab4bad82046f548c74a, type: 3}
+  bloodPool: {fileID: 6108736480388457181, guid: acd48948bd115e642a1e8f830106b10f, type: 3}
+  bloodSpurt: {fileID: 3827888657332732091, guid: 47cae49b793d7714b9753733baf45391, type: 3}
+  sr: {fileID: 423625357}
 --- !u!1 &1373359799
 GameObject:
   m_ObjectHideFlags: 0
@@ -15615,7 +15667,7 @@ GameObject:
   - component: {fileID: 1521900904}
   m_Layer: 6
   m_Name: Walls etc
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18646,7 +18698,7 @@ MonoBehaviour:
     m_Bits: 0
   target1: 
   target2: 
-  speed1: 0
+  speed1: 4000
 --- !u!61 &1620059992
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18900,6 +18952,7 @@ GameObject:
   - component: {fileID: 1875079009}
   - component: {fileID: 1875079008}
   - component: {fileID: 1875079007}
+  - component: {fileID: 1875079012}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -18919,7 +18972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da4b48eb2affed143b20ee9ebb0eed1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50
+  health: 49.9
 --- !u!114 &1875079008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18976,10 +19029,10 @@ BoxCollider2D:
   m_Offset: {x: -0.045178175, y: -0.06776714}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.5, y: 2.5}
+    newSize: {x: 2.5, y: 2.5}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -19030,6 +19083,25 @@ Transform:
   - {fileID: 929536430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875079012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875079006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 203883ffaf06f4f4cb3692cd37829a02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockedDown: {fileID: 1255855593, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  stabbed: {fileID: 290837868, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  bulletWound: {fileID: 637537481, guid: 5f011bc5130ebc347af16fcdbc31b591, type: 3}
+  backUp: {fileID: 21300000, guid: b4b709859eb6fab4bad82046f548c74a, type: 3}
+  bloodPool: {fileID: 6108736480388457181, guid: acd48948bd115e642a1e8f830106b10f, type: 3}
+  bloodSpurt: {fileID: 3827888657332732091, guid: 47cae49b793d7714b9753733baf45391, type: 3}
+  sr: {fileID: 929536431}
 --- !u!1 &1914915924
 GameObject:
   m_ObjectHideFlags: 0
@@ -19178,7 +19250,7 @@ MonoBehaviour:
     m_Bits: 0
   target1: 
   target2: 
-  speed1: 0
+  speed1: 4500
 --- !u!61 &2135482380
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19413,7 +19485,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1966404672789437602}
+  - {fileID: 403616341}
   - {fileID: 785382096}
   - {fileID: 3651966590461250372}
   - {fileID: 699024770}
@@ -19524,13 +19596,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8010544478357537256}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.75636744, w: 0.65414697}
+  m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
   m_LocalPosition: {x: -7.04, y: 1.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5379712950486217813}
-  m_Father: {fileID: 1103065062581938897}
+  m_Father: {fileID: 403616341}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -98.29}
 --- !u!50 &2017339190939321153
 Rigidbody2D:
@@ -20137,6 +20209,7 @@ MonoBehaviour:
   equippedWeapon: {fileID: 0}
   obj: 
   hasWeapon: 0
+  hasthrownWeapon: 0
   equippedWeaponRB: {fileID: 0}
   throwPower: 50
   dropPower: 10
@@ -20294,7 +20367,7 @@ MonoBehaviour:
     m_Bits: 0
   target1: 
   target2: 
-  speed1: 500
+  speed1: 30000
 --- !u!1 &7643083395212064059
 GameObject:
   m_ObjectHideFlags: 0
@@ -20370,7 +20443,6 @@ MonoBehaviour:
   anim: {fileID: 7784572714871665057}
   meleeSpeed: 0.3
   damage: 50
-  name: {fileID: 4551141975945278127}
 --- !u!95 &7784572714871665057
 Animator:
   serializedVersion: 5
@@ -20458,7 +20530,7 @@ GameObject:
   - component: {fileID: 8010544478357537258}
   - component: {fileID: 8010544478357537257}
   m_Layer: 8
-  m_Name: Wooden Axe
+  m_Name: WoodenAxe
   m_TagString: Melee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20480,8 +20552,7 @@ MonoBehaviour:
   target2: Enemy
   anim: {fileID: 8010544478357537258}
   meleeSpeed: 2
-  damage: 100
-  name: {fileID: 8010544478357537256}
+  damage: 50
 --- !u!95 &8010544478357537258
 Animator:
   serializedVersion: 5

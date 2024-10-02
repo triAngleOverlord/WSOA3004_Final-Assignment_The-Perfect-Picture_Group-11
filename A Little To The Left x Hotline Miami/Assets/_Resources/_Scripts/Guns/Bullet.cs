@@ -8,11 +8,11 @@ public class Bullet : MonoBehaviour
     public Vector3 direction;
     string creator;
 
-    //EnemyAttacked attacked;
+    EnemyAttacked attacked;
 
     public GameObject bloodImpact,wallImpact;
 
-    float timer = 10.0f;
+    float timer = 5.0f;
 
     [SerializeField] public float speed;
     public string target1;
@@ -59,9 +59,9 @@ public class Bullet : MonoBehaviour
             // Destroy(gameObject);
         //}
          if(collision.tag == "Enemy" ) {
-            //  attacked = collision.gameObject.GetComponent<EnemyAttacked>();
-            //  attacked.killBullet();
-            collision.GetComponent<Helath>().TakeDamage(damage);
+              attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+              attacked.killBullet();
+              collision.GetComponent<Helath>().TakeDamage(damage);
 
             // And finally we add force in the direction of dir and multiply it by force. 
              // This will push back the player
@@ -76,7 +76,7 @@ public class Bullet : MonoBehaviour
         }
         else if (collision.tag == "Wall") 
         {
-            //Instantiate (wallImpact, this.transform.position, this.transform.rotation);
+            Instantiate (wallImpact, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
         

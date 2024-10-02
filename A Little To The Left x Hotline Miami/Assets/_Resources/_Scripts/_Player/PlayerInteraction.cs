@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
     public string obj;
 
     public bool hasWeapon;
+    public bool hasthrownWeapon;
     public Rigidbody2D equippedWeaponRB;
     private BoxCollider2D equippedWeaponBC;
 
@@ -36,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
 
     void Start()
     {
+        hasthrownWeapon = false;
         StartCoroutine("CallInteract", .3f);
     }
 
@@ -67,6 +69,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickWeapons()
     {
+        
         for (int i = 0; i < foundWeapons.Count; i++)
         {
             weaponType = foundWeapons[i].tag == "Ranged" ? WeaponType.ranged : WeaponType.melee;
@@ -74,10 +77,11 @@ public class PlayerInteraction : MonoBehaviour
 
         if (hasWeapon)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1) && hasthrownWeapon == false)
             {
                  if (equippedWeapon!= null)
                 {
+                    hasthrownWeapon = true;
                     equippedWeapon.parent = null;
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
@@ -91,7 +95,7 @@ public class PlayerInteraction : MonoBehaviour
                     
                 }
 
-
+                
                 hasWeapon = false;
             }
 
@@ -169,6 +173,8 @@ public class PlayerInteraction : MonoBehaviour
         equippedWeaponRB.AddTorque (spinningSpeed, ForceMode2D.Impulse);
         equippedWeaponRB.angularDrag = 2f;
         equippedWeapon = null;
+        yield return new WaitForSeconds(0.25f);
+        hasthrownWeapon = false;
    
     }
 }

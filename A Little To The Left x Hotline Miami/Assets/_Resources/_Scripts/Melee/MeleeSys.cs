@@ -20,15 +20,24 @@ public class MeleeSys : MonoBehaviour
 
     [SerializeField] private float damage;
 
-    [SerializeField] private GameObject name;
+    private EnemyAttacked attacked;
+
+    private GameObject name;
 
     float timeUntilMelee;
+
+    private void Start()
+    {
+        name = GameObject.FindGameObjectWithTag("Player");
+        rb = this.GetComponent<Rigidbody2D>();
+
+    }
 
     private void Update(){
         if (timeUntilMelee <= 0f)
         {
             
-            if(  Input.GetMouseButtonDown(0)  )
+            if(  Input.GetMouseButtonDown(0) && name.GetComponent<PlayerInteraction>().hasWeapon == true   )
             {
                 
                 checker = true;
@@ -53,8 +62,48 @@ public class MeleeSys : MonoBehaviour
     {
         if( checker == true && other.tag == "Enemy" ) {
             other.GetComponent<Helath>().TakeDamage(damage);
+            attacked = other.gameObject.GetComponent<EnemyAttacked>();
+            attacked.killMelee();
             Debug.Log("Enemy Hit");        
         }
+        // ai attack
         
     }
+
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "Sword") 
+        { 
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.killMelee();
+            Debug.Log("Enemy Hit");
+            this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "WoodenAxe") 
+        { 
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.killMelee();
+            Debug.Log("Enemy Hit");
+            this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true)
+        {
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.knockDownEnemy();
+            Debug.Log("Enemy KnockedDown");
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+        } 
+    } 
+
+    
 }

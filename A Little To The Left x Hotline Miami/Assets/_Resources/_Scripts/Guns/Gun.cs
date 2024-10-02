@@ -44,6 +44,10 @@ public class Gun : MonoBehaviour
 
     PlayerInteraction playerInteraction;
 
+    private GameObject name;
+
+    private EnemyAttacked attacked;
+
     
 
     
@@ -51,6 +55,7 @@ public class Gun : MonoBehaviour
      // Start is called before the first frame update
     private void Start()
     {
+        name = GameObject.FindGameObjectWithTag("Player");
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         bulletsLeft = magSize;
         canShoot = true;
@@ -75,7 +80,7 @@ public class Gun : MonoBehaviour
              Reload();
         }
 
-        if (this.gameObject.name == playerInteraction.obj && playerInteraction.hasWeapon && playerInteraction.weaponType == WeaponType.ranged && playerInteraction.weaponType != WeaponType.melee && canShoot && shooting && !reloading && bulletsLeft > 0)
+        if (this.gameObject.name == playerInteraction.obj && playerInteraction.hasWeapon  && canShoot && shooting && !reloading && bulletsLeft > 0)
         {
             Shoot();
         }
@@ -126,4 +131,27 @@ public class Gun : MonoBehaviour
         reloading = false;
         bulletsLeft = magSize;
     }
+
+
+     void OnCollisionEnter2D(Collision2D collision) 
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" ) 
+        { 
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.knockDownEnemy();
+            this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+            Debug.Log("Enemy Knocked Down");
+             name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+            this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2; 
+            
+             
+        }
+         
+    } 
 }

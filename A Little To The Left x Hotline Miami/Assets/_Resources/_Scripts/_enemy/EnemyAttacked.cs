@@ -6,7 +6,7 @@ public class EnemyAttacked : MonoBehaviour
 {
     public Sprite knockedDown,stabbed,bulletWound,backUp; //temporary, may be expanded
     public GameObject bloodPool,bloodSpurt;
-    SpriteRenderer sr;
+   [SerializeField] SpriteRenderer sr;
     bool EnemyKnockedDown=false;
     float knockDownTimer = 4.0f;
     GameObject player;
@@ -14,7 +14,7 @@ public class EnemyAttacked : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sr = this.GetComponent<SpriteRenderer>();
+        
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -47,7 +47,29 @@ public class EnemyAttacked : MonoBehaviour
             sr.sortingOrder = 5;
             knockDownTimer = 4.0f;
         }
+
+        //disable ai
     }
 
-    //public void kill
+    public void killBullet()
+    {
+        
+        sr.sprite = bulletWound;
+        Instantiate (bloodPool, this.transform.position, this.transform.rotation);
+        sr.sortingOrder = 2;
+        //disable ai
+        this.GetComponent<BoxCollider2D>().enabled=false;
+        this.gameObject.tag = "Dead";
+    }
+
+    public void killMelee()
+    {
+        sr.sprite = stabbed;
+        Instantiate (bloodPool, this.transform.position, this.transform.rotation);
+        Instantiate (bloodSpurt, this.transform.position, this.transform.rotation);
+        sr.sortingOrder = 2;
+        //disable ai
+        this.GetComponent<BoxCollider2D>().enabled = false;
+        this.gameObject.tag = "Dead";
+    }
 }

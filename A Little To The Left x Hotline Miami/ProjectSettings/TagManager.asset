@@ -8,6 +8,7 @@ TagManager:
   - Ranged
   - Enemy
   - Wall
+  - Dead
   layers:
   - Default
   - TransparentFX
