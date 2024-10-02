@@ -36,14 +36,14 @@ public class EnemyAttacked : MonoBehaviour
     {
         knockDownTimer -= Time.deltaTime;
         sr.sprite = knockedDown;
-        this.GetComponent<BoxCollider2D>().enabled=false;
+        this.GetComponent<CircleCollider2D>().enabled=false;
         sr.sortingOrder = 2;
 
         if(knockDownTimer <= 0) 
         {
             EnemyKnockedDown = false;
             sr.sprite = backUp;
-            this.GetComponent<BoxCollider2D>().enabled=true;
+            this.GetComponent<CircleCollider2D>().enabled=true;
             sr.sortingOrder = 5;
             knockDownTimer = 4.0f;
         }
@@ -58,7 +58,7 @@ public class EnemyAttacked : MonoBehaviour
         Instantiate (bloodPool, this.transform.position, this.transform.rotation);
         sr.sortingOrder = 2;
         //disable ai
-        this.GetComponent<BoxCollider2D>().enabled=false;
+        this.GetComponent<CircleCollider2D>().enabled=false;
         this.gameObject.tag = "Dead";
     }
 
@@ -69,7 +69,7 @@ public class EnemyAttacked : MonoBehaviour
         Instantiate (bloodSpurt, this.transform.position, this.transform.rotation);
         sr.sortingOrder = 2;
         //disable ai
-        this.GetComponent<BoxCollider2D>().enabled = false;
+        this.GetComponent<CircleCollider2D>().enabled = false;
         this.gameObject.tag = "Dead";
     }
 }
