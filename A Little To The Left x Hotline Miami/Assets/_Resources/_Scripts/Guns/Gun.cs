@@ -100,14 +100,23 @@ public class Gun : MonoBehaviour
     for (int i = 0; i < amountofBullets; i++)
     {
         // Apply random spread to each bullet.
-        float randomSpread = UnityEngine.Random.Range(-spread, spread);
-        Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpread);
-
-        // Instantiate the bullet with random spread applied to the firePoint's rotation.
+        float randomSpreadz = UnityEngine.Random.Range(-spread, spread);
+        float randomSpeed = UnityEngine.Random.Range(shootForce/2, shootForce);
+        Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpreadz);
         GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
+        if(this.gameObject.name == "Shotgun")
+        {
+            bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * randomSpeed, ForceMode2D.Impulse);
+        }
+        else
+        {
+            bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
+        }
+        // Instantiate the bullet with random spread applied to the firePoint's rotation.
+        
 
         // Apply force to the bullet in the firePoint's forward direction.
-        bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
+        
     }
 
     bulletsLeft--;

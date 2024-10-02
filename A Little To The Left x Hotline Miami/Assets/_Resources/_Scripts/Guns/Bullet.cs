@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
    private ContactPoint2D[] contacts = new ContactPoint2D[2];
 
    
-
+    
     // Start is called before the first frame update
     void Start()
     {
