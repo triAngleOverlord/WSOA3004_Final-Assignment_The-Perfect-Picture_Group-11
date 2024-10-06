@@ -59,14 +59,14 @@ public class Bullet : MonoBehaviour
             // Destroy(gameObject);
         //}
          if(collision.tag == "Enemy" ) {
-              attacked = collision.gameObject.GetComponent<EnemyAttacked>();
-              attacked.killBullet();
-              collision.GetComponent<Helath>().TakeDamage(damage);
+              //attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+              //attacked.killBullet();
+             // collision.GetComponent<Helath>().TakeDamage(damage);
 
             // And finally we add force in the direction of dir and multiply it by force. 
              // This will push back the player
-            Vector2 dir = (collision.transform.position - transform.position).normalized;
-            collision.GetComponent<Rigidbody2D>().AddForce (dir * speed);
+            //Vector2 dir = (collision.transform.position - transform.position).normalized;
+           // collision.GetComponent<Rigidbody2D>().AddForce (dir * speed);
            
 
 		
@@ -79,6 +79,7 @@ public class Bullet : MonoBehaviour
             Instantiate (wallImpact, this.transform.position, this.transform.rotation);
             Destroy(this.gameObject);
         }
+        
         
     }
 }

@@ -7,6 +7,8 @@ public class EnemyAttacked : MonoBehaviour
     public Sprite knockedDown,stabbed,bulletWound,backUp; //temporary, may be expanded
     public GameObject bloodPool,bloodSpurt;
    [SerializeField] SpriteRenderer sr;
+
+   [SerializeField] List<GameObject> DirectionGrid;
     bool EnemyKnockedDown=false;
     float knockDownTimer = 4.0f;
     GameObject player;
@@ -51,7 +53,7 @@ public class EnemyAttacked : MonoBehaviour
         //disable ai
     }
 
-    public void killBullet()
+    public void killBullet(string name)
     {
         
         sr.sprite = bulletWound;
@@ -71,5 +73,13 @@ public class EnemyAttacked : MonoBehaviour
         //disable ai
         this.GetComponent<CircleCollider2D>().enabled = false;
         this.gameObject.tag = "Dead";
+    }
+
+    public void Disable()
+    {
+        for (int i = 0; i < DirectionGrid.Count; i++)
+            {
+                DirectionGrid[i].SetActive(false);
+            }
     }
 }
