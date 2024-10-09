@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class DirectionSystem : MonoBehaviour
 {
-   private Bullet bullet;
+    private Bullet bullet;
     private EnemyAttacked attacked;
+
+    
 
     private float speed;
     // Start is called before the first frame update
