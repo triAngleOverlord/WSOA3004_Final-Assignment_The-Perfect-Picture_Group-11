@@ -1,5 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
+using static PlayerInteraction;
 
 public class Gun : MonoBehaviour
 {
@@ -10,7 +14,9 @@ public class Gun : MonoBehaviour
     [SerializeField] float reloadTime;
     [SerializeField] float shootForce;
 
-    [SerializeField] float amountofBullets;    
+    [SerializeField] float amountofBullets;
+
+    
 
     [SerializeField] int magSize;
     [SerializeField] bool isAutomatic;
@@ -19,7 +25,9 @@ public class Gun : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask whatIsEnemy;
-  
+
+    
+
     public string target1;
     public string target2;
     private Rigidbody2D rb;
@@ -36,20 +44,25 @@ public class Gun : MonoBehaviour
 
     PlayerInteraction playerInteraction;
 
-    private GameObject player;
+    private GameObject name;
 
     private EnemyAttacked attacked;
 
-    public bool noiseHeard;
     
+
+    
+
+     // Start is called before the first frame update
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        name = GameObject.FindGameObjectWithTag("Player");
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         bulletsLeft = magSize;
-        canShoot = true;     
+        canShoot = true;
+        
     }
 
+    // Update is called once per frame
     private void Update()
     {
         bulletPrefab.GetComponent<Bullet>().speed = speed1;
@@ -77,37 +90,38 @@ public class Gun : MonoBehaviour
             Reload();
         }
 
+    }
 
-        if (playerInteraction.hasWeapon && bulletsLeft> 0 && Input.GetMouseButton (0))
+
+    private void Shoot()
+{
+    canShoot = false;
+
+    for (int i = 0; i < amountofBullets; i++)
+    {
+        // Apply random spread to each bullet.
+        float randomSpreadz = UnityEngine.Random.Range(-spread, spread);
+        float randomSpeed = UnityEngine.Random.Range(shootForce/2, shootForce);
+        Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpreadz);
+        GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
+        if(this.gameObject.name == "Shotgun")
         {
-            noiseHeard = true;
+            bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * randomSpeed, ForceMode2D.Impulse);
         }
         else
         {
-            noiseHeard= false;
-        }
-    }
-
-    private void Shoot()
-    {
-        canShoot = false;
-
-        for (int i = 0; i < amountofBullets; i++)
-        {
-            // Apply random spread to each bullet.
-            float randomSpread = UnityEngine.Random.Range(-spread, spread);
-            Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpread);
-
-            // Instantiate the bullet with random spread applied to the firePoint's rotation.
-            GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
-
-            // Apply force to the bullet in the firePoint's forward direction.
             bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
         }
+        // Instantiate the bullet with random spread applied to the firePoint's rotation.
+        
 
-        bulletsLeft--;
-        Invoke("ResetShot", shootingCooldown);
+        // Apply force to the bullet in the firePoint's forward direction.
+        
     }
+
+    bulletsLeft--;
+    Invoke("ResetShot", shootingCooldown);
+}
 
 
     private void ResetShot()
@@ -132,18 +146,20 @@ public class Gun : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
-            player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
         }
-        else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" ) 
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" ) 
         { 
             attacked = collision.gameObject.GetComponent<EnemyAttacked>();
             attacked.knockDownEnemy();
             this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
             this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
             Debug.Log("Enemy Knocked Down");
-             player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+             name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
             this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
-            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2;          
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2; 
+            
+             
         }
          
     } 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -11,8 +10,6 @@ public class EnemyController : MonoBehaviour
     public idleStates state;
     public enum idleStates { patrol, roamer, staticState }
 
-    public inspectStates soundState;
-    public enum inspectStates { sight, sound}
     private NavMeshAgent agent;
     Transform player;
 
@@ -35,25 +32,10 @@ public class EnemyController : MonoBehaviour
     private Vector2 originalPos;
 
     //Inspect
-    public Vector2 siteToInspect;
+    private Vector2 siteToInspect;
     private EnemyVision enemyVision;
-    private float inspectionTime = 2f;
+
     private enemyState currentState;
-
-
-    //vars from the enemy vision script, now here
-    public float viewRadius;
-    public float viewAngle;
-
-    public LayerMask targetMask;
-    public LayerMask obstructionMask;
-
-    public List<Transform> foundTargets = new List<Transform>();
-    private float timeSinceLastSeenPlayer = 0f;
-    public float timeBeforeForget = 10f;
-    public bool hasSeenPlayer;
-
-    private bool canShootPlayer;
 
     void Start()
     {
@@ -70,24 +52,12 @@ public class EnemyController : MonoBehaviour
 
         originalPos = transform.position;
         enemyVision = FindObjectOfType<EnemyVision>();
-
-
-        //enemy vision
-        StartCoroutine(FindTarget());
-        hasSeenPlayer = false;
-
-        //sound detection
     }
 
     void Update()
     {
         EnemyLife();
-        HasSeenPlayer();
-        FaceWhereverYoureHeaded();
-    }
 
-    private void FaceWhereverYoureHeaded ()
-    {
         Vector3 targetDir = agent.velocity;
         float newDir = Mathf.Atan2(targetDir.y, targetDir.x) * Mathf.Rad2Deg - 90f;
 
@@ -95,73 +65,6 @@ public class EnemyController : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, newDir));
         }
-    }
-
-    private IEnumerator FindTarget()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(.2f);
-            FOV();
-        }
-    }
-
-    private void FOV()
-    {
-        foundTargets.Clear();
-
-        Collider2D[] visibleTargets = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
-
-        for (int i = 0; i < visibleTargets.Length; i++)
-        {
-            Transform target = visibleTargets[i].transform;
-            Vector2 dirToTarget = (target.position - transform.position).normalized;
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-
-            if (Vector2.Angle(transform.up, dirToTarget) < viewAngle / 2f && distanceToTarget <= viewRadius)
-            {
-                if (!Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstructionMask))
-                {
-                    Debug.DrawLine(transform.position, target.position, Color.red); 
-                    foundTargets.Add(target);
-                    canShootPlayer = true;
-                }
-                else
-                {
-                    canShootPlayer = false;
-                }
-            }
-        }
-    }
-
-    private void HasSeenPlayer()
-    {
-        if (foundTargets.Count > 0)
-        {
-            baseState = enemyState.inspect;
-            siteToInspect = foundTargets[0].position;
-            timeSinceLastSeenPlayer = 0f;
-            hasSeenPlayer = true;
-        }
-        else if (foundTargets.Count == 0) 
-        {
-            timeSinceLastSeenPlayer += Time.deltaTime;
-            if (timeSinceLastSeenPlayer >= timeBeforeForget)
-            {
-                hasSeenPlayer = false;
-                baseState = enemyState.idle;
-            }
-        }
-    }
-
-    public Vector3 DirFromAngle(float angleInDegrees, bool isAngleGlobal)
-    {
-        if (!isAngleGlobal)
-        {
-            angleInDegrees -= transform.eulerAngles.z;
-        }
-
-        return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
     }
 
     private void EnemyLife()
@@ -187,11 +90,11 @@ public class EnemyController : MonoBehaviour
         }
         else if (baseState == enemyState.attack)
         {
-            Kill();
+
         }
         else if (baseState == enemyState.dead)
         {
-            Dead();
+
         }
     }
 
@@ -200,7 +103,7 @@ public class EnemyController : MonoBehaviour
         target = patrolPoints[pointIndex];
         if (target != null)
         {
-            GoToDestination(target.position);
+            agent.SetDestination(target.position);
         }
 
         if (Vector3.Distance(transform.position, patrolPoints[pointIndex].position) < 0.1f)
@@ -219,7 +122,7 @@ public class EnemyController : MonoBehaviour
             Vector3 deflectionDir = Vector3.Cross(transform.up, transform.forward).normalized;
 
             randomPosition = transform.position + deflectionDir * Random.Range(2, 5);
-            GoToDestination(randomPosition);
+            agent.SetDestination(randomPosition);
             return;
         }
         else
@@ -237,49 +140,25 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        GoToDestination(randomPosition);
+        agent.SetDestination(randomPosition);
     }
 
     private void StaticIdle()
     {
         if (Vector3.Distance(transform.position, originalPos) > 0.01f)
         {
-            GoToDestination (originalPos);
+            agent.SetDestination(originalPos);
         }
-    }
-
-    private void Kill()
-    {
-        // here we will check the type of weapon the enemy has equipped
-        //  if it's ranged, we will calculate the distance from which the enemy can shoot
-        //else if it's melee, we will also calculate an attack range then make it attack
-
-        if (canShootPlayer)
-        {
-            if (Vector3.Distance (transform.position, player.position) < .5f)
-            {
-                print("shot");
-            }
-            else
-            {
-                print("Target on sight but far");
-            }
-        }
-    }
-
-    private void Dead()
-    {
-        //the enemy dies 
     }
 
     private void Inspect()
     {
-        GoToDestination (siteToInspect);
+
     }
 
-    private void GoToDestination(Vector3 destination)
+    private void BackToWork()
     {
-        agent.SetDestination(destination);
+
     }
 }
 

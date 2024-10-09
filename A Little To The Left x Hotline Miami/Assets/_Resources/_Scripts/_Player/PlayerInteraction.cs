@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
    [SerializeField] private float interactRadius;
 
     [SerializeField] private LayerMask targetWeaponMask;
+
     [SerializeField] private List<Transform> foundWeapons = new List<Transform>();
 
     [SerializeField] private Transform meleeWeaponPos;
@@ -27,9 +28,9 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float dropPower;
     [SerializeField] private float spinningSpeed;
 
-    public WeaponTypeNew weaponType;
+    internal WeaponType weaponType;
 
-    public enum WeaponTypeNew
+    public enum WeaponType
     {
         melee, ranged
     }
@@ -57,7 +58,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Interact()
     {
         foundWeapons.Clear();
-        Collider2D[] weaponsWithinRange = Physics2D.OverlapCircleAll(transform.position, interactRadius, targetWeaponMask);
+        Collider2D[]  weaponsWithinRange = Physics2D.OverlapCircleAll (transform.position, interactRadius, targetWeaponMask);
 
         for (int i = 0; i < weaponsWithinRange.Length; i++)
         {
@@ -68,10 +69,10 @@ public class PlayerInteraction : MonoBehaviour
 
     private void PickWeapons()
     {
-
+        
         for (int i = 0; i < foundWeapons.Count; i++)
         {
-            weaponType = foundWeapons[i].gameObject.tag == "Ranged" ? WeaponTypeNew.ranged: WeaponTypeNew.melee;
+            weaponType = foundWeapons[i].tag == "Ranged" ? WeaponType.ranged : WeaponType.melee;
         }
 
         if (hasWeapon)
@@ -85,14 +86,15 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-
-                    if (weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
-                    {
-                        animator = equippedWeapon.GetComponent<Animator>();
-                        animator.enabled = false;
-                    }
-                    StartCoroutine(waiter());    
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
+                {
+                    animator = equippedWeapon.GetComponent<Animator>();
+                    animator.enabled = false;
                 }
+                    StartCoroutine(waiter());
+                    
+                }
+
                 
                 hasWeapon = false;
             }
@@ -105,12 +107,11 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                    if (weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
-                    {
-                        animator = equippedWeapon.GetComponent<Animator>();
-                        animator.enabled = false;
-                    }
-                    
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
+                {
+                    animator = equippedWeapon.GetComponent<Animator>();
+                    animator.enabled = false;
+                }
                     equippedWeaponRB.AddForce(transform.right* dropPower, ForceMode2D.Impulse);
                     equippedWeaponRB.angularDrag = 2f;
                     equippedWeapon = null;
@@ -130,23 +131,24 @@ public class PlayerInteraction : MonoBehaviour
             {
                 hasWeapon = true;
 
-                equippedWeapon = foundWeapons[0];
+                 equippedWeapon = foundWeapons[0];
                 obj = equippedWeapon.gameObject.name;
                 equippedWeaponRB = equippedWeapon.GetComponent<Rigidbody2D>();
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-
-                if(weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
+                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = true;
                 }
-                          
-                equippedWeapon.parent = weaponType == WeaponTypeNew.ranged? rangedWeaponPos : meleeWeaponPos;
+                
+                
+                equippedWeapon.parent = weaponType == WeaponType.ranged? rangedWeaponPos : meleeWeaponPos;
                 equippedWeapon.localRotation = Quaternion.identity;
                 equippedWeapon.localPosition = Vector3.zero;
-                equippedWeaponBC.isTrigger = true;    
+                equippedWeaponBC.isTrigger = true;
+                
             }
         }
 
@@ -164,7 +166,8 @@ public class PlayerInteraction : MonoBehaviour
     }
 
     IEnumerator waiter()
-    {  
+    {   
+   
         equippedWeaponRB.AddForce (transform.up * throwPower, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.05f);
         equippedWeaponRB.AddTorque (spinningSpeed, ForceMode2D.Impulse);
@@ -172,5 +175,6 @@ public class PlayerInteraction : MonoBehaviour
         equippedWeapon = null;
         yield return new WaitForSeconds(0.25f);
         hasthrownWeapon = false;
+   
     }
 }
