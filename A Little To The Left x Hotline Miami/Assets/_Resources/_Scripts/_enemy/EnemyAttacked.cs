@@ -94,6 +94,10 @@ public class EnemyAttacked : MonoBehaviour
             sr.sprite = bulletWound;//front or back doesnt matter
             RotateLeft();
         }
+        else
+        {
+            sr.sprite = bulletWound;
+        }
        
       
         //sr.sprite = bulletWound;
@@ -134,4 +138,14 @@ public class EnemyAttacked : MonoBehaviour
 
     void RotateNE () { this.gameObject.transform.Rotate (Vector3.forward * 45); }
     void RotateNW () { this.gameObject.transform.Rotate (Vector3.forward * -45); }
+
+    private void OnTriggerEnter2D (Collider2D collision)
+    {
+        
+         if(collision.tag == "Bullet") {}
+    }
+
+
 }
+
+
