@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1103286046979030193}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,7 +164,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   bloodImpact: {fileID: 6108736480388457181, guid: acd48948bd115e642a1e8f830106b10f, type: 3}
   wallImpact: {fileID: 6108736480388457181, guid: 0803f4251ed725d4dbaebbec7f83e2a4, type: 3}
-  speed: 30000
+  speed: 500
   target1: Walls etc
   target2: Enemy
   damage: 50
