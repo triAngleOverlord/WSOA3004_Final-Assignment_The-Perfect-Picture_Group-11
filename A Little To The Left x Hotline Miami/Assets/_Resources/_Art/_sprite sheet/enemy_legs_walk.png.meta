@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cf60525f1ad795746a3f71a770d6ead9
+guid: c51ec92997290b14bb85cd67dbf3a428
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 105
+  spritePixelsToUnits: 125
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: character arms-export_0
+      name: enemy_legs_walk_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -111,20 +111,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7750b2dad18e344fa418d2db915efca
-      internalID: 1690194989
+      spriteID: b5973c373712db148a49b2d122d8997e
+      internalID: 646170598
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_1
+      name: enemy_legs_walk_1
       rect:
         serializedVersion: 2
         x: 250
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +132,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 231cca841d9bb514983b4e912ef5af3f
-      internalID: -327877508
+      spriteID: c7c099b577bfbac4c9fbb0e4ae303eaf
+      internalID: -1436240147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_2
+      name: enemy_legs_walk_2
       rect:
         serializedVersion: 2
         x: 500
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +153,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f7f13f03293c5645bfe9f609b754157
-      internalID: 1805901145
+      spriteID: c4738f17bc373c34d9729f77aeb8a956
+      internalID: -1916319916
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_3
+      name: enemy_legs_walk_3
       rect:
         serializedVersion: 2
         x: 750
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +174,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d78b10f8ec2552a4fb84416aba4c6468
-      internalID: 172414383
+      spriteID: 8f293d37bf179c043a42185d4f98f642
+      internalID: 1554836000
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_4
+      name: enemy_legs_walk_4
       rect:
         serializedVersion: 2
         x: 1000
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11bd86e685692284a82d2097765afe0b
-      internalID: 936765736
+      spriteID: 6be0e737c1d6a854cb537bd332d8f070
+      internalID: 481406061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_5
+      name: enemy_legs_walk_5
       rect:
         serializedVersion: 2
         x: 1250
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61e6a9398de7e944188df1d0ea660ed9
-      internalID: 176899181
+      spriteID: fd08b0575d7cd3048ac30b1a98ad3a91
+      internalID: -1736695513
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: character arms-export_6
+      name: enemy_legs_walk_6
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 250
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e414303eb813c34faee3317d9826a5c
+      internalID: 848694879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: enemy_legs_walk_7
       rect:
         serializedVersion: 2
         x: 1750
-        y: 1
+        y: 0
         width: 250
-        height: 249
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -237,71 +258,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: db7ecbc0bbe7c4f469a20393551e9b61
-      internalID: 1015929065
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character arms-export_7
-      rect:
-        serializedVersion: 2
-        x: 2250
-        y: 1
-        width: 250
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2772410a119261478a88da9be27a114
-      internalID: -2139724773
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character arms-export_8
-      rect:
-        serializedVersion: 2
-        x: 2500
-        y: 1
-        width: 250
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdb51220a908e3947b56665abd746616
-      internalID: -1477370587
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: character arms-export_9
-      rect:
-        serializedVersion: 2
-        x: 2750
-        y: 1
-        width: 250
-        height: 249
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 53d2d65f4b2b2c04fb8342a49e5e09db
-      internalID: 1853148431
+      spriteID: c551cf92886a62b4db633ed5dd9abb5c
+      internalID: -137270008
       vertices: []
       indices: 
       edges: []
@@ -317,16 +275,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      character arms-export_0: 1690194989
-      character arms-export_1: -327877508
-      character arms-export_2: 1805901145
-      character arms-export_3: 172414383
-      character arms-export_4: 936765736
-      character arms-export_5: 176899181
-      character arms-export_6: 1015929065
-      character arms-export_7: -2139724773
-      character arms-export_8: -1477370587
-      character arms-export_9: 1853148431
+      enemy_legs_walk_0: 646170598
+      enemy_legs_walk_1: -1436240147
+      enemy_legs_walk_2: -1916319916
+      enemy_legs_walk_3: 1554836000
+      enemy_legs_walk_4: 481406061
+      enemy_legs_walk_5: -1736695513
+      enemy_legs_walk_6: 848694879
+      enemy_legs_walk_7: -137270008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
