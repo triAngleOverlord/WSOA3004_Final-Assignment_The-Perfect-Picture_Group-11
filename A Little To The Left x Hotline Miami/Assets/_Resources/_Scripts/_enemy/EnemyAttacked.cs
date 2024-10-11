@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAttacked : MonoBehaviour
 {
@@ -55,12 +56,57 @@ public class EnemyAttacked : MonoBehaviour
 
     public void killBullet(string name)
     {
-        
-        sr.sprite = bulletWound;
+        if(name == "South")
+        {
+            sr.sprite = bulletWound; //back shot
+        }
+        else if (name == "SouthEast")
+        {
+             sr.sprite = bulletWound; //back shot
+            RotateSE();
+        }
+        else if (name == "SouthWest")
+        {
+             sr.sprite = bulletWound; //back shot
+            RotateSW();
+        }
+        else if(name == "North")
+        {
+            sr.sprite = bulletWound; //front shot
+        }
+        else if(name == "NorthEast")
+        {
+            sr.sprite = bulletWound; //front shot
+            RotateNE();
+        }
+        else if(name == "NorthWest")
+        {
+            sr.sprite = bulletWound; //front shot
+            RotateNW();
+        }
+        else if (name == "East")
+        {
+            sr.sprite = bulletWound;//front or back doesnt matter
+            RotateRight();
+        }
+        else if (name == "West")
+        {
+            sr.sprite = bulletWound;//front or back doesnt matter
+            RotateLeft();
+        }
+        else
+        {
+            sr.sprite = bulletWound;
+        }
+       
+      
+        //sr.sprite = bulletWound;
         Instantiate (bloodPool, this.transform.position, this.transform.rotation);
         sr.sortingOrder = 2;
         //disable ai
+        this.GetComponent<NavMeshAgent>().enabled = false;
         this.GetComponent<CircleCollider2D>().enabled=false;
+        
         this.gameObject.tag = "Dead";
     }
 
@@ -82,4 +128,24 @@ public class EnemyAttacked : MonoBehaviour
                 DirectionGrid[i].SetActive(false);
             }
     }
+
+    void RotateRight () { this.gameObject.transform.Rotate (Vector3.forward * 90); }
+
+    void RotateLeft () { this.gameObject.transform.Rotate (Vector3.forward * -90); }
+
+    void RotateSE () { this.gameObject.transform.Rotate (Vector3.forward * -45); }
+     void RotateSW () { this.gameObject.transform.Rotate (Vector3.forward * 45); }
+
+    void RotateNE () { this.gameObject.transform.Rotate (Vector3.forward * 45); }
+    void RotateNW () { this.gameObject.transform.Rotate (Vector3.forward * -45); }
+
+    private void OnTriggerEnter2D (Collider2D collision)
+    {
+        
+         if(collision.tag == "Bullet") {}
+    }
+
+
 }
+
+
