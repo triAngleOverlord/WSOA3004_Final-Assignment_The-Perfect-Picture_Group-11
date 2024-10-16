@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] public float speed;
     private Vector2 movement;
 
     private Rigidbody2D rb;
