@@ -37,7 +37,7 @@ public class MeleeSys : MonoBehaviour
         if (timeUntilMelee <= 0f)
         {
             
-            if(  Input.GetMouseButtonDown(0) && name.GetComponent<PlayerInteraction>().hasWeapon == true   )
+            if(  Input.GetMouseButton(0) && name.GetComponent<PlayerInteraction>().hasWeapon == true   )
             {
                 
                 checker = true;
