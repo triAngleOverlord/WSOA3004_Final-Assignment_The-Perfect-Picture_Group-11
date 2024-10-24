@@ -21,8 +21,8 @@ TagManager:
   - Player
   - Weapons
   - Enemy
-  - 
-  - 
+  - InteractableObjects
+  - Bullet
   - 
   - 
   - 

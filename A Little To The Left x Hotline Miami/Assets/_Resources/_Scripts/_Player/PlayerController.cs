@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public PlayerState State;
+    public enum PlayerState { normal, lockOn }
+
     [SerializeField] private float speed;
     private Vector2 movement;
 
@@ -11,24 +14,18 @@ public class PlayerController : MonoBehaviour
     //look
     private Vector2 mousePos;
 
-
-    //shoot
-    [SerializeField] private GameObject projectile;
-    [SerializeField] private Transform projectileSpawner;
-    private GameObject bullet;
-    [SerializeField] private ParticleSystem muzzleFlash;
-    [SerializeField] private AudioSource bulletSFx;
+    [SerializeField] private bool isLockedOn;
+    private GameObject enemyToLockOn;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-
     void Update()
     {
         GetInput();
-        //Shoot();
+        LockIntoEnemies();
     }
 
     private void FixedUpdate()
@@ -42,8 +39,11 @@ public class PlayerController : MonoBehaviour
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
 
-        //set mousePos to the position of the mousePosition
-        mousePos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+        if (State == PlayerState.normal)
+        {
+            //set mousePos to the position of the mousePosition
+            mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        }
     }
 
     private void Move()
@@ -54,19 +54,41 @@ public class PlayerController : MonoBehaviour
     private void Look()
     {
         Vector2 lookDir = mousePos - rb.position;
-        var convertAngle = Mathf.Atan2 (lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        var convertAngle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
         rb.rotation = convertAngle;
     }
 
-    private void Shoot()
+
+    private void LockIntoEnemies()
     {
-         if (Input.GetButtonDown ("Fire1"))
+        if (Input.GetMouseButtonDown(2))
         {
-            bullet = Instantiate(projectile, projectileSpawner.position, Quaternion.identity);
-            muzzleFlash.Play();
-            bulletSFx.Play();
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(transform.up * 100f, ForceMode2D.Impulse);
+            if (EnemyController.isOverMe && !isLockedOn)
+            {
+                State = PlayerState.lockOn;
+
+                enemyToLockOn = EnemyController.me;
+                isLockedOn = true;
+            }
+            else if (isLockedOn)
+            {
+                State = PlayerState.normal;
+                enemyToLockOn = null;
+                isLockedOn = false;
+            }
+        }
+
+        if (State == PlayerState.lockOn)
+        {
+            if (enemyToLockOn != null)
+            {
+                mousePos = enemyToLockOn.transform.position;
+            }
+        }
+        else
+        {
+            State = PlayerState.normal;
+            isLockedOn = false;
         }
     }
 }

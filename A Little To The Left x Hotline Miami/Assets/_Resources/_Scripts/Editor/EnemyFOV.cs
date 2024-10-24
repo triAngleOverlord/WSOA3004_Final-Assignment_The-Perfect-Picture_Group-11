@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof (EnemyVision))]
+[CustomEditor(typeof (EnemyController))]
 public class EnemyFOV : Editor
 {
     private void OnSceneGUI()
     {
-        EnemyVision enemyVision = (EnemyVision) target;
+        EnemyController enemyVision = (EnemyController) target;
+        if(enemyVision == null) return;
         Handles.color = Color.red;
         Handles.DrawWireArc(enemyVision.transform.position, Vector3.forward, enemyVision.transform.right, 360, enemyVision.viewRadius);
 
