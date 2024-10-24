@@ -1,15 +1,22 @@
 diff a/A Little To The Left x Hotline Miami/Assets/_Resources/_Scripts/_Player/PlayerInteraction.cs b/A Little To The Left x Hotline Miami/Assets/_Resources/_Scripts/_Player/PlayerInteraction.cs	(rejected hunks)
-@@ -28,12 +28,8 @@
-     [SerializeField] private float dropPower;
-     [SerializeField] private float spinningSpeed;
+@@ -39,16 +39,15 @@
+     [SerializeField] private float interactDist;
+     bool hasObject;
  
--    public WeaponTypeNew weaponType;
-+    internal WeaponType weaponType;
+-    //hearing (enemy)
+-    [SerializeField] private float hearingRadius;
+-    [SerializeField] private LayerMask hearingMask;
  
--    public enum WeaponTypeNew
--    {
--        melee, ranged
--    }
+-    private Gun weaponClass;
++    public enum WeaponType
++    {
++        melee, ranged
++    }
  
-     //interact with obstacles
-     [SerializeField] private Transform pickedObjectPos;
+     void Start()
+     {
+         hasthrownWeapon = false;
+-        weaponClass = FindObjectOfType<Gun>();
+         StartCoroutine("CallInteract", .3f);
+     }
+ 
