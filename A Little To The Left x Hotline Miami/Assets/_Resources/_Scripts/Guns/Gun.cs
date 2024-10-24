@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using static PlayerInteraction;
 
 public class Gun : MonoBehaviour
 {
@@ -16,8 +12,6 @@ public class Gun : MonoBehaviour
 
     [SerializeField] float amountofBullets;
 
-    
-
     [SerializeField] int magSize;
     [SerializeField] bool isAutomatic;
     [SerializeField] bool AutoReload;
@@ -25,8 +19,6 @@ public class Gun : MonoBehaviour
     [SerializeField] Transform firePoint;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] LayerMask whatIsEnemy;
-
-    
 
     public string target1;
     public string target2;
@@ -39,34 +31,29 @@ public class Gun : MonoBehaviour
     private bool shooting;
     private bool reloading;
     private bool canShoot;
-    
-      [SerializeField]  public float speed1;
+
+    [SerializeField] public float speed1;
 
     PlayerInteraction playerInteraction;
 
-    private GameObject name;
+    private GameObject player;
 
     private EnemyAttacked attacked;
 
-    
+    public bool detectSound;
 
-    
-
-     // Start is called before the first frame update
     private void Start()
     {
-        name = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerInteraction = FindObjectOfType<PlayerInteraction>();
         bulletsLeft = magSize;
         canShoot = true;
-        
     }
 
-    // Update is called once per frame
     private void Update()
     {
         bulletPrefab.GetComponent<Bullet>().speed = speed1;
-        if(isAutomatic)
+        if (isAutomatic)
         {
             shooting = Input.GetKey(KeyCode.Mouse0);
         }
@@ -77,51 +64,49 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && bulletsLeft < magSize && !reloading)
         {
-             Reload();
+            Reload();
         }
 
-        if (this.gameObject.name == playerInteraction.obj && playerInteraction.hasWeapon  && canShoot && shooting && !reloading && bulletsLeft > 0)
+        if (this.gameObject.name == playerInteraction.obj && playerInteraction.hasWeapon && canShoot && shooting && !reloading && bulletsLeft > 0)
         {
             Shoot();
+        }
+
+        if (Input.GetMouseButton(0) && playerInteraction.hasWeapon && canShoot && playerInteraction.weaponType == PlayerInteraction.WeaponTypeNew.ranged)
+        {
+            detectSound = true;
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            detectSound = false;
         }
 
         if (AutoReload && bulletsLeft == 0 && !reloading)
         {
             Reload();
         }
-
     }
-
 
     private void Shoot()
-{
-    canShoot = false;
-
-    for (int i = 0; i < amountofBullets; i++)
     {
-        // Apply random spread to each bullet.
-        float randomSpreadz = UnityEngine.Random.Range(-spread, spread);
-        float randomSpeed = UnityEngine.Random.Range(shootForce/2, shootForce);
-        Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpreadz);
-        GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
-        if(this.gameObject.name == "Shotgun")
+        canShoot = false;
+        for (int i = 0; i < amountofBullets; i++)
         {
-            bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * randomSpeed, ForceMode2D.Impulse);
-        }
-        else
-        {
+            // Apply random spread to each bullet.
+            float randomSpread = UnityEngine.Random.Range(-spread, spread);
+            Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpread);
+
+            // Instantiate the bullet with random spread applied to the firePoint's rotation.
+            GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
+
+            // Apply force to the bullet in the firePoint's forward direction.
             bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
+            Destroy(bulletCopy, 10f);
         }
-        // Instantiate the bullet with random spread applied to the firePoint's rotation.
-        
 
-        // Apply force to the bullet in the firePoint's forward direction.
-        
+        bulletsLeft--;
+        Invoke("ResetShot", shootingCooldown);
     }
-
-    bulletsLeft--;
-    Invoke("ResetShot", shootingCooldown);
-}
 
 
     private void ResetShot()
@@ -142,25 +127,28 @@ public class Gun : MonoBehaviour
     }
 
 
-     void OnCollisionEnter2D(Collision2D collision) 
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
-            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+            player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
         }
-        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" ) 
-        { 
+        else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged")
+        {
             attacked = collision.gameObject.GetComponent<EnemyAttacked>();
             attacked.knockDownEnemy();
             this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
             this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
             Debug.Log("Enemy Knocked Down");
-             name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+            player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
             this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
-            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2; 
-            
-             
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2;
         }
-         
-    } 
+
+        if (collision.gameObject.tag == "Enemy")
+        {
+            EnemyController e = collision.gameObject.GetComponent<EnemyController>();
+            e.baseState = EnemyController.enemyState.dead;
+        }
+    }
 }
