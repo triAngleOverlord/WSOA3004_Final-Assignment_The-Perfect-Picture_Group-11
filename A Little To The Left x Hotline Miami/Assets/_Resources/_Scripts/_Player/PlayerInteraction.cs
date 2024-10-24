@@ -7,7 +7,6 @@ public class PlayerInteraction : MonoBehaviour
    [SerializeField] private float interactRadius;
 
     [SerializeField] private LayerMask targetWeaponMask;
-
     [SerializeField] private List<Transform> foundWeapons = new List<Transform>();
 
     [SerializeField] private Transform meleeWeaponPos;
