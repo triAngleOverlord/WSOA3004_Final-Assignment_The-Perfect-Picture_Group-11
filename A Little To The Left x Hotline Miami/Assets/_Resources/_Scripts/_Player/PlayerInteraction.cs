@@ -61,6 +61,50 @@ public class PlayerInteraction : MonoBehaviour
     {
         PickWeapons();
         InteractWithObjects();
+        HearingCast();
+    }
+
+    private void HearingCast()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, hearingRadius, hearingMask);
+
+        foreach (Collider2D collider in colliders)
+        {
+            EnemyController enemy = collider.GetComponent<EnemyController>();
+            if (enemy != null)
+            {
+                if (weaponClass.detectSound)
+                {
+                    enemy.HearSound(transform.position);
+                }
+            }
+        }
+    }
+
+    private void InteractWithObjects()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, interactDist, obstacleMask);
+            Debug.DrawRay(transform.position, transform.up * interactDist, Color.green);
+
+            if (hit.collider != null && !hasObject)
+            {
+                pickedObject = hit.collider.gameObject;
+                pickedObject.transform.parent = pickedObjectPos;
+                pickedObject.GetComponent<Collider2D>().enabled = false;
+                pickedObject.transform.localPosition = Vector3.zero;
+                pickedObject.transform.localRotation = Quaternion.identity;
+                hasObject = true;
+            }
+            else if (hasObject)
+            {
+                pickedObject.transform.parent = null;
+                pickedObject.GetComponent<Collider2D>().enabled = true;
+                pickedObject = null;
+                hasObject = false;
+            }
+        }
     }
 
     private IEnumerator CallInteract (float delay)
