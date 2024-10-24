@@ -22,7 +22,7 @@ TagManager:
   - Player
   - Weapons
   - Enemy
-  - 
+  - InteractableObject
   - 
   - 
   - 

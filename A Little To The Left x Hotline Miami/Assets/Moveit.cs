@@ -5,47 +5,45 @@ using UnityEngine;
 public class Moveit : MonoBehaviour
 {
     private GameObject objectToDrag;
-    [SerializeField] public GameObject holdposition;
-    [SerializeField] public GameObject player;
-    private bool isDragging = false;
+        //interact with obstacles
+    [SerializeField] private Transform pickedObjectPos;
+
+    public LayerMask obstacleMask;
+    private GameObject pickedObject;
+    [SerializeField] private float interactDist;
+    bool hasObject;
+
 
     // Update is called once per frame
-    void Update()
+    //This snippet here is the method itself
+//paste it anywhere within the playerInteraction class
+    private void InteractWithObjects()
     {
-        // If we are dragging an object
-        if (isDragging && objectToDrag != null && Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            // Update the position of the dragged object to the player's position
-            objectToDrag.transform.position = holdposition.transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, interactDist,                         obstacleMask);
+            Debug.DrawRay(transform.position, transform.up * interactDist, Color.green);
 
-            player.GetComponent<PlayerController>().speed = 4;
-
+            if (hit.collider != null && !hasObject)
+            {
+                pickedObject = hit.collider.gameObject;
+                pickedObject.transform.parent = pickedObjectPos;
+                pickedObject.GetComponent<Collider2D>().enabled = false;
+                pickedObject.transform.localPosition = Vector3.zero;
+                pickedObject.transform.localRotation = Quaternion.identity;
+                hasObject = true;
+            }
+            else if (hasObject)
+            {
+                pickedObject.transform.parent = null;
+                pickedObject.GetComponent<Collider2D>().enabled = true;
+                pickedObject = null;
+                hasObject = false;
+            }
         }
-
-        
-
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Check if the collided object is draggable
-        if (collision.gameObject.CompareTag("Draggable"))
-        {
-            objectToDrag = collision.gameObject;
-        }
-
-        if (objectToDrag != null)
-        {
-            isDragging = true;
-        }
-        else
-        {
-            player.GetComponent<PlayerController>().speed = 10;
-            isDragging = false;
-            objectToDrag = null;
-        }
-
-    }
+    
 
    
 

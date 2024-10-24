@@ -11,7 +11,7 @@ public class MeleeSys : MonoBehaviour
 
     private bool checker = false;
 
-
+    private int bottletally = 2;
     PlayerInteraction playerInteraction;
 
     [SerializeField] private Animator anim;
@@ -60,7 +60,21 @@ public class MeleeSys : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if( checker == true && other.tag == "Enemy" ) {
+        if( checker == true && other.tag == "Enemy" && this.gameObject.name == "Bottle" && bottletally == 2) { //add update sprite to bottle and hitbox and attack animation speed
+            other.GetComponent<Helath>().TakeDamage(damage);
+            attacked = other.gameObject.GetComponent<EnemyAttacked>();
+            attacked.knockDownEnemy();
+            Debug.Log("Enemy knockeddown"); 
+            bottletally-=1;       
+        }
+        else if(checker == true && other.tag == "Enemy" && this.gameObject.name == "Bottle" && bottletally == 1)
+        {
+            other.GetComponent<Helath>().TakeDamage(damage);
+            attacked = other.gameObject.GetComponent<EnemyAttacked>();
+            attacked.killMelee();
+            Debug.Log("Enemy Hit");  
+        }
+        else if( checker == true && other.tag == "Enemy" ) {
             other.GetComponent<Helath>().TakeDamage(damage);
             attacked = other.gameObject.GetComponent<EnemyAttacked>();
             attacked.killMelee();
@@ -86,7 +100,14 @@ public class MeleeSys : MonoBehaviour
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
         }
-        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "WoodenAxe") 
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "Bat") 
+        { 
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.knockDownEnemy();
+            Debug.Log("Enemy KnockedDown");
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "Chainsaw") 
         { 
             attacked = collision.gameObject.GetComponent<EnemyAttacked>();
             attacked.killMelee();
@@ -95,6 +116,40 @@ public class MeleeSys : MonoBehaviour
             this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
             this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "knife") 
+        { 
+            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+            attacked.killMelee();
+            Debug.Log("Enemy Hit");
+            this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+            this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+        }
+        else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.name == "Bottle") 
+        {
+            if(bottletally == 2)//update sprite
+            {
+                    attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+                    attacked.knockDownEnemy();
+                    Debug.Log("Enemy KnockedDown");
+                    this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+                    this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+                    this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+            }
+            else if(bottletally == 1)
+            {
+                attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+                attacked.killMelee();
+                Debug.Log("Enemy Hit");
+                this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+                this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+                this.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                name.GetComponent<PlayerInteraction>().hasthrownWeapon = false;  
+            }
+           
         }
         else if (collision.gameObject.CompareTag("Enemy") && name.GetComponent<PlayerInteraction>().hasthrownWeapon == true)
         {
