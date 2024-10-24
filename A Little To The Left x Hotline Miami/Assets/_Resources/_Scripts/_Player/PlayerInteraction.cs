@@ -43,15 +43,16 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float interactDist;
     bool hasObject;
 
+    //hearing (enemy)
+    [SerializeField] private float hearingRadius;
+    [SerializeField] private LayerMask hearingMask;
 
-    public enum WeaponType
-    {
-        melee, ranged
-    }
+    private Gun weaponClass;
 
     void Start()
     {
         hasthrownWeapon = false;
+        weaponClass = FindObjectOfType<Gun>();
         StartCoroutine("CallInteract", .3f);
     }
 
