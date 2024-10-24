@@ -105,7 +105,8 @@ public class EnemyAttacked : MonoBehaviour
         sr.sortingOrder = 2;
         //disable ai
         this.GetComponent<NavMeshAgent>().enabled = false;
-        this.GetComponent<CircleCollider2D>().enabled=false;
+        this.GetComponent<CircleCollider2D>().isTrigger = true;
+        
         
         this.gameObject.tag = "Dead";
     }
