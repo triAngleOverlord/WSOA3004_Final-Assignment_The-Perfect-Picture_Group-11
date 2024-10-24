@@ -28,8 +28,12 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private float dropPower;
     [SerializeField] private float spinningSpeed;
 
-    internal WeaponType weaponType;
+    public WeaponTypeNew weaponType;
 
+    public enum WeaponTypeNew
+    {
+        melee, ranged
+    }
 
     //interact with obstacles
     [SerializeField] private Transform pickedObjectPos;
