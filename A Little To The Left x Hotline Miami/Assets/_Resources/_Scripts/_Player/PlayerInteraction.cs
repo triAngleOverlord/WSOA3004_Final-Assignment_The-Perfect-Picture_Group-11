@@ -131,7 +131,7 @@ public class PlayerInteraction : MonoBehaviour
         
         for (int i = 0; i < foundWeapons.Count; i++)
         {
-            weaponType = foundWeapons[i].tag == "Ranged" ? WeaponTypeNew.ranged : WeaponTypeNew.melee;
+            weaponType = foundWeapons[i].gameObject.tag == "Ranged" ? WeaponTypeNew.ranged : WeaponTypeNew.melee;
         }
 
         if (hasWeapon)
@@ -145,7 +145,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
+                if(weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
@@ -166,8 +166,8 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
-                {
+                if(weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
+                    {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
                 }
@@ -196,7 +196,7 @@ public class PlayerInteraction : MonoBehaviour
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
+                if(weaponType == WeaponTypeNew.melee && equippedWeapon.gameObject.tag == "Melee")
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = true;
@@ -214,33 +214,6 @@ public class PlayerInteraction : MonoBehaviour
     }
 
 
-    private void InteractWithObjects()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, interactDist,                         obstacleMask);
-            Debug.DrawRay(transform.position, transform.up * interactDist, Color.green);
-
-            if (hit.collider != null && !hasObject)
-            {
-                pickedObject = hit.collider.gameObject;
-                pickedObject.transform.parent = pickedObjectPos;
-                pickedObject.GetComponent<Collider2D>().enabled = false;
-                pickedObject.transform.localPosition = Vector3.zero;
-                pickedObject.transform.localRotation = Quaternion.identity;
-                hasObject = true;
-            }
-            else if (hasObject)
-            {
-                pickedObject.transform.parent = null;
-                pickedObject.GetComponent<Collider2D>().enabled = true;
-                pickedObject = null;
-                hasObject = false;
-            }
-        }
-    }
-
-
 
 
     private void OnDrawGizmos()
@@ -253,6 +226,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             Gizmos.DrawLine(transform.position, weapon.position);
         }
+        //enemy hearing distance
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, hearingRadius);
     }
 
     IEnumerator waiter()
