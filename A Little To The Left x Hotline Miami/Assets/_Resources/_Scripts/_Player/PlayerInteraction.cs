@@ -131,7 +131,7 @@ public class PlayerInteraction : MonoBehaviour
         
         for (int i = 0; i < foundWeapons.Count; i++)
         {
-            weaponType = foundWeapons[i].tag == "Ranged" ? WeaponType.ranged : WeaponType.melee;
+            weaponType = foundWeapons[i].tag == "Ranged" ? WeaponTypeNew.ranged : WeaponTypeNew.melee;
         }
 
         if (hasWeapon)
@@ -145,7 +145,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
+                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
@@ -166,7 +166,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
                     
                     equippedWeaponBC.isTrigger = false;
-                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
+                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = false;
@@ -196,14 +196,14 @@ public class PlayerInteraction : MonoBehaviour
                 equippedWeaponRB.bodyType = RigidbodyType2D.Kinematic;
                 equippedWeaponRB.angularDrag = 0.2f;
                 equippedWeaponBC = equippedWeapon.GetComponent<BoxCollider2D>();
-                if(weaponType == WeaponType.melee && weaponType != WeaponType.ranged)
+                if(weaponType == WeaponTypeNew.melee && weaponType != WeaponTypeNew.ranged)
                 {
                     animator = equippedWeapon.GetComponent<Animator>();
                     animator.enabled = true;
                 }
                 
                 
-                equippedWeapon.parent = weaponType == WeaponType.ranged? rangedWeaponPos : meleeWeaponPos;
+                equippedWeapon.parent = weaponType == WeaponTypeNew.ranged? rangedWeaponPos : meleeWeaponPos;
                 equippedWeapon.localRotation = Quaternion.identity;
                 equippedWeapon.localPosition = Vector3.zero;
                 equippedWeaponBC.isTrigger = true;

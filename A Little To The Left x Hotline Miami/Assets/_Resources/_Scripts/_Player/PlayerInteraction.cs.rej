@@ -1,9 +1,10 @@
 diff a/A Little To The Left x Hotline Miami/Assets/_Resources/_Scripts/_Player/PlayerInteraction.cs b/A Little To The Left x Hotline Miami/Assets/_Resources/_Scripts/_Player/PlayerInteraction.cs	(rejected hunks)
-@@ -7,6 +7,7 @@
-    [SerializeField] private float interactRadius;
+@@ -83,7 +83,7 @@
+         
+         for (int i = 0; i < foundWeapons.Count; i++)
+         {
+-            weaponType = foundWeapons[i].gameObject.tag == "Ranged" ? WeaponTypeNew.ranged : WeaponTypeNew.melee;
++            weaponType = foundWeapons[i].tag == "Ranged" ? WeaponType.ranged : WeaponType.melee;
+         }
  
-     [SerializeField] private LayerMask targetWeaponMask;
-+
-     [SerializeField] private List<Transform> foundWeapons = new List<Transform>();
- 
-     [SerializeField] private Transform meleeWeaponPos;
+         if (hasWeapon)
