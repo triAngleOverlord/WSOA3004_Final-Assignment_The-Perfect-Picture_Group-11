@@ -93,21 +93,47 @@ public class ScoreDirectionSystem : MonoBehaviour
     string GetHitDirection(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        if (angle < 0) angle += 360;
 
-        if (angle >= 337.5 && angle < 22.5) {Debug.Log("East"); return "East";}
-        else if (angle >= 22.5 && angle < 67.5) {Debug.Log("NorthEast"); return "NorthEast";}
-        else if (angle >= 67.5 && angle < 112.5) {Debug.Log("North"); return "North";}
-        else if (angle >= 112.5 && angle < 157.5) {Debug.Log("NorthWest"); return "NorthWest";}
-        else if (angle >= 157.5 && angle < 202.5) {Debug.Log("West"); return "West";}
-        else if (angle >= 202.5 && angle < 247.5) {Debug.Log("SouthWest"); return "SouthWest";}
-        else if (angle >= 247.5 && angle < 292.5) {Debug.Log("South"); return "South";}
-        else if (angle >= 292.5 && angle < 337.5)
-            {
-                Debug.Log("Southeast");
-                return "Southeast";
-            }
-        else return "error";
+if (angle >= -22.5 && angle < 22.5)
+{
+    Debug.Log("East");
+    return "East";
+}
+else if (angle >= 22.5 && angle < 67.5)
+{
+    Debug.Log("Northeast");
+    return "Northeast";
+}
+else if (angle >= 67.5 && angle < 112.5)
+{
+    Debug.Log("North");
+    return "North";
+}
+else if (angle >= 112.5 && angle < 157.5)
+{
+    Debug.Log("Northwest");
+    return "Northwest";
+}
+else if (angle >= 157.5 || angle < -157.5)
+{
+    Debug.Log("West");
+    return "West";
+}
+else if (angle >= -157.5 && angle < -112.5)
+{
+    Debug.Log("Southwest");
+    return "Southwest";
+}
+else if (angle >= -112.5 && angle < -67.5)
+{
+    Debug.Log("South");
+    return "South";
+}
+else
+{
+    Debug.Log("Southeast");
+    return "Southeast";
+}
     }
 
 

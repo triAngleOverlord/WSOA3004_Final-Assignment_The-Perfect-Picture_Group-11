@@ -20898,7 +20898,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6
+  m_Radius: 0.5
 --- !u!1 &1895237352
 GameObject:
   m_ObjectHideFlags: 0
@@ -21118,7 +21118,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.59
+  m_Radius: 0.55
 --- !u!1 &1959140091
 GameObject:
   m_ObjectHideFlags: 0
@@ -21856,7 +21856,7 @@ MonoBehaviour:
   shootingCooldown: 0.1
   spread: 20
   reloadTime: 5
-  shootForce: 129.1
+  shootForce: 100
   amountofBullets: 1
   magSize: 45
   isAutomatic: 1
