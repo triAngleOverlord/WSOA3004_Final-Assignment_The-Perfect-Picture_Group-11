@@ -42,6 +42,9 @@ public class Gun : MonoBehaviour
 
     public bool detectSound;
 
+     [SerializeField] float speed;
+        Vector3 lastPosition;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -52,6 +55,11 @@ public class Gun : MonoBehaviour
 
     private void Update()
     {
+
+        float distanceTravelled = Vector3.Distance(lastPosition, transform.position);
+        speed = distanceTravelled / Time.deltaTime;
+        lastPosition = transform.position;
+        
         bulletPrefab.GetComponent<Bullet>().speed = speed1;
         if (isAutomatic)
         {
@@ -94,13 +102,22 @@ public class Gun : MonoBehaviour
         {
             // Apply random spread to each bullet.
             float randomSpread = UnityEngine.Random.Range(-spread, spread);
+            float randomspeed = UnityEngine.Random.Range(shootForce/2, shootForce);
             Quaternion spreadRotation = Quaternion.Euler(0, 0, randomSpread);
 
             // Instantiate the bullet with random spread applied to the firePoint's rotation.
             GameObject bulletCopy = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation * spreadRotation);
 
             // Apply force to the bullet in the firePoint's forward direction.
-            bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
+            if(this.gameObject.name == "Shotgun")
+            {
+                bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * randomspeed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                bulletCopy.GetComponent<Rigidbody2D>().AddForce(bulletCopy.transform.up * shootForce, ForceMode2D.Impulse);
+            }
+            
             Destroy(bulletCopy, 10f);
         }
 
@@ -133,7 +150,7 @@ public class Gun : MonoBehaviour
         {
             player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
         }
-        else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged")
+        else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" && speed > 5)
         {
             attacked = collision.gameObject.GetComponent<EnemyAttacked>();
             attacked.knockDownEnemy();
@@ -143,12 +160,15 @@ public class Gun : MonoBehaviour
             player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
             this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
             this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2;
+
+             EnemyController e = collision.gameObject.GetComponent<EnemyController>();
+              e.baseState = EnemyController.enemyState.knockedDown;
+
         }
 
-        if (collision.gameObject.tag == "Enemy")
-        {
-            EnemyController e = collision.gameObject.GetComponent<EnemyController>();
-            e.baseState = EnemyController.enemyState.dead;
-        }
+      //  if (collision.gameObject.tag == "Enemy")
+       // {
+      //     
+       // }
     }
 }

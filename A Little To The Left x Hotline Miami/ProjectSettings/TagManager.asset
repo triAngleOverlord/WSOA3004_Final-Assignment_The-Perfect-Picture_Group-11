@@ -11,6 +11,8 @@ TagManager:
   - Dead
   - Bullet
   - Draggable
+  - scoring
+  - Furniture
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Weapons
   - Enemy
   - InteractableObject
-  - 
+  - chechscore
   - 
   - 
   - 
