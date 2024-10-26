@@ -11,11 +11,12 @@ TagManager:
   - Dead
   - Bullet
   - Draggable
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - EnemyBullet
   - Water
   - UI
   - Obstacles
@@ -23,7 +24,7 @@ TagManager:
   - Weapons
   - Enemy
   - InteractableObject
-  - 
+  - Fallback
   - 
   - 
   - 

@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetMouseButton(0) && playerInteraction.hasWeapon && canShoot && playerInteraction.weaponType == PlayerInteraction.WeaponTypeNew.ranged)
+        if (Input.GetMouseButton(0) && playerInteraction.hasWeapon && bulletsLeft > 0 && playerInteraction.weaponType == PlayerInteraction.WeaponTypeNew.ranged)
         {
             detectSound = true;
         }
@@ -127,28 +127,23 @@ public class Gun : MonoBehaviour
     }
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
-        }
-        else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged")
-        {
-            attacked = collision.gameObject.GetComponent<EnemyAttacked>();
-            attacked.knockDownEnemy();
-            this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
-            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
-            Debug.Log("Enemy Knocked Down");
-            player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
-            this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
-            this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2;
-        }
+    // void OnCollisionEnter2D(Collision2D collision) 
+    //{
+    //    if(collision.gameObject.CompareTag("Wall"))
+    //    {
+    //        player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+    //    }
+    //    else if (collision.gameObject.CompareTag("Enemy") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && this.gameObject.tag == "Ranged" ) 
+    //    { 
+    //        attacked = collision.gameObject.GetComponent<EnemyAttacked>();
+    //        attacked.knockDownEnemy();
+    //        this.gameObject.GetComponent<Rigidbody2D>().drag = 10000;
+    //        this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 10000;
+    //        Debug.Log("Enemy Knocked Down");
+    //         player.GetComponent<PlayerInteraction>().hasthrownWeapon = false;
+    //        this.gameObject.GetComponent<Rigidbody2D>().drag = 2;
+    //        this.gameObject.GetComponent<Rigidbody2D>().angularDrag = 2;          
+    //    }
 
-        if (collision.gameObject.tag == "Enemy")
-        {
-            EnemyController e = collision.gameObject.GetComponent<EnemyController>();
-            e.baseState = EnemyController.enemyState.dead;
-        }
-    }
+    //}
 }

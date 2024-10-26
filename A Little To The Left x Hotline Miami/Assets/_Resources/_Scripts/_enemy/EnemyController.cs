@@ -5,8 +5,18 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+    public EnemyWeapon weapon;
+    [SerializeField] private Transform weaponPos;
+    [SerializeField] private GameObject theWeapon;
+    [SerializeField] private List<GameObject> weaponInRange = new List<GameObject>();
+    [SerializeField] private float range;
+    [SerializeField] private LayerMask weaponMask;
+    private bool hasWeapon;
+
+    public enum EnemyWeapon { melee, range }
+
     public enemyState baseState;
-    public enum enemyState { idle, inspect, attack, dead, knockedDown }
+    public enum enemyState { idle, inspect, attack, dead, knockedDown, lookForWeapon }
 
     public idleStates state;
     public enum idleStates { patrol, roamer, staticState }
@@ -35,9 +45,8 @@ public class EnemyController : MonoBehaviour
     private Vector2 originalPos;
 
     //Inspect
-    public Vector2 siteToInspect;
+    private Vector2 siteToInspect;
     private EnemyVision enemyVision;
-    private float inspectionTime = 2f;
 
 
     //vars from the enemy vision script, now here
@@ -48,17 +57,17 @@ public class EnemyController : MonoBehaviour
     public LayerMask obstructionMask;
 
     public List<Transform> foundTargets = new List<Transform>();
-    private float timeSinceLastSeenPlayer = 0f;
+
     public float timeBeforeForget = 10f;
     public bool hasSeenPlayer;
 
-    private bool canShootPlayer;
 
     private idleStates currentState;
     [SerializeField] private float searchDuration;
 
     [SerializeField] private GameObject aliveSprite;
     [SerializeField] private GameObject kiaSprite;
+    [SerializeField] private GameObject knockedOutSprite;
 
     [SerializeField] private float randomDist;
     private float defaultRandomDist;
@@ -67,10 +76,25 @@ public class EnemyController : MonoBehaviour
     public static bool isOverMe;
     public static GameObject me;
 
+    [SerializeField] private LayerMask pathClearance;
+    [SerializeField] private float pathCheckDist;
+
+    AiWeapon enemyAiWeapon;
+
+
+    //rangeAttackStyle
+    [SerializeField] private Transform prefabSpawnPos;
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private float projectileSpeed;
+    //melleAttackStyle
+    [SerializeField] private Transform hitPos;
+    [SerializeField] private float hitRadius;
+    [SerializeField] private LayerMask enemyMask;
+    private PlayerInteraction playerInteraction;
+
     void Start()
     {
-        kiaSprite.SetActive(false);
-        aliveSprite.SetActive(true);
+        SpriteManager(enemyState.idle);
 
         rb = GetComponent<Rigidbody2D>();
         agent = GetComponent<NavMeshAgent>();
@@ -79,13 +103,11 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         randomPosition = transform.position + new Vector3(Random.Range(-7, 7f), Random.Range(-7, 7f), 0);
-        baseState = enemyState.idle;
 
         currentState = state;
 
         originalPos = transform.position;
         enemyVision = FindObjectOfType<EnemyVision>();
-
 
         //enemy vision
         StartCoroutine(FindTarget());
@@ -93,14 +115,19 @@ public class EnemyController : MonoBehaviour
 
         randomDist = 10;
         defaultRandomDist = randomDist;
+
+        hasWeapon = false;
+        baseState = enemyState.lookForWeapon;
+
+        playerInteraction = player.GetComponent<PlayerInteraction>();
     }
 
     void Update()
     {
         EnemyLife();
-        if (baseState == enemyState.dead) return;
         HasSeenPlayer();
         FaceWhereverYoureHeaded();
+        Weapons();
     }
 
     public void OnMouseOver()
@@ -112,6 +139,84 @@ public class EnemyController : MonoBehaviour
     public void OnMouseExit()
     {
         isOverMe = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
+
+        Gizmos.color = Color.blue;
+        if (weaponInRange.Count > 0)
+        {
+            foreach (var weapon in weaponInRange)
+            {
+                Gizmos.DrawLine(transform.position, weapon.transform.position);
+            }
+        }
+    }
+
+    private void Weapons()
+    {
+        weaponInRange.Clear();
+        Collider2D[] weaponCollider = Physics2D.OverlapCircleAll(transform.position, range, weaponMask);
+        if (weaponCollider.Length > 0)
+        {
+            foreach (var weapon in weaponCollider)
+            {
+                weaponInRange.Add(weapon.gameObject);
+            }
+        }
+
+        if (theWeapon != null)
+        {
+            if (theWeapon.tag == "Ranged")
+            {
+                weapon = EnemyWeapon.range;
+            }
+            else if (theWeapon.tag == "Melee")
+            {
+                weapon = EnemyWeapon.melee;
+            }
+
+            theWeapon.transform.SetParent (weaponPos);
+            theWeapon.transform.localPosition = Vector3.zero;
+            theWeapon.transform.localRotation = Quaternion.identity;
+
+            int layerName = LayerMask.NameToLayer("Fallback");
+            theWeapon.gameObject.layer = layerName;
+
+            if (weapon == EnemyWeapon.melee && theWeapon.GetComponent<MeleeSys>()!= null)
+            {
+                theWeapon.gameObject.GetComponent<MeleeSys>().enabled = false;
+            }
+
+            else if (weapon == EnemyWeapon.range && theWeapon.GetComponent<MeleeSys>()!= null)
+            {
+                theWeapon.gameObject.GetComponent<Gun>().enabled = false;
+            }
+        }
+    }
+
+    private void ClearChildren(GameObject parent)
+    {
+        foreach (Transform kid in parent.transform)
+        {
+            if (weapon == EnemyWeapon.range)
+            {
+                kid.gameObject.GetComponent<Gun>().enabled = true;
+            }
+            else if (weapon == EnemyWeapon.melee)
+            {
+                kid.gameObject.GetComponent<MeleeSys>().enabled = true;
+            }
+
+            DestroyImmediate(kid.gameObject.GetComponent<AiWeapon>());
+
+            int layerName = LayerMask.NameToLayer("Weapons");
+            kid.gameObject.layer = layerName;
+            kid.SetParent(null);
+        }
     }
 
     private void FaceWhereverYoureHeaded()
@@ -152,11 +257,6 @@ public class EnemyController : MonoBehaviour
                 {
                     Debug.DrawLine(transform.position, target.position, Color.red);
                     foundTargets.Add(target);
-                    canShootPlayer = true;
-                }
-                else
-                {
-                    canShootPlayer = false;
                 }
             }
         }
@@ -164,21 +264,48 @@ public class EnemyController : MonoBehaviour
 
     private void HasSeenPlayer()
     {
-        if (foundTargets.Count > 0)
+        if (hasWeapon)
         {
-            baseState = enemyState.inspect;
-            soundState = inspectStates.sight;
-            siteToInspect = foundTargets[0].position;
-            timeSinceLastSeenPlayer = 0f;
-            hasSeenPlayer = true;
+            if (foundTargets.Count > 0)
+            {
+                baseState = enemyState.inspect;
+                soundState = inspectStates.sight;
+                siteToInspect = foundTargets[0].position;
+                hasSeenPlayer = true;
+
+                if (player != null && enemyAiWeapon != null)
+                {
+                    if (weapon == EnemyWeapon.range)
+                    {
+                        if (Vector2.Distance(transform.position, player.position) < 10f)
+                        {
+                            enemyAiWeapon.RangeStyle(prefab, prefabSpawnPos, projectileSpeed);
+                        }
+                    }
+                    else if (weapon == EnemyWeapon.melee)
+                    {
+                        if (Vector2.Distance(transform.position, player.position) < 2f)
+                        {
+                            enemyAiWeapon.MeleeStyle(hitPos, hitRadius, enemyMask);
+                            if(playerInteraction != null)
+                            {
+                                playerInteraction.StatusUpdate();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
     public void HearSound(Vector2 soundSite)
     {
-        baseState = enemyState.inspect;
-        soundState = inspectStates.sound;
-        siteToInspect = soundSite;
+        if (hasWeapon)
+        {
+            baseState = enemyState.inspect;
+            soundState = inspectStates.sound;
+            siteToInspect = soundSite;
+        }
     }
 
     public Vector3 DirFromAngle(float angleInDegrees, bool isAngleGlobal)
@@ -216,6 +343,10 @@ public class EnemyController : MonoBehaviour
         {
             Kill();
         }
+        else if (baseState == enemyState.lookForWeapon)
+        {
+            LookForWeapon();
+        }
 
         else if (baseState == enemyState.knockedDown)
         {
@@ -233,6 +364,18 @@ public class EnemyController : MonoBehaviour
         target = patrolPoints[pointIndex];
         if (target != null)
         {
+            Vector2 pathDir = (target.transform.position - transform.position).normalized;
+
+            RaycastHit2D hit = AllRaycast2D(pathDir, pathCheckDist, pathClearance, Color.red);
+
+            Debug.DrawRay(transform.position, pathDir * pathCheckDist, Color.red);
+
+            if (hit.collider != null)
+            {
+                pointIndex = (pointIndex + 1) % patrolPoints.Count;
+                return;
+            }
+
             GoToDestination(target.position);
         }
 
@@ -242,10 +385,16 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private RaycastHit2D AllRaycast2D(Vector3 dir, float dist, LayerMask mask, Color rayColor)
+    {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, dist, mask);
+        Debug.DrawRay(transform.position, dir * dist, rayColor);
+        return hit;
+    }
+
     private void Roam()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, detectionDistance, obstacleMask);
-        Debug.DrawRay(transform.position, transform.up * detectionDistance, Color.green);
+        RaycastHit2D hit = AllRaycast2D(transform.up, detectionDistance, obstacleMask, Color.green);
 
         if (hit.collider != null)
         {
@@ -285,11 +434,11 @@ public class EnemyController : MonoBehaviour
     {
         // here we will check the type of weapon the enemy has equipped
         //  if it's ranged, we will calculate the distance from which the enemy can shoot
-        //else if it's melee, we will also calculate an attack range then make it attack
+        //else if it's melee, we will calculate an attack range then make it attack
 
         if (hasSeenPlayer)
         {
-            if (Vector3.Distance(transform.position, player.position) < .5f)
+            if (Vector2.Distance(transform.position, player.position) < .5f)
             {
                 print("shot");
             }
@@ -302,15 +451,13 @@ public class EnemyController : MonoBehaviour
 
     private void Dead()
     {
-        if (aliveSprite != null && kiaSprite != null)
-        {
-            aliveSprite.SetActive(false);
-            kiaSprite.SetActive(true);
-        }
+        SpriteManager(enemyState.dead);
 
-        Vector3 fallDir = (player.position - transform.position).normalized;
+        Vector2 fallDir = (player.position - transform.position).normalized;
         rb.transform.up = fallDir;
-
+        theWeapon = null;
+        ClearChildren(weaponPos.gameObject);
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         Destroy(gameObject.GetComponent<EnemyController>());
         Destroy(gameObject.GetComponent<Collider2D>());
@@ -318,9 +465,28 @@ public class EnemyController : MonoBehaviour
 
     private void KnockedDown()
     {
+        agent.enabled = false;
 
+        SpriteManager(enemyState.knockedDown);
+        hasWeapon = false;
+
+        theWeapon = null;
+        ClearChildren(weaponPos.gameObject);
+        StartCoroutine(WakeUp());
     }
 
+    private IEnumerator WakeUp()
+    {
+        yield return new WaitForSeconds(5);
+        agent.enabled = true;
+        SpriteManager(enemyState.idle);
+        if (!hasWeapon)
+        {
+            baseState = enemyState.lookForWeapon;
+        }
+        hasSeenPlayer = false;
+        foundTargets.Clear();
+    }
 
     private void Inspect()
     {
@@ -344,7 +510,35 @@ public class EnemyController : MonoBehaviour
 
     private void GoToDestination(Vector3 destination)
     {
-        agent.SetDestination(destination);
+        if (agent != null && agent.enabled)
+        {
+            agent.SetDestination(destination);
+        }
+    }
+
+    private void SpriteManager(enemyState currentSate)
+    {
+        if (kiaSprite != null && aliveSprite != null && knockedOutSprite != null)
+        {
+            if (currentSate == enemyState.knockedDown)
+            {
+                kiaSprite.SetActive(false);
+                aliveSprite.SetActive(false);
+                knockedOutSprite.SetActive(true);
+            }
+            else if (currentSate == enemyState.dead)
+            {
+                kiaSprite.SetActive(true);
+                aliveSprite.SetActive(false);
+                knockedOutSprite.SetActive(false);
+            }
+            else
+            {
+                kiaSprite.SetActive(false);
+                aliveSprite.SetActive(true);
+                knockedOutSprite.SetActive(false);
+            }
+        }
     }
 
     private IEnumerator SearchTime()
@@ -362,6 +556,45 @@ public class EnemyController : MonoBehaviour
 
         state = currentState;
         randomDist = defaultRandomDist;
+    }
+
+    private void LookForWeapon()
+    {
+        if (weaponInRange.Count > 0)
+        {
+            float closestDistance = Mathf.Infinity;
+            Transform closestElement = null;
+
+            foreach (var weapon in weaponInRange)
+            {
+                float distance = Vector2.Distance(transform.position, weapon.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closestElement = weapon.transform;
+                }
+            }
+
+            GameObject nearestWeapon = closestElement.gameObject;
+            GoToDestination(nearestWeapon.transform.position);
+
+            if (Vector2.Distance(transform.position, nearestWeapon.transform.position) < 0.5f)
+            {
+                theWeapon = nearestWeapon;
+                hasWeapon = true;
+                baseState = enemyState.idle;
+                enemyAiWeapon = theWeapon.gameObject.AddComponent<AiWeapon>();
+
+                if (theWeapon.tag == "Ranged")
+                {
+                    enemyAiWeapon.type = AiWeapon.WeaponType.range;
+                }
+                else if (theWeapon.tag == "Melee")
+                {
+                    enemyAiWeapon.type = AiWeapon.WeaponType.melee;
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
