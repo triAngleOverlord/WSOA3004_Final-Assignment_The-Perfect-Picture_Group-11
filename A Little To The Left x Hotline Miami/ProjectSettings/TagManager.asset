@@ -11,6 +11,8 @@ TagManager:
   - Dead
   - Bullet
   - Draggable
+  - scoring
+  - Furniture
   layers:
   - Default
   - TransparentFX
@@ -23,6 +25,8 @@ TagManager:
   - Weapons
   - Enemy
   - InteractableObject
+  - chechscore
+  - 
   - Gritty Environment
   - 
   - 
@@ -42,12 +46,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
   m_SortingLayers:
-  - name: griity environ
-    uniqueID: 2549890533
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
