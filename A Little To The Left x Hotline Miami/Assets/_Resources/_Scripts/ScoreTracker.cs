@@ -10,16 +10,16 @@ public class ScoreTracker : MonoBehaviour
       
     [SerializeField] public Text scoretext;
 
-    public float score;
+   [SerializeField] public float score;
     // Start is called before the first frame update
     void Start()
     {
-        
+       score = 0; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        scoretext.text =  score.ToString();
+        //scoretext.text =  score.ToString();
     }
 }

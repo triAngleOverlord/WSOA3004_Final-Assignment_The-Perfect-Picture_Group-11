@@ -49,19 +49,22 @@ public class OuterRimScore : MonoBehaviour
             alreadycheckedfurn = false;
         }
     
-       
+        
         if (other.tag == "Enemy" && other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy == "DeadbyMeleeWep" && alreadychecked == false )
         {
+            Debug.Log(other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy);
             scoretallyobj.GetComponent<ScoreTracker>().score += 1;
             alreadychecked = true;
         }
         else if (other.tag == "Enemy" && other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy == "DeadbyMelSwip" && alreadychecked == false )
         {
+            Debug.Log(other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy);
             scoretallyobj.GetComponent<ScoreTracker>().score += 2;
             alreadychecked = true;
         }
         else if (other.tag == "Enemy" && other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy == "DeadbyBull" && alreadychecked == false )
         {
+            Debug.Log(other.GetComponentInChildren<ScoreDirectionSystem>().stateofenemy);
             scoretallyobj.GetComponent<ScoreTracker>().score += 3;
             alreadychecked = true;
         }

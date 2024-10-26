@@ -42,6 +42,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
                                 // Now you can use hitPoint and direction as needed
                                 Debug.Log("Hit point: " + hitPoint);
+                                Debug.Log(directiontobesent);
 
                                DirectionOfgun = GetHitDirection(directiontobesent);
                                
@@ -58,6 +59,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
                                 // Now you can use hitPoint and direction as needed
                                 Debug.Log("Hit point: " + hitPoint);
+                                Debug.Log(directiontobesent);
 
                                 DirectionOfmelwep  =   GetHitDirection(directiontobesent);
                                 
@@ -72,6 +74,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
             // Now you can use hitPoint and direction as needed
             Debug.Log("Hit point: " + hitPoint);
+            Debug.Log(directiontobesent);
 
            DirectionOfBullet = GetHitDirection(directiontobesent);
            stateofenemy = "DeadbyBull";
@@ -84,6 +87,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
             // Now you can use hitPoint and direction as needed
             Debug.Log("Hit point: " + hitPoint);
+            Debug.Log(directiontobesent);
 
            DirectionOfMelee = GetHitDirection(directiontobesent);
            stateofenemy = "DeadbyMelSwip";
@@ -93,6 +97,7 @@ public class ScoreDirectionSystem : MonoBehaviour
     string GetHitDirection(Vector2 direction)
     {
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Debug.Log(angle);
 
 if (angle >= -22.5 && angle < 22.5)
 {
