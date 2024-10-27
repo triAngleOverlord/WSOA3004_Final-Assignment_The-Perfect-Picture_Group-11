@@ -170,7 +170,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (weaponType == WeaponTypeNew.ranged)
                     {
-                        equippedWeapon.GetComponent<Gun>().enabled = false;
+                        //equippedWeapon.GetComponent<Gun>().enabled = false;
                     }
                     else if (weaponType == WeaponTypeNew.melee)
                     {
