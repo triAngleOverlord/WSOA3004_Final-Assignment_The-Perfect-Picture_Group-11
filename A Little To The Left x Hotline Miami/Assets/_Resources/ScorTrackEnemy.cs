@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ScorTrack : MonoBehaviour
@@ -37,8 +38,10 @@ public class ScorTrack : MonoBehaviour
     {
         if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull" && AlreadyDead != true)
         {
-            Vector3 direction = (transform.position - player.transform.position).normalized;
-            
+            float distanceToTarget = Vector3.Distance(transform.position, DesiredGoal.transform.position);
+            Debug.Log(distanceToTarget);
+            AlreadyDead =true;
+
 
         } 
        else if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMelSwip" && AlreadyDead != true)
