@@ -11,13 +11,12 @@ TagManager:
   - Dead
   - Bullet
   - Draggable
-  - scoring
-  - Furniture
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - EnemyBullet
   - Water
   - UI
   - Obstacles
@@ -25,9 +24,9 @@ TagManager:
   - Weapons
   - Enemy
   - InteractableObject
-  - chechscore
+  - Fallback
   - 
-  - Gritty Environment
+  - 
   - 
   - 
   - 
