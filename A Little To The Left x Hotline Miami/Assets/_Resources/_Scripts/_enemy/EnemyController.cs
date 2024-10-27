@@ -82,12 +82,6 @@ public class EnemyController : MonoBehaviour
     private AiWeapon enemyAiWeapon;
     private WeaponAttributes weaponAttributes;
 
-
-    //rangeAttackStyle
-    [SerializeField] private Transform prefabSpawnPos;
-    [SerializeField] private GameObject prefab;
-    [SerializeField] private float projectileSpeed;
-
     //melleAttackStyle
     [SerializeField] private Transform hitPos;
     [SerializeField] private float hitRadius;
@@ -119,7 +113,9 @@ public class EnemyController : MonoBehaviour
         defaultRandomDist = randomDist;
 
         hasWeapon = false;
+
         baseState = enemyState.lookForWeapon;
+        
 
         playerInteraction = player.GetComponent<PlayerInteraction>();
     }
@@ -393,9 +389,8 @@ public class EnemyController : MonoBehaviour
 
     private void Roam()
     {
-        RaycastHit2D hit = AllRaycast2D(transform.up, detectionDistance, obstacleMask, Color.green);
-
-        if (hit.collider != null)
+        Collider2D collider = Physics2D.OverlapCircle(transform.position, detectionDistance, obstacleMask);
+        if (collider != null)
         {
             Vector3 deflectionDir = Vector3.Cross(transform.up, transform.forward).normalized;
 
@@ -403,6 +398,16 @@ public class EnemyController : MonoBehaviour
             GoToDestination(randomPosition);
             return;
         }
+        //RaycastHit2D hit = AllRaycast2D(transform.up, detectionDistance, obstacleMask, Color.green);
+        //Debug.DrawRay(transform.position, transform.up * detectionDistance, Color.red);
+        //if (hit.collider != null)
+        //{
+        //    Vector3 deflectionDir = Vector3.Cross(transform.up, transform.forward).normalized;
+
+        //    randomPosition = transform.position + deflectionDir * Random.Range(2, 5);
+        //    GoToDestination(randomPosition);
+        //    return;
+        //}
         else
         {
             waitTimeUpdate += Time.deltaTime;
