@@ -6,18 +6,23 @@ public class AiWeapon : MonoBehaviour
     public enum WeaponType { melee, range }
 
     private float untilNxtShot;
-    private float timeBeforeNxtShot = 0.5f;
-    public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float speed)
+
+    public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread,float speed, float timeBeforeNxtShot)
     {
         if (untilNxtShot <= 0)
         {
-            GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-            untilNxtShot = timeBeforeNxtShot;
+            for (int i = 0; i < amountOfBullets; i++)
+            {
+                var randomRot = Random.Range(-spread, spread);
+                Quaternion rot = Quaternion.Euler(0, 0, randomRot);
+                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation* rot);
 
-            Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-            rb.AddForce(projectileSpawnPoint.up * speed, ForceMode2D.Impulse);
+                Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+                rb.AddForce(projectile.transform.up * speed, ForceMode2D.Impulse);
 
-            Destroy(projectile, 3f);
+                untilNxtShot = timeBeforeNxtShot;
+                Destroy(projectile, 5f);
+            }
         }
         else
         {
@@ -25,7 +30,7 @@ public class AiWeapon : MonoBehaviour
         }
     }
 
-    public void MeleeStyle(Transform origin, float radius, LayerMask enemy)
+    public void MeleeStyle(Transform origin, float radius, LayerMask enemy, float timeBeforetNxtSlash)
     {
         Collider2D[] enemyCollider = Physics2D.OverlapCircleAll(origin.position, radius, enemy);
 
@@ -34,7 +39,7 @@ public class AiWeapon : MonoBehaviour
             if (untilNxtShot <= 0)
             {
                 print("Slash slash!!");
-                untilNxtShot = timeBeforeNxtShot;
+                untilNxtShot = timeBeforetNxtSlash;
             }
             else
             {

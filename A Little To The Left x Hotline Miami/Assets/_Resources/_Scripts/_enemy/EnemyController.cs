@@ -79,13 +79,15 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask pathClearance;
     [SerializeField] private float pathCheckDist;
 
-    AiWeapon enemyAiWeapon;
+    private AiWeapon enemyAiWeapon;
+    private WeaponAttributes weaponAttributes;
 
 
     //rangeAttackStyle
     [SerializeField] private Transform prefabSpawnPos;
     [SerializeField] private GameObject prefab;
     [SerializeField] private float projectileSpeed;
+
     //melleAttackStyle
     [SerializeField] private Transform hitPos;
     [SerializeField] private float hitRadius;
@@ -212,7 +214,7 @@ public class EnemyController : MonoBehaviour
             }
 
             DestroyImmediate(kid.gameObject.GetComponent<AiWeapon>());
-
+            weaponAttributes = null;
             int layerName = LayerMask.NameToLayer("Weapons");
             kid.gameObject.layer = layerName;
             kid.SetParent(null);
@@ -270,23 +272,23 @@ public class EnemyController : MonoBehaviour
             {
                 baseState = enemyState.inspect;
                 soundState = inspectStates.sight;
-                siteToInspect = foundTargets[0].position;
+                siteToInspect = player.position;
                 hasSeenPlayer = true;
-
+                Debug.DrawLine(transform.position, siteToInspect, Color.green);
                 if (player != null && enemyAiWeapon != null)
                 {
                     if (weapon == EnemyWeapon.range)
                     {
-                        if (Vector2.Distance(transform.position, player.position) < 10f)
+                        if (Vector2.Distance(transform.position, player.position) < 20f)
                         {
-                            enemyAiWeapon.RangeStyle(prefab, prefabSpawnPos, projectileSpeed);
+                            enemyAiWeapon.RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread ,weaponAttributes.speed, weaponAttributes.timeBeforeNextShot);
                         }
                     }
                     else if (weapon == EnemyWeapon.melee)
                     {
                         if (Vector2.Distance(transform.position, player.position) < 2f)
                         {
-                            enemyAiWeapon.MeleeStyle(hitPos, hitRadius, enemyMask);
+                            enemyAiWeapon.MeleeStyle(hitPos, hitRadius, enemyMask, weaponAttributes.timeBeforeNextSlash);
                             if(playerInteraction != null)
                             {
                                 playerInteraction.StatusUpdate();
@@ -339,10 +341,7 @@ public class EnemyController : MonoBehaviour
         {
             Inspect();
         }
-        else if (baseState == enemyState.attack)
-        {
-            Kill();
-        }
+
         else if (baseState == enemyState.lookForWeapon)
         {
             LookForWeapon();
@@ -430,24 +429,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void Kill()
-    {
-        // here we will check the type of weapon the enemy has equipped
-        //  if it's ranged, we will calculate the distance from which the enemy can shoot
-        //else if it's melee, we will calculate an attack range then make it attack
-
-        if (hasSeenPlayer)
-        {
-            if (Vector2.Distance(transform.position, player.position) < .5f)
-            {
-                print("shot");
-            }
-            else
-            {
-                print("Target on sight but far");
-            }
-        }
-    }
 
     private void Dead()
     {
@@ -584,6 +565,12 @@ public class EnemyController : MonoBehaviour
                 hasWeapon = true;
                 baseState = enemyState.idle;
                 enemyAiWeapon = theWeapon.gameObject.AddComponent<AiWeapon>();
+                weaponAttributes = theWeapon.GetComponent<WeaponAttributes>();
+
+                if(weaponAttributes != null )
+                {
+                    weaponAttributes.AnnounceSelf();
+                }
 
                 if (theWeapon.tag == "Ranged")
                 {

@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isLockedOn;
     private GameObject enemyToLockOn;
 
+    //Animations
+    //[SerializeField] private Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         LockIntoEnemies();
+
     }
 
     private void FixedUpdate()
