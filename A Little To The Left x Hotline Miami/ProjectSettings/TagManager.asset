@@ -13,6 +13,10 @@ TagManager:
   - Draggable
   - scoring
   - Furniture
+  - revolver
+  - shotgun
+  - playershootpoint
+  - playermeleepoint
   layers:
   - Default
   - TransparentFX
@@ -26,9 +30,9 @@ TagManager:
   - Enemy
   - InteractableObject
   - chechscore
-  - 
-  - 
-  - 
+  - inner
+  - mid
+  - outer
   - 
   - 
   - 
