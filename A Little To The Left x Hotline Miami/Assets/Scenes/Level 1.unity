@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 150312558}
   - component: {fileID: 150312564}
   - component: {fileID: 150312563}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: Walls etc_G
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -18841,7 +18841,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 73728
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: b3ac104fd2a648544b9831ef887bc2e9, type: 2}
   m_TargetDisplay: 0
@@ -18863,7 +18863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414819942}
   - component: {fileID: 1414819941}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: Gritty Environment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19319,7 +19319,7 @@ GameObject:
   - component: {fileID: 1850343195}
   - component: {fileID: 1850343200}
   - component: {fileID: 1850343199}
-  m_Layer: 13
+  m_Layer: 16
   m_Name: Ground_G
   m_TagString: Untagged
   m_Icon: {fileID: 0}
