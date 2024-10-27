@@ -30,7 +30,10 @@ public class ScoreDirectionSystem : MonoBehaviour
 
         public string weaponhurtby;
 
-
+         public enum CardinalDirection
+    {
+        North, Northeast, East, Southeast, South, Southwest, West, Northwest
+    }
 
 
     // Start is called before the first frame update
@@ -107,7 +110,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                                    Vector3 dir = (transform.position - player.transform.position).normalized;
                                     rb.AddForce(dir * power, ForceMode2D.Impulse);
                                     rb.transform.up = dir;
-                                    
+
 
                                     Vector2 direction = dir;
                                     float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg +90;
@@ -134,7 +137,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                                 Debug.Log("Hit");
                                     
 
-                                DirectionOfgun = GetHitDirection(angle);
+                                
                                 
                                 
                     

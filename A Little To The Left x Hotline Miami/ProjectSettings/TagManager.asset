@@ -12,6 +12,12 @@ TagManager:
   - Bullet
   - Draggable
   - EnemyBullet
+  - Furniture
+  - scoring
+  - playershootpoint
+  - playermeleepoint
+  - shotgun
+  - revolver
   layers:
   - Default
   - TransparentFX
