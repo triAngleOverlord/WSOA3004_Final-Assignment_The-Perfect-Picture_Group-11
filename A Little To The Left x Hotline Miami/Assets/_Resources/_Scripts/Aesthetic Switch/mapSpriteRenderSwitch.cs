@@ -5,29 +5,36 @@ using UnityEngine;
 public class mapSpriteRenderSwitch : MonoBehaviour
 {
     public Camera playerCamera;
-    public GameObject glitchPanel;
+    public GameObject glitchImage;
     private LayerMask grittyLayer;
     private LayerMask everthingElseLayer;
     void Start()
     {
-        glitchPanel.SetActive(false);
+        glitchImage.SetActive(false);
         grittyLayer = LayerMask.GetMask("Gritty Environment", "UI");
-        everthingElseLayer = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Obstacles", "Player", "Weapons","Enemy", "InteractableObject");
+        everthingElseLayer = LayerMask.GetMask("Default", "TransparentFX", "Ignore Raycast", "Water", "UI", "Obstacles", "Player", "Weapons", "Enemy", "InteractableObject");
     }
 
     // Update is called once per frame
-    public void switchMap()
+    public void perfectKill()
     {
-        StartCoroutine(mapSwitch(playerCamera));
+        StartCoroutine(perfectKillEffect());
     }
 
-    public IEnumerator mapSwitch(Camera cam)
+    public IEnumerator perfectKillEffect()
     {
-        cam.cullingMask = (grittyLayer);
-        glitchPanel.SetActive(true);
-        Debug.Log("switched");
+        glitchImage.SetActive(true);
         yield return new WaitForSeconds(2);
-        cam.cullingMask = (everthingElseLayer);
-        glitchPanel.SetActive(false);
+        glitchImage.SetActive(false);
+    }
+
+    public void perfectLevel()
+    {
+        playerCamera.cullingMask = grittyLayer;
+    }
+
+    public void cameraBackToNormal()
+    {
+        playerCamera.cullingMask = everthingElseLayer;
     }
 }
