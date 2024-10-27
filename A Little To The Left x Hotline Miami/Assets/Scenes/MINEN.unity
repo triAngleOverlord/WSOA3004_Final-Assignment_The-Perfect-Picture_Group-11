@@ -20749,6 +20749,7 @@ GameObject:
   - component: {fileID: 1875079013}
   - component: {fileID: 1875079014}
   - component: {fileID: 1875079016}
+  - component: {fileID: 1875079017}
   m_Layer: 9
   m_Name: Enemy2
   m_TagString: Enemy
@@ -20953,6 +20954,24 @@ MonoBehaviour:
   dead: {fileID: 0}
   power: 0
   weaponhurtby: 
+--- !u!114 &1875079017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875079006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4efc4466d3c99143b5de07d76ffc930, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponhurtbyscore: 
+  DesiredGoal: {fileID: 1981221427}
+  furntiurewanted:
+  - {fileID: 103601118}
+  DeathbyWhat: 
+  DoWeWantFurniture: 0
 --- !u!1 &1895237352
 GameObject:
   m_ObjectHideFlags: 0
