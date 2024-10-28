@@ -54,9 +54,8 @@ public class ScoreDirectionSystem : MonoBehaviour
     {
 
 
-      
-    
-            if (other.gameObject.tag == "Bullet" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true ) //what about enemy bullets? this need to be updated
+
+        if (other.gameObject.tag == "Bullet" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true ) //what about enemy bullets? this need to be updated
                 {
                     power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
                     weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
@@ -76,7 +75,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
 
                 }    
-            else if(other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true )
+            else if(other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>()== true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true )
             {
                 power = origpower;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
@@ -92,6 +91,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
                 DirectionOfMelee = GetHitDirection(angle);
                 stateofenemy = "DeadbyMelSwip";
+            Debug.Log("ded");
             }
             
             
@@ -99,8 +99,9 @@ public class ScoreDirectionSystem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        Debug.Log("sweeped");
 
-          if(other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false )
+        if (other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false )
             {
                  // MUST UPDATE AS THIS NEEDS TO TAKE INTO ACCOUNT SWORD OR BAT ie blunt or sharp
                     
@@ -118,6 +119,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                                     DirectionOfmelwep  =   GetHitDirection(angle);
                                     
                                     stateofenemy = "DeadbyMeleeWep";
+            Debug.Log("sweeped");
             }
             else if(other.gameObject.tag == "Ranged" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true) //probably wont be needing this as this knocks down the enemy so the directionofgun is not necessary
             {

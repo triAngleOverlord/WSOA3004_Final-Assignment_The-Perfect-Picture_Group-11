@@ -2926,6 +2926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scorezone
       objectReference: {fileID: 0}
+    - target: {fileID: 7455487165313415970, guid: 35098867a3d881742bad65abdb68463a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3308,9 +3312,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 124657330}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 124657330}
   hitRadius: 1
   enemyMask:
@@ -5422,9 +5423,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 191518956}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 191518956}
   hitRadius: 1
   enemyMask:
@@ -19367,7 +19365,7 @@ Transform:
   m_GameObject: {fileID: 1106333071}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: -3.9, y: -0.32, z: 0}
+  m_LocalPosition: {x: -11.08, y: -0.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -20241,9 +20239,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 779321123}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 779321123}
   hitRadius: 1
   enemyMask:
@@ -20614,9 +20609,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 1009346137}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 1009346137}
   hitRadius: 1
   enemyMask:
@@ -20904,7 +20896,7 @@ Transform:
   m_GameObject: {fileID: 1409859290}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.67, y: -0.37, z: 0}
+  m_LocalPosition: {x: -6.63, y: 2.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24812,6 +24804,7 @@ GameObject:
   - component: {fileID: 1620059991}
   - component: {fileID: 1620059994}
   - component: {fileID: 1620059995}
+  - component: {fileID: 1620059996}
   m_Layer: 8
   m_Name: pistol
   m_TagString: Ranged
@@ -24828,7 +24821,7 @@ Transform:
   m_GameObject: {fileID: 1620059989}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.652, y: -0.745, z: 0}
+  m_LocalPosition: {x: -11.48, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24971,6 +24964,20 @@ MonoBehaviour:
   spawnPoint: {fileID: 1053033320}
   timeBeforeNextShot: 0.5
   timeBeforeNextSlash: 0
+--- !u!114 &1620059996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620059989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0d0b5d3d911c7c499f8c832f2a8874a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponname: 
+  weaponpower: 0
 --- !u!1 &1677385326
 GameObject:
   m_ObjectHideFlags: 0
@@ -25641,7 +25648,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 2
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -25705,9 +25712,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 1754303460}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 1754303460}
   hitRadius: 1
   enemyMask:
@@ -26179,9 +26183,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   pathCheckDist: 3
-  prefabSpawnPos: {fileID: 886151513}
-  prefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
-  projectileSpeed: 100
   hitPos: {fileID: 886151513}
   hitRadius: 1
   enemyMask:
@@ -26359,7 +26360,7 @@ Transform:
   m_GameObject: {fileID: 2135482377}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.4, y: -0.76, z: 0}
+  m_LocalPosition: {x: 0.65, y: 3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -28405,7 +28406,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484672109940508157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ae53928868743429433d782e5ea217, type: 3}
   m_Name: 
@@ -28565,7 +28566,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8955160923801853355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4ae53928868743429433d782e5ea217, type: 3}
   m_Name: 
