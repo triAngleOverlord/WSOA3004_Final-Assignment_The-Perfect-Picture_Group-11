@@ -13,7 +13,11 @@ public class WeaponAttributes : MonoBehaviour
     public float timeBeforeNextShot;
 
     [Header("********Melee Weapons********")]
-    public float timeBeforeNextSlash;
+    //melee
+    public float meleeAttackRadius;
+    public LayerMask targetMask;
+    public Animator anim;
+    public float meleeWaitTime;
 
     private void Start()
     {
@@ -22,6 +26,6 @@ public class WeaponAttributes : MonoBehaviour
 
     public void AnnounceSelf()
     {
-        print(weaponName);  
+        print(weaponName);
     }
 }

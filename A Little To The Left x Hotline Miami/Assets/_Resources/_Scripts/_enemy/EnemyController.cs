@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class EnemyController : MonoBehaviour
 {
+
     public EnemyWeapon weapon;
     [SerializeField] private Transform weaponPos;
     [SerializeField] private GameObject theWeapon;
@@ -43,6 +44,7 @@ public class EnemyController : MonoBehaviour
 
     //static idle state
     private Vector2 originalPos;
+    private float originalRotation;
 
     //Inspect
     private Vector2 siteToInspect;
@@ -59,7 +61,7 @@ public class EnemyController : MonoBehaviour
     public List<Transform> foundTargets = new List<Transform>();
 
     public float timeBeforeForget = 10f;
-    public bool hasSeenPlayer;
+    private bool hasSeenPlayer;
 
 
     private idleStates currentState;
@@ -79,14 +81,13 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private LayerMask pathClearance;
     [SerializeField] private float pathCheckDist;
 
-    private AiWeapon enemyAiWeapon;
     private WeaponAttributes weaponAttributes;
 
-    //melleAttackStyle
-    [SerializeField] private Transform hitPos;
-    [SerializeField] private float hitRadius;
-    [SerializeField] private LayerMask enemyMask;
-    private PlayerInteraction playerInteraction;
+    public Transform cast;
+    [SerializeField] private Transform meleeAttackRangePos;
+
+    //anim
+    [SerializeField] private Animator[] motionState;
 
     void Start()
     {
@@ -96,6 +97,7 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        agent.updatePosition = true;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         randomPosition = transform.position + new Vector3(Random.Range(-7, 7f), Random.Range(-7, 7f), 0);
@@ -103,6 +105,7 @@ public class EnemyController : MonoBehaviour
         currentState = state;
 
         originalPos = transform.position;
+        originalRotation = transform.rotation.eulerAngles.z;
         enemyVision = FindObjectOfType<EnemyVision>();
 
         //enemy vision
@@ -115,14 +118,12 @@ public class EnemyController : MonoBehaviour
         hasWeapon = false;
 
         baseState = enemyState.lookForWeapon;
-        
-
-        playerInteraction = player.GetComponent<PlayerInteraction>();
     }
 
     void Update()
     {
         EnemyLife();
+        if (baseState == enemyState.dead) return;
         HasSeenPlayer();
         FaceWhereverYoureHeaded();
         Weapons();
@@ -152,6 +153,9 @@ public class EnemyController : MonoBehaviour
                 Gizmos.DrawLine(transform.position, weapon.transform.position);
             }
         }
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(cast.position, detectionDistance);
     }
 
     private void Weapons()
@@ -175,24 +179,12 @@ public class EnemyController : MonoBehaviour
             else if (theWeapon.tag == "Melee")
             {
                 weapon = EnemyWeapon.melee;
+                theWeapon.GetComponent<Animator>().enabled = true;
             }
 
-            theWeapon.transform.SetParent (weaponPos);
+            theWeapon.transform.SetParent(weaponPos);
             theWeapon.transform.localPosition = Vector3.zero;
             theWeapon.transform.localRotation = Quaternion.identity;
-
-            int layerName = LayerMask.NameToLayer("Fallback");
-            theWeapon.gameObject.layer = layerName;
-
-            if (weapon == EnemyWeapon.melee && theWeapon.GetComponent<MeleeSys>()!= null)
-            {
-                theWeapon.gameObject.GetComponent<MeleeSys>().enabled = false;
-            }
-
-            else if (weapon == EnemyWeapon.range && theWeapon.GetComponent<MeleeSys>()!= null)
-            {
-                theWeapon.gameObject.GetComponent<Gun>().enabled = false;
-            }
         }
     }
 
@@ -200,16 +192,6 @@ public class EnemyController : MonoBehaviour
     {
         foreach (Transform kid in parent.transform)
         {
-            if (weapon == EnemyWeapon.range)
-            {
-                kid.gameObject.GetComponent<Gun>().enabled = true;
-            }
-            else if (weapon == EnemyWeapon.melee)
-            {
-                kid.gameObject.GetComponent<MeleeSys>().enabled = true;
-            }
-
-            DestroyImmediate(kid.gameObject.GetComponent<AiWeapon>());
             weaponAttributes = null;
             int layerName = LayerMask.NameToLayer("Weapons");
             kid.gameObject.layer = layerName;
@@ -225,6 +207,24 @@ public class EnemyController : MonoBehaviour
         if (agent.velocity != Vector3.zero)
         {
             transform.localRotation = Quaternion.Euler(new Vector3(0, 0, newDir));
+
+            if (motionState != null)
+            {
+                foreach (var anim in motionState)
+                {
+                    anim.SetFloat("movement", 1);
+                }
+            }
+        }
+        else
+        {
+            if (motionState != null)
+            {
+                foreach (var anim in motionState)
+                {
+                    anim.SetFloat("movement", 0);
+                }
+            }
         }
     }
 
@@ -260,6 +260,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    #region Enemy Attack and Other....
     private void HasSeenPlayer()
     {
         if (hasWeapon)
@@ -271,30 +272,86 @@ public class EnemyController : MonoBehaviour
                 siteToInspect = player.position;
                 hasSeenPlayer = true;
                 Debug.DrawLine(transform.position, siteToInspect, Color.green);
-                if (player != null && enemyAiWeapon != null)
+                if (player != null)
                 {
                     if (weapon == EnemyWeapon.range)
                     {
                         if (Vector2.Distance(transform.position, player.position) < 20f)
                         {
-                            enemyAiWeapon.RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread ,weaponAttributes.speed, weaponAttributes.timeBeforeNextShot);
+                            RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot);
                         }
                     }
                     else if (weapon == EnemyWeapon.melee)
                     {
                         if (Vector2.Distance(transform.position, player.position) < 2f)
                         {
-                            enemyAiWeapon.MeleeStyle(hitPos, hitRadius, enemyMask, weaponAttributes.timeBeforeNextSlash);
-                            if(playerInteraction != null)
-                            {
-                                playerInteraction.StatusUpdate();
-                            }
+                            MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim);
                         }
                     }
                 }
             }
         }
     }
+
+    private float untilNxtShot;
+    private float timeUntilMelee;
+    public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread, float speed, float timeBeforeNxtShot)
+    {
+        if (untilNxtShot <= 0)
+        {
+            for (int i = 0; i < amountOfBullets; i++)
+            {
+                var randomRot = Random.Range(-spread, spread);
+                Quaternion rot = Quaternion.Euler(0, 0, randomRot);
+                GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation * rot);
+
+                Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+                rb.AddForce(projectile.transform.up * speed, ForceMode2D.Impulse);
+
+                untilNxtShot = timeBeforeNxtShot;
+                Destroy(projectile, 5f);
+            }
+        }
+        else
+        {
+            untilNxtShot -= Time.deltaTime;
+        }
+    }
+
+    internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim)
+    {
+        if (timeUntilMelee < 0)
+        {
+            anim.SetTrigger("Attack");
+            Collider2D targetCol = Physics2D.OverlapCircle(attackPos.position, attackRadius, mask);
+
+            if (targetCol != null)
+            {
+                PlayerInteraction player = targetCol.GetComponent<PlayerInteraction>();
+                if (player != null)
+                {
+                    Rigidbody2D enemyRB = targetCol.GetComponent<Rigidbody2D>();
+
+                    Vector3 fallDir = (me.transform.position - targetCol.gameObject.transform.position).normalized;
+                    float zAxis = Mathf.Atan2(fallDir.y, fallDir.x) * Mathf.Rad2Deg - 90f;
+                    enemyRB.transform.rotation = Quaternion.Euler(0, 0, zAxis);
+
+                    float power = 10f;
+                    enemyRB.AddForce(-fallDir * power, ForceMode2D.Impulse);
+                    enemyRB.drag = 5f;
+
+                    player.StatusUpdate();
+                }
+            }
+            timeUntilMelee = waitTime;
+        }
+        else
+        {
+            timeUntilMelee -= Time.deltaTime;
+        }
+    }
+
+    #endregion
 
     public void HearSound(Vector2 soundSite)
     {
@@ -356,6 +413,8 @@ public class EnemyController : MonoBehaviour
 
     private void Patrol()
     {
+        agent.stoppingDistance = 0f;
+
         target = patrolPoints[pointIndex];
         if (target != null)
         {
@@ -389,7 +448,9 @@ public class EnemyController : MonoBehaviour
 
     private void Roam()
     {
-        Collider2D collider = Physics2D.OverlapCircle(transform.position, detectionDistance, obstacleMask);
+        agent.stoppingDistance = 0.7f;
+
+        Collider2D collider = Physics2D.OverlapCircle(cast.transform.position, detectionDistance, obstacleMask);
         if (collider != null)
         {
             Vector3 deflectionDir = Vector3.Cross(transform.up, transform.forward).normalized;
@@ -398,23 +459,13 @@ public class EnemyController : MonoBehaviour
             GoToDestination(randomPosition);
             return;
         }
-        //RaycastHit2D hit = AllRaycast2D(transform.up, detectionDistance, obstacleMask, Color.green);
-        //Debug.DrawRay(transform.position, transform.up * detectionDistance, Color.red);
-        //if (hit.collider != null)
-        //{
-        //    Vector3 deflectionDir = Vector3.Cross(transform.up, transform.forward).normalized;
-
-        //    randomPosition = transform.position + deflectionDir * Random.Range(2, 5);
-        //    GoToDestination(randomPosition);
-        //    return;
-        //}
         else
         {
             waitTimeUpdate += Time.deltaTime;
 
             if (waitTimeUpdate > randomWaitTime)
             {
-                if (Vector3.Distance(transform.position, randomPosition) < 0.1f)
+                if (Vector3.Distance(transform.position, randomPosition) < 20f)
                 {
                     waitTimeUpdate = 0;
 
@@ -428,9 +479,15 @@ public class EnemyController : MonoBehaviour
 
     private void StaticIdle()
     {
+        agent.stoppingDistance = 0.05f;
+
         if (Vector3.Distance(transform.position, originalPos) > 0.01f)
         {
             GoToDestination(originalPos);
+            if (Vector2.Distance(transform.position, originalPos) < 0.01f && agent.velocity.magnitude == 0)
+            {
+                agent.transform.rotation = Quaternion.Euler(0, 0, originalRotation);
+            }
         }
     }
 
@@ -440,13 +497,19 @@ public class EnemyController : MonoBehaviour
         SpriteManager(enemyState.dead);
 
         Vector2 fallDir = (player.position - transform.position).normalized;
-        rb.transform.up = fallDir;
+        float zAxis = Mathf.Atan2(fallDir.y, fallDir.x) * Mathf.Rad2Deg - 90f;
+        rb.transform.rotation = Quaternion.Euler(0, 0, zAxis);
+
+        var power = 2f;
+        rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
+        rb.drag = 5f;
         theWeapon = null;
         ClearChildren(weaponPos.gameObject);
-        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        //Destroy(gameObject.GetComponent<Rigidbody2D>());
         Destroy(gameObject.GetComponent<NavMeshAgent>());
-        Destroy(gameObject.GetComponent<EnemyController>());
         Destroy(gameObject.GetComponent<Collider2D>());
+
+        Destroy(gameObject.GetComponent<EnemyController>());
     }
 
     private void KnockedDown()
@@ -476,6 +539,9 @@ public class EnemyController : MonoBehaviour
 
     private void Inspect()
     {
+        agent.stoppingDistance = 0.05f;
+
+        StartCoroutine(GoBackToIdle());
         GoToDestination(siteToInspect);
 
         if (soundState == inspectStates.sight)
@@ -491,6 +557,20 @@ public class EnemyController : MonoBehaviour
             {
                 StartCoroutine(SearchTime());
             }
+        }
+    }
+
+    private IEnumerator GoBackToIdle()
+    {
+        yield return new WaitForSeconds(10f);
+
+        if (theWeapon == null)
+        {
+            baseState = enemyState.lookForWeapon;
+        }
+        else
+        {
+            StartCoroutine(SearchTime());
         }
     }
 
@@ -569,21 +649,11 @@ public class EnemyController : MonoBehaviour
                 theWeapon = nearestWeapon;
                 hasWeapon = true;
                 baseState = enemyState.idle;
-                enemyAiWeapon = theWeapon.gameObject.AddComponent<AiWeapon>();
                 weaponAttributes = theWeapon.GetComponent<WeaponAttributes>();
 
-                if(weaponAttributes != null )
+                if (weaponAttributes != null)
                 {
                     weaponAttributes.AnnounceSelf();
-                }
-
-                if (theWeapon.tag == "Ranged")
-                {
-                    enemyAiWeapon.type = AiWeapon.WeaponType.range;
-                }
-                else if (theWeapon.tag == "Melee")
-                {
-                    enemyAiWeapon.type = AiWeapon.WeaponType.melee;
                 }
             }
         }

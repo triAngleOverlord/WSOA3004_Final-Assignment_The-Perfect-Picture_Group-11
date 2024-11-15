@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private GameObject enemyToLockOn;
 
     //Animations
-    //[SerializeField] private Animator animator;
+    [SerializeField] private Animator[] animator;
 
     void Start()
     {
@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         GetInput();
         LockIntoEnemies();
-
     }
 
     private void FixedUpdate()
@@ -42,6 +41,27 @@ public class PlayerController : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.y = Input.GetAxis("Vertical");
+
+        if (movement != Vector2.zero)
+        {
+            if (animator != null)
+            {
+                foreach (var anim in animator)
+                {
+                    anim.SetFloat("movement", 1);
+                }
+            }
+        }
+        else
+        {
+            if (animator != null)
+            {
+                foreach (var anim in animator)
+                {
+                    anim.SetFloat("movement", 0);
+                }
+            }
+        }
 
         if (State == PlayerState.normal)
         {
