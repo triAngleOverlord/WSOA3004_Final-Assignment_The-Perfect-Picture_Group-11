@@ -43,7 +43,7 @@ public class ScorTrack : MonoBehaviour
         if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull" && AlreadyDead != true)
         {
             float distanceToTarget = Vector3.Distance(transform.position, DesiredGoal.transform.position);
-            Debug.Log(distanceToTarget);
+            //Debug.Log(distanceToTarget);
             AlreadyDead =true;
             if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {

@@ -954,7 +954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &23471703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,6 +1131,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -2233,7 +2234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114395302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2406,6 +2407,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -2970,9 +2972,9 @@ Transform:
   m_GameObject: {fileID: 149381148}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.589172, y: 5.828003, z: 6.6135225}
+  m_LocalPosition: {x: -8.589172, y: 5.46, z: 6.6135225}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2082314752}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7349,7 +7351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &242159085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7524,6 +7526,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -7599,7 +7602,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276790707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7774,6 +7777,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -8886,7 +8890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &364199341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9061,6 +9065,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -12959,7 +12964,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &807619736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13136,6 +13141,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -15299,7 +15305,7 @@ Transform:
   m_GameObject: {fileID: 956189708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.52, y: 19.26, z: 0}
+  m_LocalPosition: {x: 10.52, y: 20.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15324,6 +15330,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 149381148}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -16624,7 +16631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1054561356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16797,6 +16804,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -24384,7 +24392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1301361222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24561,6 +24569,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -35857,7 +35866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1459774091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36030,6 +36039,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 0}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
