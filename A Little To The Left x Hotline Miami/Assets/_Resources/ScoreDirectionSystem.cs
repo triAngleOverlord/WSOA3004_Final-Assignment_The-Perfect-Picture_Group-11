@@ -70,7 +70,13 @@ public class ScoreDirectionSystem : MonoBehaviour
                     // Now you can use hitPoint and direction as needed
     
                     DirectionOfBullet = GetHitDirection(angle);
-                    
+                    if(DirectionOfBullet != "Error")
+                    {
+                        if(DirectionOfBullet == "South")
+                        {
+                            transform.rotation = Quaternion.Euler(0, 0, 0);
+                        }
+                    }
                     stateofenemy = "DeadbyBull";
 
 
@@ -90,6 +96,8 @@ public class ScoreDirectionSystem : MonoBehaviour
                 
 
                 DirectionOfMelee = GetHitDirection(angle);
+                
+                
                 stateofenemy = "DeadbyMelSwip";
             Debug.Log("ded");
             }
