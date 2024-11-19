@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
+using static Unity.VisualScripting.Member;
 
 public class EnemyController : MonoBehaviour
 {
@@ -67,6 +69,7 @@ public class EnemyController : MonoBehaviour
     public float timeBeforeForget = 10f;
     private bool hasSeenPlayer;
 
+    private bool hasHeardPlayer;
 
     private idleStates currentState;
     [SerializeField] private float searchDuration;
@@ -93,7 +96,18 @@ public class EnemyController : MonoBehaviour
     //anim
     [SerializeField] private Animator[] motionState;
 
+<<<<<<< HEAD
     bool isdeadalready = false;
+=======
+    //path
+    private NavMeshPath path;
+    private bool intel;
+
+    //sfx and music
+    [Header("Weapon Source")]
+    public AudioSource weaponSFx;
+    public AudioSource shotgunSFx;
+>>>>>>> Wandile
 
     void Start()
     {
@@ -107,6 +121,7 @@ public class EnemyController : MonoBehaviour
         agent.updateUpAxis = false;
         agent.updatePosition = true;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        path = new NavMeshPath();
 
         randomPosition = transform.position + new Vector3(Random.Range(-7, 7f), Random.Range(-7, 7f), 0);
 
@@ -135,6 +150,7 @@ public class EnemyController : MonoBehaviour
         HasSeenPlayer();
         FaceWhereverYoureHeaded();
         Weapons();
+        CoolDown();
     }
 
     public void OnMouseOver()
@@ -254,15 +270,18 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < visibleTargets.Length; i++)
         {
             Transform target = visibleTargets[i].transform;
-            Vector2 dirToTarget = (target.position - transform.position).normalized;
-            float distanceToTarget = Vector2.Distance(transform.position, target.position);
-
-            if (Vector2.Angle(transform.up, dirToTarget) < viewAngle / 2f && distanceToTarget <= viewRadius)
+            if (CheckPathStatus(target.position))
             {
-                if (!Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstructionMask))
+                Vector2 dirToTarget = (target.position - transform.position).normalized;
+                float distanceToTarget = Vector2.Distance(transform.position, target.position);
+
+                if (Vector2.Angle(transform.up, dirToTarget) < viewAngle / 2f && distanceToTarget <= viewRadius)
                 {
-                    Debug.DrawLine(transform.position, target.position, Color.red);
-                    foundTargets.Add(target);
+                    if (!Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstructionMask))
+                    {
+                        Debug.DrawLine(transform.position, target.position, Color.red);
+                        foundTargets.Add(target);
+                    }
                 }
             }
         }
@@ -275,25 +294,32 @@ public class EnemyController : MonoBehaviour
         {
             if (foundTargets.Count > 0)
             {
-                baseState = enemyState.inspect;
-                soundState = inspectStates.sight;
-                siteToInspect = player.position;
-                hasSeenPlayer = true;
-                Debug.DrawLine(transform.position, siteToInspect, Color.green);
-                if (player != null)
+                if (CheckPathStatus(player.position))
                 {
-                    if (weapon == EnemyWeapon.range)
+                    baseState = enemyState.inspect;
+                    soundState = inspectStates.sight;
+                    siteToInspect = player.position;
+                    hasSeenPlayer = true;
+                    hasHeardPlayer = false;
+
+                    Debug.DrawLine(transform.position, siteToInspect, Color.green);
+                    if (player != null)
                     {
-                        if (Vector2.Distance(transform.position, player.position) < 20f)
+                        if (weapon == EnemyWeapon.range)
                         {
+                            if (Vector2.Distance(transform.position, player.position) < 20f)
+                            {
                             RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot);
+                                RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot, weaponSFx, weaponAttributes.rangedSFx);
+                            }
                         }
-                    }
-                    else if (weapon == EnemyWeapon.melee)
-                    {
-                        if (Vector2.Distance(transform.position, player.position) < 2f)
+                        else if (weapon == EnemyWeapon.melee)
                         {
+                            if (Vector2.Distance(transform.position, player.position) < 2f)
+                            {
                             MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim);
+                                MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim, weaponSFx, weaponAttributes.meleeSFx);
+                            }
                         }
                     }
                 }
@@ -304,6 +330,7 @@ public class EnemyController : MonoBehaviour
     private float untilNxtShot;
     private float timeUntilMelee;
     public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread, float speed, float timeBeforeNxtShot)
+    public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread, float speed, float timeBeforeNxtShot, AudioSource source, AudioClip clip)
     {
         if (untilNxtShot <= 0)
         {
@@ -316,6 +343,9 @@ public class EnemyController : MonoBehaviour
                 Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
                 rb.AddForce(projectile.transform.up * speed, ForceMode2D.Impulse);
 
+                source.clip = clip;
+                source.Play();
+
                 untilNxtShot = timeBeforeNxtShot;
                 Destroy(projectile, 5f);
             }
@@ -327,8 +357,10 @@ public class EnemyController : MonoBehaviour
     }
 
     internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim)
+    internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioSource source, AudioClip clip)
     {
         if (timeUntilMelee < 0)
+        if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");
             Collider2D targetCol = Physics2D.OverlapCircle(attackPos.position, attackRadius, mask);
@@ -349,11 +381,38 @@ public class EnemyController : MonoBehaviour
                     enemyRB.drag = 5f;
 
                     player.StatusUpdate();
+
                 }
             }
+
+            source.clip = clip;
+            source.Play();
+
             timeUntilMelee = waitTime;
         }
         else
+    }
+
+    internal void CoolDown()
+    {
+        if (untilNxtShot>0)
+        {
+
+            if (weaponAttributes != null)
+            {
+                if (weaponAttributes.weaponName == "Shotgun")
+                {
+                    if (!shotgunSFx.isPlaying)
+                    {
+                        shotgunSFx.Play();
+                    }
+                }
+            }
+
+            untilNxtShot -= Time.deltaTime;
+        }
+
+        if (timeUntilMelee > 0.000000001f)
         {
             timeUntilMelee -= Time.deltaTime;
         }
@@ -364,10 +423,12 @@ public class EnemyController : MonoBehaviour
     public void HearSound(Vector2 soundSite)
     {
         if (hasWeapon)
+        if (hasWeapon && CheckPathStatus(player.position))
         {
             baseState = enemyState.inspect;
             soundState = inspectStates.sound;
             siteToInspect = soundSite;
+            hasHeardPlayer = true;
         }
     }
 
@@ -521,6 +582,12 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    #region be tested (Roam Behaviour)
+    internal void NewRandomPosition(Vector3 newPos)
+    {
+        newPos = transform.position + new Vector3(Random.Range(-randomDist, randomDist), Random.Range(-randomDist, randomDist), 0);
+    }
+    #endregion
 
     private void Dead()
     {
@@ -536,6 +603,7 @@ public class EnemyController : MonoBehaviour
         theWeapon = null;
         ClearChildren(weaponPos.gameObject);
         //Destroy(gameObject.GetComponent<Rigidbody2D>());
+
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         Destroy(gameObject.GetComponent<Collider2D>());
 
@@ -575,23 +643,48 @@ public class EnemyController : MonoBehaviour
         GoToDestination(siteToInspect);
 
         if (soundState == inspectStates.sight)
+        if (soundState == inspectStates.sight || soundState == inspectStates.sound)
         {
             if (Vector2.Distance(transform.position, siteToInspect) < 0.1f)
             {
+                hasHeardPlayer = false;
                 baseState = enemyState.idle;
             }
         }
         else if (soundState == inspectStates.sound)
         {
             if (Vector2.Distance(transform.position, siteToInspect) < 0.1f)
-            {
-                StartCoroutine(SearchTime());
+
+                if (hasWeapon)
+                {
+                    StartCoroutine(SearchTime());
+                }
+                else
+                {
+                    baseState = enemyState.lookForWeapon;
+                }
             }
+        }
+
+        //handle the hasseeenplayer boolean
+        if (agent.velocity == Vector3.zero && foundTargets.Count <= 0)
+        {
+            hasSeenPlayer = false;
         }
     }
 
     private IEnumerator GoBackToIdle()
     {
+        if (hasSeenPlayer)
+        {
+            yield return new WaitUntil (() => !hasSeenPlayer);
+        }
+
+        if (hasHeardPlayer)
+        {
+            yield return new WaitUntil(() => !hasHeardPlayer);
+        }
+
         yield return new WaitForSeconds(10f);
 
         if (theWeapon == null)
@@ -643,6 +736,16 @@ public class EnemyController : MonoBehaviour
 
         while (timeSearched < searchDuration)
         {
+            if (hasSeenPlayer)
+            {
+                yield return new WaitUntil(() => !hasSeenPlayer);
+            }
+
+            if (hasHeardPlayer)
+            {
+                yield return new WaitUntil(() => !hasHeardPlayer);
+            }
+
             yield return null;
             baseState = enemyState.idle;
             state = idleStates.roamer;
@@ -654,6 +757,28 @@ public class EnemyController : MonoBehaviour
         randomDist = defaultRandomDist;
     }
 
+    internal bool CheckPathStatus(Vector3 destination)
+    {
+        if (agent.enabled)
+        {
+            agent.CalculatePath(destination, path);
+
+            switch (path.status)
+            {
+                case NavMeshPathStatus.PathComplete:
+                    intel = true;
+                    break;
+                case NavMeshPathStatus.PathPartial:
+                    intel = false;
+                    break;
+                case NavMeshPathStatus.PathInvalid:
+                    intel = false;
+                    break;
+            }
+        }
+        return intel;
+    }
+
     private void LookForWeapon()
     {
         if (weaponInRange.Count > 0)
@@ -663,11 +788,14 @@ public class EnemyController : MonoBehaviour
 
             foreach (var weapon in weaponInRange)
             {
-                float distance = Vector2.Distance(transform.position, weapon.transform.position);
-                if (distance < closestDistance)
+                if (CheckPathStatus(weapon.transform.position))
                 {
-                    closestDistance = distance;
-                    closestElement = weapon.transform;
+                    float distance = Vector2.Distance(transform.position, weapon.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        closestElement = weapon.transform;
+                    }
                 }
             }
 
@@ -694,7 +822,11 @@ public class EnemyController : MonoBehaviour
         if (other.tag == "Bullet") // THIS WONT WORK AS ENEMY BULLETS PHASE THROUGH OTHER ENEMIES
         {
             baseState = enemyState.dead;
+<<<<<<< HEAD
             
+=======
+            SpriteManager(enemyState.dead);
+>>>>>>> Wandile
         }
     }
 }

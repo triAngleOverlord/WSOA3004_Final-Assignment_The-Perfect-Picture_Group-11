@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class WeaponAttributes : MonoBehaviour
 {
-    [SerializeField] public string weaponName;
+    public string weaponName;
 
-    [Header("********Ranged Weapons********")]
+    [Header("Ranged Weapons")]
     public float speed;
     public GameObject projectilePrefab;
     public float spread;
@@ -12,20 +12,19 @@ public class WeaponAttributes : MonoBehaviour
     public Transform spawnPoint;
     public float timeBeforeNextShot;
 
-    [Header("********Melee Weapons********")]
+    [Header("Melee Weapons")]
     //melee
     public float meleeAttackRadius;
     public LayerMask targetMask;
     public Animator anim;
     public float meleeWaitTime;
 
-    private void Start()
-    {
-       // weaponName = transform.name;
-    }
+    [Header("Weapon SFX")]
+    public AudioClip meleeSFx;
+    public AudioClip rangedSFx;
 
     public void AnnounceSelf()
     {
-       // print(weaponName);
+        print(weaponName);
     }
 }

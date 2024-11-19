@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -37,6 +38,7 @@ public class PlayerInteraction : MonoBehaviour
     //interact with obstacles
     [SerializeField] private Transform pickedObjectPos;
 
+
     public LayerMask obstacleMask;
     private GameObject pickedObject;
     [SerializeField] private float interactDist;
@@ -69,6 +71,11 @@ public class PlayerInteraction : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    //ui
+    [SerializeField] private TMP_Text magazineTxt;
+    [SerializeField] private TMP_Text weaponNameTxt;
+    [SerializeField] private GameObject magHolderUI;
+    [SerializeField] private GameObject weaponNameUI;
 
     void Update()
     {
@@ -76,6 +83,28 @@ public class PlayerInteraction : MonoBehaviour
         InteractWithObjects();
         HearingCast();
         Attacking();
+        CooldownTimeUpdate();
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (weaponData != null)
+        {
+            weaponNameUI.SetActive(true);
+            weaponNameTxt.text = weaponData.weaponName;
+
+            if (weaponType == WeaponTypeNew.ranged)
+            {
+                magHolderUI.SetActive(true);
+                magazineTxt.text = weaponData.magazineSize + "/ " + weaponData.totalMag.ToString();
+            }
+        }
+        else
+        {
+            magHolderUI.SetActive(false);
+            weaponNameUI.SetActive(false);
+        }
     }
 
     private void HearingCast()
@@ -153,10 +182,12 @@ public class PlayerInteraction : MonoBehaviour
             if (weaponType == WeaponTypeNew.ranged)
             {
                 if (Input.GetMouseButton(0))
+                if (Input.GetButton("Fire1"))
                 {
                     if (weaponData.magazineSize > 0)
                     {
                         Gun(weaponData.projectileSpawnPoint, weaponData.projectile, weaponData.amountOfBullets, weaponData.speed, weaponData.spread, weaponData.magazineSize, weaponData.waitTime);
+                        Gun(weaponData.projectileSpawnPoint, weaponData.projectile, weaponData.amountOfBullets, weaponData.speed, weaponData.spread, weaponData.magazineSize, weaponData.waitTime, weaponData.rangedWeaponSFx, weaponData.sfxSource);
                         detectSound = true;
                     }
                     else
@@ -174,6 +205,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     MeleeAttack(weaponData.meleeAttackRangePos, transform, weaponData.meleeAttackRadius, weaponData.targetMask, weaponData.meleeWaitTime, weaponData.anim);
+                    MeleeAttack(weaponData.meleeAttackRangePos, transform, weaponData.meleeAttackRadius, weaponData.targetMask, weaponData.meleeWaitTime, weaponData.anim, weaponData.meleeWeaponSFx, weaponData.sfxSource);
                 }
                 detectSound = false;
             }
@@ -185,6 +217,7 @@ public class PlayerInteraction : MonoBehaviour
     private float timeUntilMelee;
 
     internal void Gun(Transform firePoint, GameObject projectile, float amountOfBullets, float speed, float spread, float magSize, float waitTime)
+    internal void Gun(Transform firePoint, GameObject projectile, float amountOfBullets, float speed, float spread, float magSize, float waitTime, AudioClip sfx, AudioSource source)
     {
         if (timeBetweenShots <= 0)
         {
@@ -196,6 +229,7 @@ public class PlayerInteraction : MonoBehaviour
                 GameObject bullet = Instantiate(projectile, firePoint.position, firePoint.rotation * newRot);
                 Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
                 rb.AddForce(bullet.transform.up * speed, ForceMode2D.Impulse);
+                Destroy(bullet, 5f);
             }
 
             PlayerWeaponData weaponData = equippedWeapon.gameObject.GetComponent<PlayerWeaponData>();
@@ -203,6 +237,9 @@ public class PlayerInteraction : MonoBehaviour
             {
                 weaponData.magazineSize--;
             }
+
+            source.clip = sfx;
+            source.Play();
 
             timeBetweenShots = waitTime;
         }
@@ -212,14 +249,59 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
     internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim)
+
+    internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioClip sfx, AudioSource source)
     {
         if (timeUntilMelee < 0)
+        if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");
+<<<<<<< HEAD
            
+=======
+            Collider2D[] targetCol = Physics2D.OverlapCircleAll(attackPos.position, attackRadius, mask);
+
+            foreach (Collider2D col in targetCol)
+            {
+                EnemyController enemy = col.GetComponent<EnemyController>();
+                if (enemy != null)
+                {
+                    enemy.baseState = EnemyController.enemyState.dead;
+                }
+            }
+
+
+            source.clip = sfx;
+            source.Play();
+
+>>>>>>> Wandile
             timeUntilMelee = waitTime;
         }
         else
+    }
+
+    internal void CooldownTimeUpdate()
+    {
+        if (timeBetweenShots > 0)
+        {
+            if (weaponData != null)
+            {
+                if (weaponData.weaponName == "Shotgun")
+                {
+                    if (weaponData.magazineSize > 0)
+                    {
+                        if (!weaponData.loadsfxSource.isPlaying)
+                        {
+                            weaponData.loadsfxSource.Play();
+                        }
+                    }
+                }
+            }
+
+            timeBetweenShots -= Time.deltaTime;
+        }
+
+        if (timeUntilMelee > 0.000001f)
         {
             timeUntilMelee -= Time.deltaTime;
         }
@@ -241,6 +323,7 @@ public class PlayerInteraction : MonoBehaviour
                         equippedWeapon.GetComponent<Animator>().enabled = false;
                     }
 
+                    equippedWeapon.SetParent(null);
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
 
 
@@ -265,6 +348,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (equippedWeapon != null)
                 {
                     equippedWeapon.parent = null;
+                    equippedWeapon.SetParent(null);
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
 
                     equippedWeaponBC.isTrigger = false;
@@ -368,6 +452,10 @@ public class PlayerInteraction : MonoBehaviour
 
     public void StatusUpdate()
     {
+        GameManager.gameOver = true;
+        magHolderUI.SetActive(false);
+        weaponNameUI.SetActive(false);
+
         status_Dead.SetActive(true);
         status_Alive.SetActive(false);
         if (equippedWeapon != null)
@@ -377,6 +465,7 @@ public class PlayerInteraction : MonoBehaviour
 
         weaponData = null;
         //Destroy(gameObject.GetComponent<Rigidbody2D>());
+
         Destroy(gameObject.GetComponent<Collider2D>());
         Destroy(gameObject.GetComponent<PlayerInteraction>());
         Destroy(gameObject.GetComponent<PlayerController>());
