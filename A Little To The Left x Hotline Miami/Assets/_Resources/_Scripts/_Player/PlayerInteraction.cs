@@ -186,7 +186,6 @@ public class PlayerInteraction : MonoBehaviour
                 {
                     if (weaponData.magazineSize > 0)
                     {
-                        Gun(weaponData.projectileSpawnPoint, weaponData.projectile, weaponData.amountOfBullets, weaponData.speed, weaponData.spread, weaponData.magazineSize, weaponData.waitTime);
                         Gun(weaponData.projectileSpawnPoint, weaponData.projectile, weaponData.amountOfBullets, weaponData.speed, weaponData.spread, weaponData.magazineSize, weaponData.waitTime, weaponData.rangedWeaponSFx, weaponData.sfxSource);
                         detectSound = true;
                     }
@@ -204,7 +203,6 @@ public class PlayerInteraction : MonoBehaviour
             {
                 if (Input.GetMouseButton(0))
                 {
-                    MeleeAttack(weaponData.meleeAttackRangePos, transform, weaponData.meleeAttackRadius, weaponData.targetMask, weaponData.meleeWaitTime, weaponData.anim);
                     MeleeAttack(weaponData.meleeAttackRangePos, transform, weaponData.meleeAttackRadius, weaponData.targetMask, weaponData.meleeWaitTime, weaponData.anim, weaponData.meleeWeaponSFx, weaponData.sfxSource);
                 }
                 detectSound = false;
@@ -216,7 +214,6 @@ public class PlayerInteraction : MonoBehaviour
 
     private float timeUntilMelee;
 
-    internal void Gun(Transform firePoint, GameObject projectile, float amountOfBullets, float speed, float spread, float magSize, float waitTime)
     internal void Gun(Transform firePoint, GameObject projectile, float amountOfBullets, float speed, float spread, float magSize, float waitTime, AudioClip sfx, AudioSource source)
     {
         if (timeBetweenShots <= 0)
@@ -248,7 +245,8 @@ public class PlayerInteraction : MonoBehaviour
             timeBetweenShots -= Time.deltaTime;
         }
     }
-    internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim)
+    
+
 
     internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioClip sfx, AudioSource source)
     {
@@ -256,28 +254,15 @@ public class PlayerInteraction : MonoBehaviour
         if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");
-<<<<<<< HEAD
-           
-=======
-            Collider2D[] targetCol = Physics2D.OverlapCircleAll(attackPos.position, attackRadius, mask);
 
-            foreach (Collider2D col in targetCol)
-            {
-                EnemyController enemy = col.GetComponent<EnemyController>();
-                if (enemy != null)
-                {
-                    enemy.baseState = EnemyController.enemyState.dead;
-                }
-            }
 
 
             source.clip = sfx;
             source.Play();
 
->>>>>>> Wandile
             timeUntilMelee = waitTime;
         }
-        else
+        
     }
 
     internal void CooldownTimeUpdate()

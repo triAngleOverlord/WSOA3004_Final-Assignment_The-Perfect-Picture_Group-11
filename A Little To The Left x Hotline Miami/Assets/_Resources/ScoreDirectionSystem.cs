@@ -58,7 +58,7 @@ public class ScoreDirectionSystem : MonoBehaviour
         //if (other.gameObject.transform.parent== true && other.gameObject.transform.parent.gameObject.layer == 7) //&& other.gameObject.transform.parent.name != "Cute Environment" && other.gameObject.transform.parent.gameObject.layer != 6)
         //{
             //Debug.Log(other.gameObject.name);
-        if (player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true && other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
+        if (player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true)// && other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
         {
             if (other.gameObject.tag == "Bullet") //what about enemy bullets? this need to be updated
             {
@@ -75,24 +75,25 @@ public class ScoreDirectionSystem : MonoBehaviour
                 // Now you can use hitPoint and direction as needed
 
                 DirectionOfBullet = GetHitDirection(angle);
-                if (DirectionOfBullet != "Error")
+                /*if (DirectionOfBullet != "Error")
                 {
                     if (DirectionOfBullet == "South")
                     {
                         transform.rotation = Quaternion.Euler(0, 0, 0);
                     }
-                }
+                }*/
                 setTransformRotation(DirectionOfBullet);
                 determineDistanceAndSnap(FindBottomOfObject(targetArea));
                 stateofenemy = "DeadbyBull";
                 EnemyController enemy = other.GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.dead;
+                enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 Debug.Log("Killed by Bullet");//ded
 
             }
             else if (other.gameObject.tag == "Melee")//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
             {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
-                Debug.Log(other.gameObject.name);
+                //Debug.Log(other.gameObject.name);
                 power = origpower;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 //rb.AddForce(dir * power, ForceMode2D.Impulse);
@@ -105,11 +106,12 @@ public class ScoreDirectionSystem : MonoBehaviour
                 // Now you can use hitPoint and direction as needed
 
 
-                DirectionOfMelee = GetHitDirection(angle);
+                DirectionOfBullet = GetHitDirection(angle);
                 setTransformRotation(DirectionOfMelee);
                 determineDistanceAndSnap(FindBottomOfObject(targetArea));
                 EnemyController enemy = GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.dead;
+                enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 stateofenemy = "DeadbyMelSwip";
                 Debug.Log("Killed by Melee");
 
@@ -127,6 +129,7 @@ public class ScoreDirectionSystem : MonoBehaviour
             {
                 EnemyController enemy = GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.dead;
+                enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 stateofenemy = "DeadbyMeleeWep";
             }
             else
@@ -200,7 +203,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 */
    private string GetHitDirection(float ang)
     {
-        Debug.Log(ang);
+        //Debug.Log(ang);
             if (ang<= 30 && ang > -30)
             {
                 Debug.Log("North");
@@ -287,13 +290,13 @@ public class ScoreDirectionSystem : MonoBehaviour
         // Determine which range the distance falls into and snap
         if (distance >= 0 && distance < 0.7)
         {
-            SnapToDistance(direction, 0.7f);
-            Debug.Log("A little too close");
+            SnapToDistance(direction, 0f);
+            Debug.Log("Perfect");
         }
         else if (distance >= 0.7 && distance < 1.5)//perfect distance
         {
-            SnapToDistance(direction, 0);
-            Debug.Log("Perfect");
+            SnapToDistance(direction, 0.7f);
+            Debug.Log("A little too close");
         }
         else if (distance >= 1.5 && distance < 2)
         {

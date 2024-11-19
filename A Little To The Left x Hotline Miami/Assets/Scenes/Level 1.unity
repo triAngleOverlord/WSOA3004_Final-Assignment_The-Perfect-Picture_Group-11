@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Chainsaw
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0.02
@@ -322,10 +322,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 178400}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: 7c7b7fdd4a27be7429b9a7a6c459c4f4, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: 7c7b7fdd4a27be7429b9a7a6c459c4f4, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &178405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,8 +991,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &19805601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1090,14 +1090,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Revolver
+  weaponName: 
   projectileSpawnPoint: {fileID: 1062475091}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 3
   speed: 70
   magazineSize: 6
   amountOfBullets: 1
-  totalMag: 6
+  totalMag: 0
   waitTime: 0.5
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -1106,7 +1106,7 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
   rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
@@ -1202,8 +1202,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1275527665}
   - {fileID: 1220919260}
-  weaponSFx: {fileID: 2040505015}
-  shotgunSFx: {fileID: 82873882}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &23471704
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1323,6 +1323,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 492765353}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -1862,7 +1863,7 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 82018283}
   meleeWaitTime: 0.4
-  meleeSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
   rangedSFx: {fileID: 0}
 --- !u!95 &82018283
 Animator:
@@ -1982,7 +1983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Bat
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -1998,10 +1999,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 82018283}
   meleeWaitTime: 0.4
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &82018288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2757,8 +2758,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1979712081}
   - {fileID: 1754961322}
-  weaponSFx: {fileID: 139239692}
-  shotgunSFx: {fileID: 1994780821}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &114395303
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2878,6 +2879,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1010608644}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -7797,7 +7799,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   meleeWaitTime: 0
   meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!61 &230271823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7895,14 +7897,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: MP5
+  weaponName: 
   projectileSpawnPoint: {fileID: 1508964201}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
   magazineSize: 30
   amountOfBullets: 1
-  totalMag: 30
+  totalMag: 0
   waitTime: 0.1
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -7911,9 +7913,9 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedWeaponSFx: {fileID: 0}
   meleeWeaponSFx: {fileID: 0}
 --- !u!114 &230271827
 MonoBehaviour:
@@ -8111,8 +8113,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1442855119}
   - {fileID: 791145256}
-  weaponSFx: {fileID: 1183307306}
-  shotgunSFx: {fileID: 53208127}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &242159086
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8232,6 +8234,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1353871268}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -8364,8 +8367,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 975349962}
   - {fileID: 1264851995}
-  weaponSFx: {fileID: 1184708671}
-  shotgunSFx: {fileID: 515986381}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &276790708
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -8485,6 +8488,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1526034435}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -8816,8 +8820,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &313265534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8915,14 +8919,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Shotgun
+  weaponName: 
   projectileSpawnPoint: {fileID: 245861911}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 7
   speed: 60
   magazineSize: 6
   amountOfBullets: 8
-  totalMag: 6
+  totalMag: 0
   waitTime: 1
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -8931,9 +8935,9 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
-  loadsfxSource: {fileID: 1405629364}
-  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  sfxSource: {fileID: 0}
+  loadsfxSource: {fileID: 0}
+  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
 --- !u!114 &313265539
 MonoBehaviour:
@@ -9675,8 +9679,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1193722414}
   - {fileID: 1968471803}
-  weaponSFx: {fileID: 2055282289}
-  shotgunSFx: {fileID: 1273130196}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &364199342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9796,6 +9800,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1070232859}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -10279,7 +10284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Wooden Axe
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -10295,10 +10300,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 422519410}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &422519414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10802,7 +10807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Knife
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -10818,10 +10823,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 464976106}
   meleeWaitTime: 0.2
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &464976112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13124,8 +13129,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &712924780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13223,14 +13228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Shotgun
+  weaponName: 
   projectileSpawnPoint: {fileID: 437081068}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 7
   speed: 60
   magazineSize: 6
   amountOfBullets: 8
-  totalMag: 6
+  totalMag: 0
   waitTime: 1
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -13239,9 +13244,9 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
-  loadsfxSource: {fileID: 1405629364}
-  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  sfxSource: {fileID: 0}
+  loadsfxSource: {fileID: 0}
+  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
 --- !u!114 &712924785
 MonoBehaviour:
@@ -14167,8 +14172,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 932227612}
   - {fileID: 343848516}
-  weaponSFx: {fileID: 1002710334}
-  shotgunSFx: {fileID: 1587411450}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &807619737
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -14288,6 +14293,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1420766779}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -16519,8 +16525,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1336431308}
   - {fileID: 1753515767}
-  weaponSFx: {fileID: 880495415}
-  shotgunSFx: {fileID: 1943512216}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &956189710
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -16640,6 +16646,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 149381148}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -17392,8 +17399,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &1004181403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17491,14 +17498,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 'Assault '
+  weaponName: 
   projectileSpawnPoint: {fileID: 793711136}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 4
   speed: 50
   magazineSize: 30
   amountOfBullets: 1
-  totalMag: 30
+  totalMag: 0
   waitTime: 0.2
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -17507,9 +17514,9 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
 --- !u!114 &1004181408
 MonoBehaviour:
@@ -18144,8 +18151,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 1681421439}
   - {fileID: 858385550}
-  weaponSFx: {fileID: 696739912}
-  shotgunSFx: {fileID: 1968271583}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &1054561357
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -18265,6 +18272,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1010608644}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -26209,8 +26217,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &1278115614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26308,14 +26316,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Pistol
+  weaponName: 
   projectileSpawnPoint: {fileID: 1709038452}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 3
   speed: 70
   magazineSize: 13
   amountOfBullets: 1
-  totalMag: 13
+  totalMag: 0
   waitTime: 0.5
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -26324,7 +26332,7 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
   rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
@@ -26656,8 +26664,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 215343881}
   - {fileID: 2024375693}
-  weaponSFx: {fileID: 1575472792}
-  shotgunSFx: {fileID: 1567038318}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &1301361223
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -26777,6 +26785,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1130138101}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -27341,7 +27350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Sword
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -27357,10 +27366,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1338034289}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &1338034294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38262,8 +38271,8 @@ MonoBehaviour:
   motionState:
   - {fileID: 676995226}
   - {fileID: 126997555}
-  weaponSFx: {fileID: 1908366295}
-  shotgunSFx: {fileID: 1702106045}
+  weaponSFx: {fileID: 0}
+  shotgunSFx: {fileID: 0}
 --- !u!195 &1459774092
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -38383,6 +38392,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
+  targetArea: {fileID: 1996899216}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -39718,7 +39728,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Bottle
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -39734,10 +39744,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1584583703}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &1584583709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40057,8 +40067,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedSFx: {fileID: 0}
 --- !u!114 &1597853350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40156,14 +40166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Uzi
+  weaponName: 
   projectileSpawnPoint: {fileID: 1053250568}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 20
   speed: 50
   magazineSize: 45
   amountOfBullets: 1
-  totalMag: 45
+  totalMag: 0
   waitTime: 0.1
   meleeAttackRangePos: {fileID: 0}
   meleeAttackRadius: 0
@@ -40172,9 +40182,9 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
   meleeWeaponSFx: {fileID: 0}
 --- !u!114 &1597853355
 MonoBehaviour:
@@ -41950,7 +41960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Bottle
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -41966,10 +41976,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1744529428}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &1744529433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42939,7 +42949,7 @@ MonoBehaviour:
   camOnInitialPos: 0
   tiltAmount: 2
   tiltSpeed: 2
-  displacementMultiplier: 0.04
+  displacementMultiplier: 0
 --- !u!1 &1845167665
 GameObject:
   m_ObjectHideFlags: 0
@@ -54883,7 +54893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Knife
+  weaponName: 
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -54899,10 +54909,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 2084709145}
   meleeWaitTime: 0.2
-  sfxSource: {fileID: 1060871754}
+  sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
+  meleeWeaponSFx: {fileID: 0}
 --- !u!114 &2084709151
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -232,7 +232,7 @@ public class ScorTrack : MonoBehaviour
         if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMeleeWep" && AlreadyDead != true)
         {
             AlreadyDead =true;
-            if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
+            if(GetComponent<EnemyController>().deathBy == DeathbyWhat )//&& distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 Debug.Log("Line113");
                 //check allignment score code for correct weapon and correct direction , case a

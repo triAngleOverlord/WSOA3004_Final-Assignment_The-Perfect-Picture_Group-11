@@ -55,6 +55,7 @@ public class EnemyController : MonoBehaviour
     private ScoreDirectionSystem SCDirection;
 
     private ScorTrack SCTrack;
+    public string deathBy;
 
 
     //vars from the enemy vision script, now here
@@ -96,9 +97,9 @@ public class EnemyController : MonoBehaviour
     //anim
     [SerializeField] private Animator[] motionState;
 
-<<<<<<< HEAD
+
     bool isdeadalready = false;
-=======
+
     //path
     private NavMeshPath path;
     private bool intel;
@@ -107,7 +108,7 @@ public class EnemyController : MonoBehaviour
     [Header("Weapon Source")]
     public AudioSource weaponSFx;
     public AudioSource shotgunSFx;
->>>>>>> Wandile
+
 
     void Start()
     {
@@ -309,16 +310,14 @@ public class EnemyController : MonoBehaviour
                         {
                             if (Vector2.Distance(transform.position, player.position) < 20f)
                             {
-                            RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot);
-                                RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot, weaponSFx, weaponAttributes.rangedSFx);
+                            RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot, weaponSFx, weaponAttributes.rangedSFx);
                             }
                         }
                         else if (weapon == EnemyWeapon.melee)
                         {
                             if (Vector2.Distance(transform.position, player.position) < 2f)
                             {
-                            MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim);
-                                MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim, weaponSFx, weaponAttributes.meleeSFx);
+                            MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim, weaponSFx, weaponAttributes.meleeSFx);
                             }
                         }
                     }
@@ -329,7 +328,6 @@ public class EnemyController : MonoBehaviour
 
     private float untilNxtShot;
     private float timeUntilMelee;
-    public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread, float speed, float timeBeforeNxtShot)
     public void RangeStyle(GameObject projectilePrefab, Transform projectileSpawnPoint, float amountOfBullets, float spread, float speed, float timeBeforeNxtShot, AudioSource source, AudioClip clip)
     {
         if (untilNxtShot <= 0)
@@ -356,7 +354,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim)
+    
     internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioSource source, AudioClip clip)
     {
         if (timeUntilMelee < 0)
@@ -390,7 +388,6 @@ public class EnemyController : MonoBehaviour
 
             timeUntilMelee = waitTime;
         }
-        else
     }
 
     internal void CoolDown()
@@ -664,7 +661,7 @@ public class EnemyController : MonoBehaviour
                     baseState = enemyState.lookForWeapon;
                 }
             }
-        }
+        
 
         //handle the hasseeenplayer boolean
         if (agent.velocity == Vector3.zero && foundTargets.Count <= 0)
@@ -822,11 +819,11 @@ public class EnemyController : MonoBehaviour
         if (other.tag == "Bullet") // THIS WONT WORK AS ENEMY BULLETS PHASE THROUGH OTHER ENEMIES
         {
             baseState = enemyState.dead;
-<<<<<<< HEAD
+
             
-=======
+
             SpriteManager(enemyState.dead);
->>>>>>> Wandile
+
         }
     }
 }
