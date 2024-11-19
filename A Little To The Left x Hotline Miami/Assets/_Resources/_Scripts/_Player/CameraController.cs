@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour
 
     private float tiltInput;
 
+    [SerializeField] private float displacementMultiplier;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -90,8 +92,12 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Vector3 playerPos = new Vector3(player.position.x, player.position.y, transform.position.z);
-            transform.position = Vector3.Lerp(transform.position, playerPos, Time.smoothDeltaTime * lerpTime);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 displacementVector = (mousePos - player.position) *displacementMultiplier;
+            Vector3 calculatedDisplacement = displacementVector + player.position;
+            Vector3 lerpedDisplacement = Vector3.Lerp(transform.position, calculatedDisplacement, Time.deltaTime * lerpTime);
+            lerpedDisplacement.z = -10f;
+            transform.position = lerpedDisplacement;
             camOnInitialPos = false;
         }
     }
