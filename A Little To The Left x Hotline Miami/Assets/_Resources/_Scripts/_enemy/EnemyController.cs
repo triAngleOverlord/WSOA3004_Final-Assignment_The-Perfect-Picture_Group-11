@@ -539,7 +539,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         Destroy(gameObject.GetComponent<Collider2D>());
 
-       // Destroy(gameObject.GetComponent<EnemyController>());
+       Destroy(gameObject.GetComponent<EnemyController>());
     }
 
     private void KnockedDown()
