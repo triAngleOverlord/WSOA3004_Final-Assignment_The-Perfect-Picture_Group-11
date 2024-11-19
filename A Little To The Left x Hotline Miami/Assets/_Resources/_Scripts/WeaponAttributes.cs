@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponAttributes : MonoBehaviour
 {
-    [SerializeField] private string weaponName;
+    [SerializeField] public string weaponName;
 
     [Header("********Ranged Weapons********")]
     public float speed;

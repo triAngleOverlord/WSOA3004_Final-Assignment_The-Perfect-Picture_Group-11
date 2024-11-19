@@ -17,6 +17,7 @@ public class WeaponKnockdown : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             EnemyController e = collision.gameObject.GetComponent<EnemyController>();
+            ScorTrack SCR = collision.gameObject.GetComponent<ScorTrack>();
 
             if (rb.velocity.magnitude > 1f)
             {
@@ -28,6 +29,7 @@ public class WeaponKnockdown : MonoBehaviour
                 else if (fate == EnemyFate.death)
                 {
                     e.baseState = EnemyController.enemyState.dead;
+                    SCR.DeathBYMELTHROW();
                 }
             }
         }
