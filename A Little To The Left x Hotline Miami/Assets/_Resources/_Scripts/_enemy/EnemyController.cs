@@ -50,6 +50,10 @@ public class EnemyController : MonoBehaviour
     private Vector2 siteToInspect;
     private EnemyVision enemyVision;
 
+    private ScoreDirectionSystem SCDirection;
+
+    private ScorTrack SCTrack;
+
 
     //vars from the enemy vision script, now here
     public float viewRadius;
@@ -89,8 +93,12 @@ public class EnemyController : MonoBehaviour
     //anim
     [SerializeField] private Animator[] motionState;
 
+    bool isdeadalready = false;
+
     void Start()
     {
+        SCDirection = this.gameObject.GetComponent<ScoreDirectionSystem>();
+        SCTrack = this.gameObject.GetComponent<ScorTrack>();
         SpriteManager(enemyState.idle);
 
         rb = GetComponent<Rigidbody2D>();
@@ -407,7 +415,29 @@ public class EnemyController : MonoBehaviour
 
         else if (baseState == enemyState.dead)
         {
-            Dead();
+            if(isdeadalready == false)
+            {
+                if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull")
+                {
+                    SCTrack.DeathBYBULLET();
+                    isdeadalready = true;
+                     Dead();
+                }
+                if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMelSwip")
+                {
+                    SCTrack.DeathBYMELSWIP();
+                    isdeadalready = true;
+                     Dead();
+                }
+                if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMeleeWep")
+                {
+                    SCTrack.DeathBYMELTHROW();
+                    isdeadalready = true;
+                     Dead();
+                }
+            }
+            
+           
         }
     }
 
@@ -495,13 +525,13 @@ public class EnemyController : MonoBehaviour
     private void Dead()
     {
         SpriteManager(enemyState.dead);
-        
+
         Vector2 fallDir = (player.position - transform.position).normalized;
         float zAxis = Mathf.Atan2(fallDir.y, fallDir.x) * Mathf.Rad2Deg - 90f;
-        //rb.transform.rotation = Quaternion.Euler(0, 0, zAxis);
-        
+       // rb.transform.rotation = Quaternion.Euler(0, 0, zAxis);
+
         var power = 2f;
-        //rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
+       // rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
         rb.drag = 5f;
         theWeapon = null;
         ClearChildren(weaponPos.gameObject);
@@ -509,7 +539,7 @@ public class EnemyController : MonoBehaviour
         Destroy(gameObject.GetComponent<NavMeshAgent>());
         Destroy(gameObject.GetComponent<Collider2D>());
 
-        Destroy(gameObject.GetComponent<EnemyController>());
+       Destroy(gameObject.GetComponent<EnemyController>());
     }
 
     private void KnockedDown()
@@ -661,9 +691,10 @@ public class EnemyController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Bullet")
+        if (other.tag == "Bullet") // THIS WONT WORK AS ENEMY BULLETS PHASE THROUGH OTHER ENEMIES
         {
             baseState = enemyState.dead;
+            
         }
     }
 }

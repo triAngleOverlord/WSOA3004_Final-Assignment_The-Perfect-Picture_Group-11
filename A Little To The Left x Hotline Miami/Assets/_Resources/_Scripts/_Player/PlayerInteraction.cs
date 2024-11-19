@@ -216,16 +216,7 @@ public class PlayerInteraction : MonoBehaviour
         if (timeUntilMelee < 0)
         {
             anim.SetTrigger("Attack");
-            Collider2D[] targetCol = Physics2D.OverlapCircleAll(attackPos.position, attackRadius, mask);
-
-            foreach (Collider2D col in targetCol)
-            {
-                EnemyController enemy = col.GetComponent<EnemyController>();
-                if (enemy != null)
-                {
-                    //enemy.baseState = EnemyController.enemyState.dead;
-                }
-            }
+           
             timeUntilMelee = waitTime;
         }
         else
