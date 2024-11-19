@@ -1131,7 +1131,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 492765353}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -2407,7 +2407,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1295556840}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -7063,7 +7063,6 @@ GameObject:
   - component: {fileID: 230271824}
   - component: {fileID: 230271823}
   - component: {fileID: 230271821}
-  - component: {fileID: 230271825}
   - component: {fileID: 230271826}
   m_Layer: 8
   m_Name: MP5
@@ -7081,7 +7080,7 @@ Transform:
   m_GameObject: {fileID: 230271819}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.5, y: 15.191697, z: 0}
+  m_LocalPosition: {x: 4.35, y: 22.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7186,19 +7185,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &230271825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 230271819}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16f3cb9e7213284a8d07e2ca7b7fcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fate: 0
 --- !u!114 &230271826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7526,7 +7512,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1353871268}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -7777,7 +7763,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1526034435}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -9065,7 +9051,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1070232859}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -9818,7 +9804,6 @@ GameObject:
   - component: {fileID: 464976108}
   - component: {fileID: 464976106}
   - component: {fileID: 464976105}
-  - component: {fileID: 464976110}
   - component: {fileID: 464976111}
   m_Layer: 8
   m_Name: knife
@@ -9961,19 +9946,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &464976110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464976103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16f3cb9e7213284a8d07e2ca7b7fcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fate: 1
 --- !u!114 &464976111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12356,7 +12328,7 @@ Transform:
   m_GameObject: {fileID: 732699805}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 5.46, y: 2.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13141,7 +13113,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1420766779}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -15150,7 +15122,6 @@ GameObject:
   - component: {fileID: 956189710}
   - component: {fileID: 956189709}
   - component: {fileID: 956189714}
-  - component: {fileID: 956189715}
   m_Layer: 9
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -15249,7 +15220,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -15295,7 +15266,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!4 &956189713
 Transform:
   m_ObjectHideFlags: 0
@@ -15305,7 +15276,7 @@ Transform:
   m_GameObject: {fileID: 956189708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.52, y: 20.33, z: 0}
+  m_LocalPosition: {x: 10.52, y: 22.14, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15336,24 +15307,6 @@ MonoBehaviour:
   dead: {fileID: 0}
   power: 0
   weaponhurtby: 
---- !u!114 &956189715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956189708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4efc4466d3c99143b5de07d76ffc930, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponhurtbyscore: 
-  DesiredGoal: {fileID: 149381148}
-  furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
-  DoWeWantFurniture: 0
 --- !u!1 &975349959
 GameObject:
   m_ObjectHideFlags: 0
@@ -15921,7 +15874,7 @@ Transform:
   m_GameObject: {fileID: 1004181400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6, y: 14.5, z: 0}
+  m_LocalPosition: {x: -3.51, y: 24.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16804,7 +16757,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1010608644}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -24569,7 +24522,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1130138101}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -35323,7 +35276,7 @@ Transform:
   m_GameObject: {fileID: 1405246604}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.59, y: 16.64, z: 0}
+  m_LocalPosition: {x: 3.74, y: 19.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36039,7 +35992,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1996899216}
   img: {fileID: 0}
   live: {fileID: 0}
   dead: {fileID: 0}
@@ -36849,7 +36802,6 @@ GameObject:
   - component: {fileID: 1584583705}
   - component: {fileID: 1584583703}
   - component: {fileID: 1584583702}
-  - component: {fileID: 1584583707}
   - component: {fileID: 1584583708}
   m_Layer: 8
   m_Name: Bottle
@@ -36867,7 +36819,7 @@ Transform:
   m_GameObject: {fileID: 1584583700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 10.25, y: 21.71, z: 0}
+  m_LocalPosition: {x: 10.39, y: 20.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -36881,7 +36833,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1584583700}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
@@ -36992,19 +36944,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &1584583707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1584583700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16f3cb9e7213284a8d07e2ca7b7fcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fate: 0
 --- !u!114 &1584583708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38768,7 +38707,7 @@ Transform:
   m_GameObject: {fileID: 1744529424}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 3.5349112, y: 14.067766, z: 0}
+  m_LocalPosition: {x: 0.58, y: 20.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -38821,7 +38760,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744529424}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 92e975f4dc1ca6e45ad13a748c842d29, type: 2}
   m_CullingMode: 0
@@ -49043,7 +48982,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1894541914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50759,8 +50698,8 @@ GameObject:
   - component: {fileID: 2084709147}
   - component: {fileID: 2084709145}
   - component: {fileID: 2084709144}
-  - component: {fileID: 2084709149}
   - component: {fileID: 2084709150}
+  - component: {fileID: 2084709151}
   m_Layer: 8
   m_Name: knife (1)
   m_TagString: Melee
@@ -50777,7 +50716,7 @@ Transform:
   m_GameObject: {fileID: 2084709142}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 4.034912, y: 13.067766, z: 0}
+  m_LocalPosition: {x: 1.0800009, y: 19.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50902,19 +50841,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2084709149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2084709142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d16f3cb9e7213284a8d07e2ca7b7fcca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fate: 1
 --- !u!114 &2084709150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50941,6 +50867,19 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 2084709145}
   meleeWaitTime: 0.1
+--- !u!114 &2084709151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084709142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d16f3cb9e7213284a8d07e2ca7b7fcca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fate: 0
 --- !u!1 &2087844746
 GameObject:
   m_ObjectHideFlags: 0

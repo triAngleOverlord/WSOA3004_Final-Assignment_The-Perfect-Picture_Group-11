@@ -223,7 +223,7 @@ public class PlayerInteraction : MonoBehaviour
                 EnemyController enemy = col.GetComponent<EnemyController>();
                 if (enemy != null)
                 {
-                    enemy.baseState = EnemyController.enemyState.dead;
+                    //enemy.baseState = EnemyController.enemyState.dead;
                 }
             }
             timeUntilMelee = waitTime;
@@ -264,7 +264,8 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponBC.isTrigger = false;
                     equippedWeapon = null;
                 }
-
+                hasthrownWeapon = true;
+                StartCoroutine(waiter());
                 hasWeapon = false;
             }
 

@@ -26,6 +26,6 @@ public class WeaponAttributes : MonoBehaviour
 
     public void AnnounceSelf()
     {
-        print(weaponName);
+        //print(weaponName);
     }
 }

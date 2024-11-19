@@ -495,7 +495,7 @@ public class EnemyController : MonoBehaviour
     private void Dead()
     {
         SpriteManager(enemyState.dead);
-        Debug.Log("first");
+        
         Vector2 fallDir = (player.position - transform.position).normalized;
         float zAxis = Mathf.Atan2(fallDir.y, fallDir.x) * Mathf.Rad2Deg - 90f;
         //rb.transform.rotation = Quaternion.Euler(0, 0, zAxis);

@@ -12,14 +12,13 @@ public class WeaponKnockdown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void KnockBackEffect(Collider2D collision, EnemyController e)
     {
+        
         if (collision.gameObject.tag == "Enemy")
-        {
-            EnemyController e = collision.gameObject.GetComponent<EnemyController>();
+        {Debug.Log("Here Knockback");
 
-            if (rb.velocity.magnitude > 1f)
-            {
+            
                 if (fate == EnemyFate.knockdown)
                 {
                     e.baseState = EnemyController.enemyState.knockedDown;
@@ -29,7 +28,7 @@ public class WeaponKnockdown : MonoBehaviour
                 {
                     e.baseState = EnemyController.enemyState.dead;
                 }
-            }
+            
         }
     }
 }

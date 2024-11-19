@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -53,62 +54,96 @@ public class ScoreDirectionSystem : MonoBehaviour
 
      private void OnTriggerEnter2D(Collider2D other)
     {
-        
-
-
-        if (other.gameObject.tag == "Bullet" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true ) //what about enemy bullets? this need to be updated
-                {
-                    power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
-                    weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
-                    Vector3 dir = (transform.position - player.transform.position).normalized;
-                    //rb.AddForce(dir * power, ForceMode2D.Impulse);
-                    //rb.transform.up = dir;
-                    
-
-                    Vector2 direction = dir;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg +90;
-           
-                    // Now you can use hitPoint and direction as needed
-    
-                    DirectionOfBullet = GetHitDirection(angle);
-                    if(DirectionOfBullet != "Error")
-                    {
-                        if(DirectionOfBullet == "South")
-                        {
-                            transform.rotation = Quaternion.Euler(0, 0, 0);
-                        }
-                    }
-            setTransformRotation(DirectionOfBullet);
-            determineDistanceAndSnap();
-            stateofenemy = "DeadbyBull";
-            //Debug.Log("Bullet");//ded
-
-        }    
-            else if(other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>()== true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true && other.gameObject.transform.parent.name != "weaponPos" )
+        //checks if it was killed by a weapon
+        //if (other.gameObject.transform.parent== true && other.gameObject.transform.parent.gameObject.layer == 7) //&& other.gameObject.transform.parent.name != "Cute Environment" && other.gameObject.transform.parent.gameObject.layer != 6)
+        //{
+            //Debug.Log(other.gameObject.name);
+        if (player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true && other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
+        {
+            if (other.gameObject.tag == "Bullet") //what about enemy bullets? this need to be updated
             {
+                power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
+                weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
+                Vector3 dir = (transform.position - player.transform.position).normalized;
+                //rb.AddForce(dir * power, ForceMode2D.Impulse);
+                //rb.transform.up = dir;
+
+
+                Vector2 direction = dir;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+
+                // Now you can use hitPoint and direction as needed
+
+                DirectionOfBullet = GetHitDirection(angle);
+                if (DirectionOfBullet != "Error")
+                {
+                    if (DirectionOfBullet == "South")
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                    }
+                }
+                setTransformRotation(DirectionOfBullet);
+                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+                stateofenemy = "DeadbyBull";
+                EnemyController enemy = other.GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.dead;
+                Debug.Log("Killed by Bullet");//ded
+
+            }
+            else if (other.gameObject.tag == "Melee")//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
+            {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
+                Debug.Log(other.gameObject.name);
                 power = origpower;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 //rb.AddForce(dir * power, ForceMode2D.Impulse);
                 //rb.transform.up = dir;
-                
+
 
                 Vector2 direction = dir;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg +90;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
 
                 // Now you can use hitPoint and direction as needed
-                
+
 
                 DirectionOfMelee = GetHitDirection(angle);
-            setTransformRotation(DirectionOfMelee);
-            determineDistanceAndSnap();
+                setTransformRotation(DirectionOfMelee);
+                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+                EnemyController enemy = GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.dead;
+                stateofenemy = "DeadbyMelSwip";
+                Debug.Log("Killed by Melee");
 
-            stateofenemy = "DeadbyMelSwip";
-            //Debug.Log(other.gameObject.name);//ded
             }
+        }
+        else if (player.GetComponent<PlayerInteraction>() == true && (other.gameObject.tag == "Melee"|| other.gameObject.tag == "Ranged") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false && other.gameObject.transform.parent == false)
+        {
+            Vector3 dir = (transform.position - player.transform.position).normalized;
+                Vector2 direction = dir;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+                DirectionOfMelee = GetHitDirection(angle);
+                setTransformRotation(DirectionOfMelee);
+                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+            if (other.GetComponent<WeaponKnockdown>().fate == WeaponKnockdown.EnemyFate.death)
+            {
+                EnemyController enemy = GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.dead;
+                stateofenemy = "DeadbyMeleeWep";
+            }
+            else
+            {
+                stateofenemy = "Knocked Out";
+                EnemyController enemy = GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.knockedDown;
+            }
+                
             
             
-    }
 
+            Debug.Log(stateofenemy);
+        }
+        
+    }
+    /*
     private void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("sweeped");
@@ -142,8 +177,8 @@ public class ScoreDirectionSystem : MonoBehaviour
                   
                                 power = origpower;
                                 Vector3 dir = (transform.position - player.transform.position).normalized;
-                                rb.AddForce(dir * power, ForceMode2D.Impulse);
-                                rb.transform.up = dir;
+                                //rb.AddForce(dir * power, ForceMode2D.Impulse);
+                                //rb.transform.up = dir;
                                 
 
                                 Vector2 direction = dir;
@@ -162,10 +197,10 @@ public class ScoreDirectionSystem : MonoBehaviour
 
     }
     
-
+*/
    private string GetHitDirection(float ang)
     {
-        
+        Debug.Log(ang);
             if (ang<= 30 && ang > -30)
             {
                 Debug.Log("North");
@@ -221,8 +256,9 @@ public class ScoreDirectionSystem : MonoBehaviour
 
     private void setTransformRotation(string dir)
     {
-        //Debug.Log("before: " + rb.transform.rotation);
-        if (dir == "North")
+        
+            
+            if (dir == "North")
             rb.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         else if (dir == "NorthEast")
             rb.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
@@ -242,11 +278,11 @@ public class ScoreDirectionSystem : MonoBehaviour
         //Debug.Log("after: " + transform.rotation);
     }
 
-    private void determineDistanceAndSnap()
+    private void determineDistanceAndSnap(Vector2 targetAreasBottom)
     {
-        Vector2 direction = (transform.position - targetArea.transform.position).normalized;
-        float distance = Vector2.Distance(transform.position, targetArea.transform.position);
-        Debug.Log(distance);
+        Vector2 direction = ((Vector2)transform.position - targetAreasBottom).normalized;
+        float distance = Vector2.Distance(transform.position, targetAreasBottom);
+        //Debug.Log(distance);
 
         // Determine which range the distance falls into and snap
         if (distance >= 0 && distance < 0.7)
@@ -271,10 +307,30 @@ public class ScoreDirectionSystem : MonoBehaviour
     private void SnapToDistance(Vector2 direction, float snapDistance)
     {
         // Set the position while maintaining the angle
-        transform.position = (Vector2)targetArea.transform.position + direction * snapDistance;
-        float distance = Vector2.Distance(transform.position, targetArea.transform.position);
-        Debug.Log("Snaping");
+        transform.position = FindBottomOfObject(targetArea) + direction * snapDistance;
+        //float distance = Vector2.Distance(transform.position, targetArea.transform.position);
+        //Debug.Log("Snaping");
     }
+
+    public Vector2 FindBottomOfObject(GameObject targetArea)
+    {
+        Bounds bounds;
+        Renderer renderer = targetArea.GetComponent<Renderer>();
+        if (renderer != null)
+        {
+            bounds = renderer.bounds;
+        }
+        else
+        {
+            Debug.LogWarning("No Collider2D or Renderer found on this object!");
+            return transform.position; // Default to object's position
+        }
+        // The bottom position in world coordinates
+    Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
+        return bottomPosition;
+    }
+
+   
 }
 
   
