@@ -20,6 +20,8 @@ public class ScoreDirectionSystem : MonoBehaviour
      public string stateofenemy;
 
     [SerializeField] public GameObject targetArea;
+    private float perfectRadius;
+    public float deadDistance;
          public SpriteRenderer img;
         public Sprite live;
         public Sprite dead;
@@ -44,6 +46,8 @@ public class ScoreDirectionSystem : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         origpower = power;
         player = GameObject.FindGameObjectWithTag("Player");
+        perfectRadius= FindRadiusOfObject();
+        //Debug.Log("Radius is "+ perfectRadius.ToString());
     }
 
     // Update is called once per frame
@@ -83,18 +87,18 @@ public class ScoreDirectionSystem : MonoBehaviour
                     }
                 }*/
                 setTransformRotation(DirectionOfBullet);
-                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+                determineDistanceAndSnap();
                 stateofenemy = "DeadbyBull";
-                EnemyController enemy = other.GetComponent<EnemyController>();
-                enemy.baseState = EnemyController.enemyState.dead;
-                enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
+                //EnemyController enemy = other.GetComponent<EnemyController>();
+                //enemy.baseState = EnemyController.enemyState.dead;
+                //enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 Debug.Log("Killed by Bullet");//ded
 
             }
             else if (other.gameObject.tag == "Melee")//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
             {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
-                //Debug.Log(other.gameObject.name);
-                power = origpower;
+                Debug.Log(other.gameObject.name);
+                //power = origpower;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 //rb.AddForce(dir * power, ForceMode2D.Impulse);
                 //rb.transform.up = dir;
@@ -106,9 +110,9 @@ public class ScoreDirectionSystem : MonoBehaviour
                 // Now you can use hitPoint and direction as needed
 
 
-                DirectionOfBullet = GetHitDirection(angle);
+                DirectionOfMelee = GetHitDirection(angle);
                 setTransformRotation(DirectionOfMelee);
-                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+                determineDistanceAndSnap();
                 EnemyController enemy = GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.dead;
                 enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
@@ -122,9 +126,9 @@ public class ScoreDirectionSystem : MonoBehaviour
             Vector3 dir = (transform.position - player.transform.position).normalized;
                 Vector2 direction = dir;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
-                DirectionOfMelee = GetHitDirection(angle);
-                setTransformRotation(DirectionOfMelee);
-                determineDistanceAndSnap(FindBottomOfObject(targetArea));
+                DirectionOfBullet = GetHitDirection(angle);
+                setTransformRotation(DirectionOfBullet);
+                determineDistanceAndSnap();
             if (other.GetComponent<WeaponKnockdown>().fate == WeaponKnockdown.EnemyFate.death)
             {
                 EnemyController enemy = GetComponent<EnemyController>();
@@ -208,50 +212,50 @@ public class ScoreDirectionSystem : MonoBehaviour
             {
                 Debug.Log("North");
             transform.rotation = Quaternion.Euler(0, 0, 0);
-                return "North";
+                return "South";
                 
             }
             else if (ang <= -30  && ang > -60)//275
             {
                 Debug.Log("NorthEast");
-                return "NorthEast";
+                return "SouthWest";
                 
             }
 
             else if ((ang <= 270 && ang > 240) || (ang <=-60 && ang >= -90))
             {
                Debug.Log("East");
-                return "East";
+                return "West";
             }
 
             else if (ang <=240  && ang > 210)
             {
                 Debug.Log("SouthEast");
-                return "SouthEast";
+                return "NorthWest";
             }
 
             else if (ang <= 210  && ang > 150)
             {
                Debug.Log("South");
-                return "South";
+                return "North";
             }
 
             else if (ang <= 150 && ang > 120)
             {
                 Debug.Log("SouthWest");
-                return "SouthWest";
+                return "NorthEast";
             }
 
             else if (ang <= 120 && ang > 60)
             {
                 Debug.Log("West");
-                return "West";
+                return "East";
             }
 
             else if (ang <= 60 && ang > 30)
             {
                 Debug.Log("NorthWest");
-                return "NorthWest";
+                return "SouthEast";
             }
             else return "Error";
         
@@ -259,63 +263,67 @@ public class ScoreDirectionSystem : MonoBehaviour
 
     private void setTransformRotation(string dir)
     {
-        
-            
-            if (dir == "North")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-        else if (dir == "NorthEast")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
-        else if (dir == "East")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-        else if (dir == "SouthEast")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, -135f);
-        else if (dir == "South")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
+        if (dir == "South")
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, 0f); 
         else if (dir == "SouthWest")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, 135f);
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, -45f);
         else if (dir == "West")
-            rb.transform.rotation = Quaternion.Euler(0f, 0f, 90);
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, -90f);
         else if (dir == "NorthWest")
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, -135f);
+        else if (dir == "North")
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, -180f);
+        else if (dir == "NorthEast")
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, 135f);
+        else if (dir == "East")
+            rb.transform.rotation = Quaternion.Euler(0f, 0f, 90);
+        else if (dir == "SouthEast")
             rb.transform.rotation = Quaternion.Euler(0f, 0f, 45f);
 
         //Debug.Log("after: " + transform.rotation);
     }
 
-    private void determineDistanceAndSnap(Vector2 targetAreasBottom)
+    private void determineDistanceAndSnap()
     {
-        Vector2 direction = ((Vector2)transform.position - targetAreasBottom).normalized;
-        float distance = Vector2.Distance(transform.position, targetAreasBottom);
+        Vector2 direction = ((Vector2)transform.position - (Vector2)targetArea.transform.position).normalized;
+        float distance = Vector2.Distance(transform.position, targetArea.transform.position);
         //Debug.Log(distance);
 
         // Determine which range the distance falls into and snap
-        if (distance >= 0 && distance < 0.7)
-        {
-            SnapToDistance(direction, 0f);
-            Debug.Log("Perfect");
-        }
-        else if (distance >= 0.7 && distance < 1.5)//perfect distance
+        if (distance >= 0 && distance < (perfectRadius-0.1f))
         {
             SnapToDistance(direction, 0.7f);
-            Debug.Log("A little too close");
+            deadDistance = 0.7f;
+            //Debug.Log("A little too close");
         }
-        else if (distance >= 1.5 && distance < 2)
+        else if (distance >= (perfectRadius - 0.1f) && distance < (perfectRadius + 0.1f))//perfect distance
+        {
+            SnapToDistance(direction, 0f);
+            deadDistance = 0f;
+            //Debug.Log("Perfect");
+        }
+        else if (distance >= (perfectRadius + 0.1f) && distance < (perfectRadius + 0.2f))
         {
             SnapToDistance(direction, 1.5f);
-            Debug.Log("A little too far");
+            deadDistance = 1.5f;
+            //Debug.Log("A little too far");
         }
         else
+        {
+            deadDistance = distance;
             Debug.Log("Body is too far from target area");
+        }
     }
 
     private void SnapToDistance(Vector2 direction, float snapDistance)
     {
         // Set the position while maintaining the angle
-        transform.position = FindBottomOfObject(targetArea) + direction * snapDistance;
+        transform.position = (Vector2)targetArea.transform.position + direction * snapDistance;
         //float distance = Vector2.Distance(transform.position, targetArea.transform.position);
         //Debug.Log("Snaping");
     }
 
-    public Vector2 FindBottomOfObject(GameObject targetArea)
+    public float FindRadiusOfObject()
     {
         Bounds bounds;
         Renderer renderer = targetArea.GetComponent<Renderer>();
@@ -326,12 +334,15 @@ public class ScoreDirectionSystem : MonoBehaviour
         else
         {
             Debug.LogWarning("No Collider2D or Renderer found on this object!");
-            return transform.position; // Default to object's position
+            return 0; // Default to object's position
         }
         // The bottom position in world coordinates
     Vector2 bottomPosition = new Vector2(bounds.center.x, bounds.min.y);
-        return bottomPosition;
+        float distance = Vector2.Distance(targetArea.transform.position, bottomPosition);
+        return distance;
     }
+
+   
 
    
 }

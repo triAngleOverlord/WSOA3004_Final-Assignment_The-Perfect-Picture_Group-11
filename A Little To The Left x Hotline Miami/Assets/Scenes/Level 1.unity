@@ -187,7 +187,7 @@ MonoBehaviour:
   anim: {fileID: 178400}
   meleeWaitTime: 0.3
   meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
-  rangedSFx: {fileID: 0}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &178400
 Animator:
   serializedVersion: 5
@@ -322,10 +322,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 178400}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 7c7b7fdd4a27be7429b9a7a6c459c4f4, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &178405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -991,8 +991,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &19805601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1106,10 +1106,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &19805606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,7 +1143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &23471703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,6 +1178,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -1863,8 +1864,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 82018283}
   meleeWaitTime: 0.4
-  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &82018283
 Animator:
   serializedVersion: 5
@@ -1999,10 +2000,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 82018283}
   meleeWaitTime: 0.4
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &82018288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2703,7 +2704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114395302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2734,6 +2735,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -7798,8 +7800,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 0}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!61 &230271823
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7913,10 +7915,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 0}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &230271827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8056,7 +8058,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &242159085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8089,6 +8091,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -8310,7 +8313,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276790707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8343,6 +8346,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -8820,8 +8824,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &313265534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8935,10 +8939,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &313265539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9622,7 +9626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &364199341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9655,6 +9659,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -10164,8 +10169,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 422519410}
   meleeWaitTime: 0.3
-  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &422519408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10300,10 +10305,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 422519410}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &422519414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10687,8 +10692,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 464976106}
   meleeWaitTime: 0.2
-  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &464976106
 Animator:
   serializedVersion: 5
@@ -10823,10 +10828,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 464976106}
   meleeWaitTime: 0.2
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &464976112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13129,8 +13134,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &712924780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13244,10 +13249,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &712924785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14113,7 +14118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &807619736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14148,6 +14153,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -16501,6 +16507,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -16620,7 +16627,7 @@ Transform:
   m_GameObject: {fileID: 956189708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.52, y: 19.26, z: 0}
+  m_LocalPosition: {x: 10.52, y: 20.99, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17399,8 +17406,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &1004181403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17514,10 +17521,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1004181408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18096,7 +18103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1054561356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18127,6 +18134,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -26217,8 +26225,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &1278115614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26332,10 +26340,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1278115619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26605,7 +26613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1301361222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26640,6 +26648,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -27230,8 +27239,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 1338034289}
   meleeWaitTime: 0.3
-  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &1338034288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27366,10 +27375,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1338034289}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1338034294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38216,7 +38225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1459774091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38247,6 +38256,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   detectionDistance: 0.04
+  deathBy: 
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -39608,8 +39618,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 1584583703}
   meleeWaitTime: 0.3
-  meleeSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &1584583703
 Animator:
   serializedVersion: 5
@@ -39744,10 +39754,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1584583703}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1584583709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40067,8 +40077,8 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  meleeSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!114 &1597853350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40182,10 +40192,10 @@ MonoBehaviour:
     m_Bits: 0
   anim: {fileID: 0}
   meleeWaitTime: 0
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1597853355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41853,8 +41863,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 1744529428}
   meleeWaitTime: 0.3
-  meleeSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &1744529428
 Animator:
   serializedVersion: 5
@@ -41976,10 +41986,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 1744529428}
   meleeWaitTime: 0.3
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &1744529433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54773,8 +54783,8 @@ MonoBehaviour:
     m_Bits: 128
   anim: {fileID: 2084709145}
   meleeWaitTime: 0.2
-  meleeSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  rangedSFx: {fileID: 0}
+  meleeSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
+  rangedSFx: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
 --- !u!95 &2084709145
 Animator:
   serializedVersion: 5
@@ -54909,10 +54919,10 @@ MonoBehaviour:
     m_Bits: 512
   anim: {fileID: 2084709145}
   meleeWaitTime: 0.2
-  sfxSource: {fileID: 0}
-  loadsfxSource: {fileID: 0}
-  rangedWeaponSFx: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  meleeWeaponSFx: {fileID: 0}
+  sfxSource: {fileID: 1060871754}
+  loadsfxSource: {fileID: 1405629364}
+  rangedWeaponSFx: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
+  meleeWeaponSFx: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
 --- !u!114 &2084709151
 MonoBehaviour:
   m_ObjectHideFlags: 0
