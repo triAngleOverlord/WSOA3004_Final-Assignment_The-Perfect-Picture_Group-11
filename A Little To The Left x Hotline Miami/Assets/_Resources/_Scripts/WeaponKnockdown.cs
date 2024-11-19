@@ -29,7 +29,7 @@ public class WeaponKnockdown : MonoBehaviour
                 else if (fate == EnemyFate.death)
                 {
                     e.baseState = EnemyController.enemyState.dead;
-                    SCR.DeathBYMELTHROW();
+                   // SCR.DeathBYMELTHROW();
                 }
             }
         }

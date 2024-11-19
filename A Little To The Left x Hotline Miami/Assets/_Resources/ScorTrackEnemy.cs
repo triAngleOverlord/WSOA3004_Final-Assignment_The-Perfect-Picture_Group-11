@@ -36,6 +36,7 @@ public class ScorTrack : MonoBehaviour
         AlreadyDead = false;
         player = GameObject.FindGameObjectWithTag("Player");
         scoreobj = GameObject.FindGameObjectWithTag("scoring");
+        
     }
 
     // Update is called once per frame
@@ -47,6 +48,7 @@ public class ScorTrack : MonoBehaviour
         if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull" && AlreadyDead != true)
         {
             Debug.Log("WE IN");
+            Debug.Log(GameObject.FindGameObjectWithTag("playershootpoint").GetComponent<WeaponAttributes>().weaponName);
             AlreadyDead =true;
             if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponent<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {

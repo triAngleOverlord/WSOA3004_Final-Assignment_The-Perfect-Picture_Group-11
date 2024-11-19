@@ -58,7 +58,7 @@ public class ScoreDirectionSystem : MonoBehaviour
         if (other.gameObject.tag == "Bullet" && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true ) //what about enemy bullets? this need to be updated
                 {
                     power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
-                    weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
+                    weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName;
                     Vector3 dir = (transform.position - player.transform.position).normalized;
                     rb.AddForce(dir * power, ForceMode2D.Impulse);
                     rb.transform.up = dir;
@@ -84,6 +84,7 @@ public class ScoreDirectionSystem : MonoBehaviour
             else if(other.gameObject.tag =="Melee" && player.GetComponent<PlayerInteraction>()== true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true )
             {
                 power = origpower;
+                weaponhurtby = GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 rb.AddForce(dir * power, ForceMode2D.Impulse);
                 rb.transform.up = dir;
@@ -116,6 +117,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                                       
                                     // Now you can use hitPoint and direction as needed
                                    power = origpower;
+                                   weaponhurtby = GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName;
                                    Vector3 dir = (transform.position - player.transform.position).normalized;
                                     rb.AddForce(dir * power, ForceMode2D.Impulse);
                                     rb.transform.up = dir;
@@ -134,6 +136,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                 
                   
                                 power = origpower;
+                                weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName;
                                 Vector3 dir = (transform.position - player.transform.position).normalized;
                                 rb.AddForce(dir * power, ForceMode2D.Impulse);
                                 rb.transform.up = dir;

@@ -421,10 +421,23 @@ public class EnemyController : MonoBehaviour
                 {
                     SCTrack.DeathBYBULLET();
                     isdeadalready = true;
+                     Dead();
+                }
+                if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMelSwip")
+                {
+                    SCTrack.DeathBYMELSWIP();
+                    isdeadalready = true;
+                     Dead();
+                }
+                if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyMeleeWep")
+                {
+                    SCTrack.DeathBYMELTHROW();
+                    isdeadalready = true;
+                     Dead();
                 }
             }
             
-            Dead();
+           
         }
     }
 

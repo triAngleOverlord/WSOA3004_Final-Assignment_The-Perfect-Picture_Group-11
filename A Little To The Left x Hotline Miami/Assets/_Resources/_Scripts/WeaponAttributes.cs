@@ -21,11 +21,11 @@ public class WeaponAttributes : MonoBehaviour
 
     private void Start()
     {
-        weaponName = transform.name;
+       // weaponName = transform.name;
     }
 
     public void AnnounceSelf()
     {
-        print(weaponName);
+       // print(weaponName);
     }
 }

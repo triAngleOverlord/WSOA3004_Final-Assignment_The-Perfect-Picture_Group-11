@@ -69,7 +69,7 @@ public class MeleeSys : MonoBehaviour
             if (enemy != null)
             {
                 enemy.baseState = EnemyController.enemyState.dead;
-                enemy.GetComponent<ScorTrack>().DeathBYMELSWIP();
+               // enemy.GetComponent<ScorTrack>().DeathBYMELSWIP();
                 Rigidbody2D enemyRB = col.GetComponent<Rigidbody2D>();
 
                 Vector3 fallDir = (col.gameObject.transform.position - player.transform.position).normalized;
