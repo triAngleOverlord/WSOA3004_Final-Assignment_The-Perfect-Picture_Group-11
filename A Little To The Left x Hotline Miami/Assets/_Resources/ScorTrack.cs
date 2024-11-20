@@ -47,28 +47,33 @@ public class ScorTrack : MonoBehaviour
         Debug.Log(distanceToTarget);
         if (this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull" && AlreadyDead != true)
         {
+            AlreadyDead =true; 
             Debug.Log("WE IN");
             Debug.Log(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName);
-            AlreadyDead =true;
+            
             if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 //check allignment score code for correct weapon and correct direction , case a
                 Debug.Log("WE IN 1");
+                scoreobj.GetComponent<ScoreTracker>().score += 20;
             }
             else if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 //check allignment score code for incorrect weapon and correct direction , case b
                 Debug.Log("WE IN 2");
+                scoreobj.GetComponent<ScoreTracker>().score += 15;
             }
             else if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for correct weapon but wrong direction, case c
                 Debug.Log("WE IN 3");
+                scoreobj.GetComponent<ScoreTracker>().score += 10;
             }
             else if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for incorrect weapon and wrong direction, case d
                 Debug.Log("WRONG WAY");
+                scoreobj.GetComponent<ScoreTracker>().score += 9;
             }
             else if (distanceToTarget > 2)
             {
@@ -152,19 +157,23 @@ public class ScorTrack : MonoBehaviour
             if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 Debug.Log("Line113");
+                scoreobj.GetComponent<ScoreTracker>().score += 20;
                 //check allignment score code for correct weapon and correct direction , case a
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 //check allignment score code for correct weapon but incorrect direction, case b
+                scoreobj.GetComponent<ScoreTracker>().score += 15;
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for correct weapon but wrong direction, case c
+                scoreobj.GetComponent<ScoreTracker>().score += 10;
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for incorrect weapon and wrong direction, case d
+                scoreobj.GetComponent<ScoreTracker>().score += 9;
             }
             else if (distanceToTarget > 2){
             
@@ -235,19 +244,23 @@ public class ScorTrack : MonoBehaviour
             if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 Debug.Log("Line113");
+                scoreobj.GetComponent<ScoreTracker>().score += 20;
                 //check allignment score code for correct weapon and correct direction , case a
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
                 //check allignment score code for correct weapon but incorrect direction, case b
+                scoreobj.GetComponent<ScoreTracker>().score += 15;
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for correct weapon but wrong direction, case c
+                scoreobj.GetComponent<ScoreTracker>().score += 10;
             }
             else if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet != WhatDirection)
             {
                 //check allignment score code for incorrect weapon and wrong direction, case d
+                scoreobj.GetComponent<ScoreTracker>().score += 9;
             }
         
             else if (distanceToTarget > 2)
