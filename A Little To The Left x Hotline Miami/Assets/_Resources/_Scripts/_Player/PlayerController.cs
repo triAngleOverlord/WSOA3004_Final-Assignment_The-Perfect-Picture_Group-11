@@ -1,7 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Image customCursor;
+    [SerializeField] private Sprite normalCursor;
+    [SerializeField] private Sprite lckedOnCursor;
+
+
     public PlayerState State;
     public enum PlayerState { normal, lockOn }
 
@@ -24,18 +30,29 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Cursor.lockState = CursorLockMode.Confined;
+
+        Cursor.visible = false;
     }
 
     void Update()
     {
         GetInput();
         LockIntoEnemies();
+        CursorUpdate();
     }
 
     private void FixedUpdate()
     {
         Move();
         Look();
+    }
+
+    private void CursorUpdate()
+    {
+        customCursor.transform.position= mousePos;
+
+        customCursor.sprite = State==PlayerState.normal ? normalCursor : lckedOnCursor;
+        customCursor.color = State == PlayerState.normal ? Color.black : Color.red;
     }
 
     private void GetInput()

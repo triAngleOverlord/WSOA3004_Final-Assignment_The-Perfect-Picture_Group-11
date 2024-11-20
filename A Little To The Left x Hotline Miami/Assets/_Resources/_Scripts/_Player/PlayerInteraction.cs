@@ -177,7 +177,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Attacking()
     {
-        if (hasWeapon)
+        if (hasWeapon && equippedWeapon!= null)
         {
             if (weaponType == WeaponTypeNew.ranged)
             {

@@ -29,6 +29,43 @@ public class PlayerWeaponData : MonoBehaviour
     public AudioClip rangedWeaponSFx;
     public AudioClip meleeWeaponSFx;
 
+
+    private SlotAssignHelper slotAssignHelper;
+
+    private void Start()
+    {
+        slotAssignHelper = FindObjectOfType<SlotAssignHelper>();
+        sfxSource = slotAssignHelper.Sfx;
+        loadsfxSource = slotAssignHelper.loadSFx;
+        meleeAttackRangePos = slotAssignHelper.meleeAttackRange;
+
+        #region weapon Sound effects
+        if (weaponName == "Revolver" || weaponName == "Pistol")
+        {
+            rangedWeaponSFx = slotAssignHelper.handguns;
+        }
+        else if (weaponName == "Uzi" || weaponName == "Assault" || weaponName == "MP5")
+        {
+            rangedWeaponSFx = slotAssignHelper.warArms;
+        }
+        else if (weaponName == "Bottle" || weaponName == "Bat")
+        {
+            meleeWeaponSFx = slotAssignHelper.whoosh;
+        }
+        else if (weaponName == "Knife" || weaponName == "Wooden Axe" || weaponName == "Sword")
+        {
+            meleeWeaponSFx = slotAssignHelper.slash;
+        }
+        else if (weaponName == "Shotgun")
+        {
+            rangedWeaponSFx = slotAssignHelper.shotgun;
+        }
+        else if (weaponName == "Chainsaw")
+        {
+            meleeWeaponSFx = slotAssignHelper.chainsaw;
+        }
+        #endregion
+    }
 }
 
 
