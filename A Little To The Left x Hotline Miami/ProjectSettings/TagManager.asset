@@ -19,6 +19,7 @@ TagManager:
   - shotgun
   - revolver
   - GAMEMANAGER
+  - SCALEOFPERFECT
   layers:
   - Default
   - TransparentFX

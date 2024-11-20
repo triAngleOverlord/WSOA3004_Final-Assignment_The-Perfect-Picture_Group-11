@@ -7,6 +7,7 @@ using UnityEngine;
 
 
 using TMPro;
+using UnityEngine.UI;
 public class ScorTrack : MonoBehaviour
 {
 
@@ -38,6 +39,8 @@ public class ScorTrack : MonoBehaviour
 
         private GameObject GETMEMANAGER;
 
+      [SerializeField]  public GameObject GETMESCALE;
+
     private ScoreDirectionSystem scoreDirect;
 
     private string[] directions = new string[] {"North", "NorthEast", "East", "SouthEast", "South", "SouthWest", "West", "NorthWest"};
@@ -53,6 +56,7 @@ public class ScorTrack : MonoBehaviour
         scoreobj = GameObject.FindGameObjectWithTag("scoring");
         scoreDirect = GetComponent<ScoreDirectionSystem>();
         GETMEMANAGER = GameObject.FindGameObjectWithTag("GAMEMANAGER");
+        GETMESCALE = GameObject.FindGameObjectWithTag("SCALEOFPERFECT");
         DIAMONDHANDS = 0;
     }
 
@@ -448,4 +452,15 @@ public class ScorTrack : MonoBehaviour
         }
     }
     
+
+    public IEnumerator PERFECTION()
+   {
+      Instantiate(GETMESCALE);
+      GETMESCALE.GetComponent<Text>().text = "!!!PERFECTION!!!";
+      yield return new WaitForSeconds(5f);
+      Destroy(GETMESCALE);
+      
+      
+   }
+
 }
