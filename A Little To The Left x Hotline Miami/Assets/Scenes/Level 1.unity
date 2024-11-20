@@ -153,7 +153,7 @@ Transform:
   m_GameObject: {fileID: 178396}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 40.39, y: 24.43, z: 0}
+  m_LocalPosition: {x: 7.72, y: 15.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -891,6 +891,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -2264,6 +2265,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -7522,6 +7524,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -7788,6 +7791,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -9327,6 +9331,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -12940,6 +12945,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -15509,6 +15515,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -16996,6 +17003,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -24329,7 +24337,7 @@ Transform:
   m_GameObject: {fileID: 1278115611}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.58, y: 15.66, z: 0}
+  m_LocalPosition: {x: 40.97, y: 25.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24742,6 +24750,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -25165,7 +25174,7 @@ Transform:
   m_GameObject: {fileID: 1338034285}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 60.534912, y: 21.067766, z: 0}
+  m_LocalPosition: {x: 3.57, y: 13.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -35887,6 +35896,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -50990,7 +51000,7 @@ Transform:
   m_GameObject: {fileID: 2084709142}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 5.16, y: 17.52, z: 0}
+  m_LocalPosition: {x: 60.08, y: 22.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

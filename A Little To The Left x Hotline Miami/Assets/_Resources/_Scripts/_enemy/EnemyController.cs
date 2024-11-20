@@ -371,7 +371,7 @@ public class EnemyController : MonoBehaviour
     
     internal void MeleeStyle(Transform attackPos, Transform me, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioSource source, AudioClip clip)
     {
-        if (timeUntilMelee < 0)
+        
         if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");

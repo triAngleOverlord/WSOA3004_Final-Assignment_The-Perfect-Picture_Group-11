@@ -100,7 +100,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                     Destroy(other);
 
             }
-            else if (other.gameObject.tag == "Melee" && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
+            else if (other.gameObject.tag == "Melee" && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true && other.GetComponent<WeaponAttributes>().weaponName != "Bat")//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
             {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
                 Debug.Log(gameObject.name);
                 //power = origpower;
@@ -125,6 +125,18 @@ public class ScoreDirectionSystem : MonoBehaviour
                 //Debug.Log("Killed by Melee");
 
             }
+            else if (other.gameObject.tag == "Melee" && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true && other.GetComponent<WeaponAttributes>().weaponName == "Bat")
+            {
+                Vector3 dir = (transform.position - player.transform.position).normalized;
+                rb.AddForce(dir * power, ForceMode2D.Impulse);
+                rb.transform.up = dir;
+                Vector2 direction = dir;
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
+                EnemyController enemy = GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.knockedDown;
+                DirectionOfMelee = GetHitDirection(angle);
+                setTransformRotation(DirectionOfMelee);
+            }
         }
         else if (player.GetComponent<PlayerInteraction>() == true && (other.gameObject.tag == "Melee"|| other.gameObject.tag == "Ranged") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false && other.gameObject.transform.parent == false && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)
         {
@@ -144,7 +156,6 @@ public class ScoreDirectionSystem : MonoBehaviour
             }
             else
             {
-                stateofenemy = "Knocked Out";
                 EnemyController enemy = GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.knockedDown;
             }

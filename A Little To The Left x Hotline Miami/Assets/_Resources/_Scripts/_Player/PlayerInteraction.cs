@@ -250,7 +250,6 @@ public class PlayerInteraction : MonoBehaviour
 
     internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioClip sfx, AudioSource source)
     {
-        if (timeUntilMelee < 0)
         if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");
@@ -478,5 +477,18 @@ public class PlayerInteraction : MonoBehaviour
             rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
             rb.drag = 5f;
         }
+        /*else if (collision.tag == "Melee")// && collision.transform.parent == true && collision.transform.parent.gameObject.layer == 9)
+        {
+            StatusUpdate();
+            Debug.Log("Found Bat");
+            Vector3 fallDir = (transform.position - collision.gameObject.transform.position).normalized;
+            float zAxis = Mathf.Atan2(fallDir.y, fallDir.x) * Mathf.Rad2Deg - 90f;
+            rb.transform.rotation = Quaternion.Euler(0, 0, -zAxis);
+
+            float power = 10f;
+            rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
+            rb.drag = 5f;
+        }
+        //Debug.Log(collision.name);*/
     }
 }

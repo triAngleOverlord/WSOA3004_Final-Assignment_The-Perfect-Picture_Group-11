@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WeaponKnockdown : MonoBehaviour
@@ -12,23 +13,11 @@ public class WeaponKnockdown : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    public void KnockBackEffect(Collider2D collision, EnemyController e)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if (collision.gameObject.tag == "Enemy")
-        {Debug.Log("Here Knockback");
-
-            
-                if (fate == EnemyFate.knockdown)
-                {
-                    e.baseState = EnemyController.enemyState.knockedDown;
-                }
-
-                else if (fate == EnemyFate.death)
-                {
-                    e.baseState = EnemyController.enemyState.dead;
-                }
-            
+        if (collision != null && collision.gameObject.layer == 6)
+        {
+            //rb.totalForce = Vector2.zero;
         }
     }
 }
