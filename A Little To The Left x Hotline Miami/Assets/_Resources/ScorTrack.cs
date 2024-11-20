@@ -65,7 +65,7 @@ public class ScorTrack : MonoBehaviour
                 Debug.Log("Incorrect weapon");
             }
 
-            checkDirectionDistanceAndScore(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
+            checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
 
             /*else if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat)// && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
@@ -168,7 +168,7 @@ public class ScorTrack : MonoBehaviour
                 Debug.Log("Incorrect weapon");
             }
 
-            checkDirectionDistanceAndScore(GetComponent<ScoreDirectionSystem>().DirectionOfMelee);
+            checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfMelee);
 
             /*Debug.Log("WE IN AGAIN");
             AlreadyDead =true; 
@@ -263,7 +263,7 @@ public class ScorTrack : MonoBehaviour
                 Debug.Log("Incorrect weapon");
             }
 
-            checkDirectionDistanceAndScore(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
+            checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
 
             /*if (GetComponent<EnemyController>().deathBy == DeathbyWhat )//&& distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
@@ -340,7 +340,7 @@ public class ScorTrack : MonoBehaviour
 
     } 
        
-    public void checkDirectionDistanceAndScore(string givenDirection)
+    public void checkDirectionDistance(string givenDirection)
     {
         //Debug.Log(givenDirection);
         int directionPosAr = System.Array.IndexOf(directions, givenDirection);

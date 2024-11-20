@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dab1d04bb306d94986786c5c2adc5af, type: 3}
+  m_Name: allDeadEnemyBodySprites
+  m_EditorClassIdentifier: 
+  stabbed: {fileID: 21300000, guid: 688fe9996ddbcfd4186f7f0d45380f2c, type: 3}
+  headShot: {fileID: 21300000, guid: 19a5482a1c24ba5448b18d9adc380c4a, type: 3}
+  holeInChest: {fileID: 21300000, guid: be483ee9031f67e498849f5bc39cf461, type: 3}
+  gutsOut: {fileID: 21300000, guid: 98d91ce14b4680d4691dd9580ff99f75, type: 3}
+  inHalf: {fileID: 21300000, guid: 2d50c5dfd1c6ca64ca53d07b287deb81, type: 3}
+  limbsOff: {fileID: 21300000, guid: 4982e58bd2f08894d846250f546ef2fb, type: 3}
