@@ -342,29 +342,32 @@ public class ScorTrack : MonoBehaviour
        
     public void checkDirectionDistanceAndScore(string givenDirection)
     {
-        Debug.Log(givenDirection);
+        //Debug.Log(givenDirection);
         int directionPosAr = System.Array.IndexOf(directions, givenDirection);
-        Debug.Log(directionPosAr);
+        //Debug.Log(directionPosAr);
         string[] shiftedDirectArray = arrayShifter.ShiftArray(directions, 3 - directionPosAr);
+        directionPosAr = Array.IndexOf(shiftedDirectArray, givenDirection);
         Debug.Log("Shifted array: " + string.Join(", ", shiftedDirectArray));
         //check direction
-        if (directions[directionPosAr] == WhatDirection)
+        Debug.Log("Third:"+ shiftedDirectArray[directionPosAr - 3]);
+        if (shiftedDirectArray[directionPosAr] == WhatDirection)
         {
             Debug.Log("Perfect Direction");
         }
-        else if (directions[directionPosAr - 1] == WhatDirection || (directions[directionPosAr - 1] == WhatDirection))
+        else if (shiftedDirectArray[directionPosAr - 1] == WhatDirection || (shiftedDirectArray[directionPosAr + 1] == WhatDirection))
         {
             Debug.Log("One direction off");
         }
-        else if (directions[directionPosAr - 2] == WhatDirection || (directions[directionPosAr - 2] == WhatDirection))
+        else if (shiftedDirectArray[directionPosAr - 2] == WhatDirection || (shiftedDirectArray[directionPosAr + 2] == WhatDirection))
         {
             Debug.Log("Two directions off");
         }
-        else if (directions[directionPosAr - 3] == WhatDirection || (directions[directionPosAr - 3] == WhatDirection))
+        
+        else if (shiftedDirectArray[directionPosAr - 3] == WhatDirection || (shiftedDirectArray[directionPosAr + 3] == WhatDirection))
         {
             Debug.Log("Three directions off");
         }
-        else if (directions[7] == WhatDirection)
+        else if (shiftedDirectArray[7] == WhatDirection)
         {
             Debug.Log("Opposite Direction");
         }
@@ -376,14 +379,14 @@ public class ScorTrack : MonoBehaviour
         }
         else if (scoreDirect.deadDistance == 0.7f)
         {
-            Debug.Log("Too Close");
+            Debug.Log("Distance Too Close");
         }
         else if (scoreDirect.deadDistance == 1.5f)
         {
-            Debug.Log("A lil too far");
+            Debug.Log("Distance A lil too far");
         }
         else
-            Debug.Log("Too far");
+            Debug.Log("Distance Too far");
     }
     
 }

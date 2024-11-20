@@ -68,7 +68,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                 //Debug.Log("SHIIIIIIIIT:" + other.tag);
             if (other.tag == "Bullet" && other.GetComponent<Bullet>().playersWeapon == true) //what about enemy bullets? this need to be updated
             {
-                    Debug.Log("BULLLLLLL");
+                    Debug.Log(gameObject.name);
                 //power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
                 weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
@@ -96,13 +96,13 @@ public class ScoreDirectionSystem : MonoBehaviour
                 enemy.baseState = EnemyController.enemyState.dead;
                 enemy.deathBy = "Gun";
                 stateofenemy = "DeadbyBull";
-                Debug.Log("Killed by Bullet");//ded
+                //Debug.Log("Killed by Bullet");//ded
                     Destroy(other);
 
             }
             else if (other.gameObject.tag == "Melee" && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
             {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
-                Debug.Log(other.gameObject.name);
+                Debug.Log(gameObject.name);
                 //power = origpower;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 //rb.AddForce(dir * power, ForceMode2D.Impulse);
@@ -122,12 +122,13 @@ public class ScoreDirectionSystem : MonoBehaviour
                 enemy.baseState = EnemyController.enemyState.dead;
                 enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 stateofenemy = "DeadbyMelSwip";
-                Debug.Log("Killed by Melee");
+                //Debug.Log("Killed by Melee");
 
             }
         }
         else if (player.GetComponent<PlayerInteraction>() == true && (other.gameObject.tag == "Melee"|| other.gameObject.tag == "Ranged") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false && other.gameObject.transform.parent == false && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)
         {
+            Debug.Log(gameObject.name);
             Vector3 dir = (transform.position - player.transform.position).normalized;
                 Vector2 direction = dir;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + 90;
@@ -151,7 +152,7 @@ public class ScoreDirectionSystem : MonoBehaviour
             
             
 
-            Debug.Log(stateofenemy);
+            //Debug.Log(stateofenemy);
         }
         
     }

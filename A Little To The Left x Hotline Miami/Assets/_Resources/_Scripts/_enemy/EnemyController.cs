@@ -485,7 +485,7 @@ public class EnemyController : MonoBehaviour
             {
                 if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull")
                 {
-                    Debug.Log("IN HEREE");
+                    //Debug.Log("IN HEREE");
                     SCTrack.DeathBYBULLET();
                     isdeadalready = true;
                      Dead();
