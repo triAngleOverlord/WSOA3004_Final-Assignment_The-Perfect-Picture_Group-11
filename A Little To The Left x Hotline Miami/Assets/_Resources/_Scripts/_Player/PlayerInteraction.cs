@@ -305,15 +305,16 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (weaponType == WeaponTypeNew.melee)
                     {
-                        equippedWeapon.GetComponent<Animator>().enabled = false;
+                        //equippedWeapon.GetComponent<Animator>().enabled = false;
                     }
 
                     equippedWeapon.SetParent(null);
                     equippedWeaponRB.bodyType = RigidbodyType2D.Dynamic;
 
-
+                    Vector3 targetToTarget = GetComponent<PlayerController>().mousePos;
+                    var directTarget = equippedWeapon.position - targetToTarget;
+                    equippedWeaponRB.AddForce(directTarget.normalized);
                     equippedWeaponRB.AddForce(transform.up * throwPower, ForceMode2D.Impulse);
-                    equippedWeaponRB.AddForce(transform.ri)
                     equippedWeaponRB.AddTorque(spinningSpeed, ForceMode2D.Impulse);
                     equippedWeaponRB.angularDrag = 2f;
 
