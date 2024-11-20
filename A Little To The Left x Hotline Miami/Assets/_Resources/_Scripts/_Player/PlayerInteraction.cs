@@ -313,6 +313,7 @@ public class PlayerInteraction : MonoBehaviour
 
 
                     equippedWeaponRB.AddForce(transform.up * throwPower, ForceMode2D.Impulse);
+                    equippedWeaponRB.AddForce(transform.ri)
                     equippedWeaponRB.AddTorque(spinningSpeed, ForceMode2D.Impulse);
                     equippedWeaponRB.angularDrag = 2f;
 
