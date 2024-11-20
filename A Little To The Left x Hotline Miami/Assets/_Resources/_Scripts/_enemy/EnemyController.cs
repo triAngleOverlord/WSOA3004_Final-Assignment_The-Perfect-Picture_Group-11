@@ -57,6 +57,7 @@ public class EnemyController : MonoBehaviour
 
     private ScorTrack SCTrack;
     public string deathBy;
+    public string knife= "Knife";
 
 
     //vars from the enemy vision script, now here
@@ -830,21 +831,20 @@ public class EnemyController : MonoBehaviour
 
     private void whichDeadBodySprite()
     {
-        Sprite sp = kiaSprite.GetComponent<SpriteRenderer>().sprite;
-        if (deathBy.Equals("Knife"))
-            sp = deadBodySprites.stabbed;
-        else if (deathBy == "Gun")
-            sp = deadBodySprites.headShot;
-        if (deathBy == "Chainsaw")
-            sp = deadBodySprites.gutsOut;
-        else if (deathBy == "Shotgun")
-            sp = deadBodySprites.limbsOff;
-        else if (deathBy == "Katana")
-            sp = deadBodySprites.inHalf;
+        SpriteRenderer sp = kiaSprite.GetComponent<SpriteRenderer>();
+        if (deathBy=="Knife")
+            sp.sprite = deadBodySprites.stabbed;
+        else if (deathBy =="Gun")
+            sp.sprite = deadBodySprites.headShot;
+        if (deathBy =="Chainsaw")
+            sp.sprite = deadBodySprites.gutsOut;
+        else if (deathBy =="Shotgun")
+            sp.sprite = deadBodySprites.limbsOff;
+        else if (deathBy =="Katana")
+            sp.sprite = deadBodySprites.inHalf;
         else
             Debug.Log("No dead body sprite found for "+ deathBy);
-        Debug.Log(deathBy.Length);
-        Debug.Log("Knife".Length);
+        
         
     }
     
