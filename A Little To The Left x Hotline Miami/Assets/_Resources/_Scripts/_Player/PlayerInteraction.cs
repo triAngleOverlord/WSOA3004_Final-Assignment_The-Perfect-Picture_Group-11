@@ -359,7 +359,7 @@ public class PlayerInteraction : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (equippedWeapon == null && !hasWeapon)
+            if (equippedWeapon == null && !hasWeapon && hasthrownWeapon ==false)
             {
                 hasWeapon = true;
 
