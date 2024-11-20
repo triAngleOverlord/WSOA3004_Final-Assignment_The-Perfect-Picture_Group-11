@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class WeaponAttributes : MonoBehaviour
@@ -11,6 +12,7 @@ public class WeaponAttributes : MonoBehaviour
     public float amountOfBullets;
     public Transform spawnPoint;
     public float timeBeforeNextShot;
+    public bool playersWeapon;
 
     [Header("Melee Weapons")]
     //melee
@@ -60,5 +62,17 @@ public class WeaponAttributes : MonoBehaviour
             meleeSFx = slotAssignHelper.chainsaw;
         }
         #endregion
+    }
+
+    public void startPlayerWeaponCountDown()
+    {
+        StartCoroutine(count());
+
+    }
+
+    public IEnumerator count()
+    {
+        yield return new WaitForSeconds(0.05f);
+        playersWeapon = false;
     }
 }

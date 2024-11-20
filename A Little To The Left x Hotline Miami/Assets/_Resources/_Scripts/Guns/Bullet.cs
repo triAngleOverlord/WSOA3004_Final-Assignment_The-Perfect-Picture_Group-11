@@ -19,13 +19,13 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
 
     private ContactPoint2D[] contacts = new ContactPoint2D[2];
-
+    public bool playersWeapon;
 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        playersWeapon = true;
     }
 
     void Update()
@@ -82,6 +82,9 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        //Debug.Log(collision.tag);
+        //Debug.Log(collision.name);
+        if (collision.tag != "Enemy")
+            Destroy(gameObject);
     }
 }

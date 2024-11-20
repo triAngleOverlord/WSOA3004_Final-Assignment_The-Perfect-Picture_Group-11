@@ -179,6 +179,7 @@ MonoBehaviour:
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -669,13 +670,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   speed: 100
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 3
   amountOfBullets: 1
   spawnPoint: {fileID: 1062475091}
   timeBeforeNextShot: 0.5
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -882,6 +884,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1275527665}
   - {fileID: 1220919260}
+  isdeadalready: 0
 --- !u!195 &23471704
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1001,7 +1004,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 492765353}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -1023,7 +1026,7 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1420766779}
   furntiurewanted: []
-  DeathbyWhat: Knife
+  DeathbyWhat: Katana
   WhatDirection: North
   DoWeWantFurniture: 0
 --- !u!1 &32129212
@@ -1400,13 +1403,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Bat
   speed: 1
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -2197,7 +2201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114395302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2253,6 +2257,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1979712081}
   - {fileID: 1754961322}
+  isdeadalready: 0
 --- !u!195 &114395303
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2345,7 +2350,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114395301}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 14.22, y: 26.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2354,7 +2359,7 @@ Transform:
   - {fileID: 1684519212}
   - {fileID: 910736487}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &114395307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2372,7 +2377,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1295556840}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -2395,7 +2400,7 @@ MonoBehaviour:
   DesiredGoal: {fileID: 1295556840}
   furntiurewanted: []
   DeathbyWhat: Knife
-  WhatDirection: North
+  WhatDirection: East
   DoWeWantFurniture: 0
 --- !u!1 &114434324
 GameObject:
@@ -6763,6 +6768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3655369197808573950, guid: 45a9e6a7e6e417f4ea5456ddbe8ed015, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1833939277}
     - target: {fileID: 4336378264946041174, guid: 45a9e6a7e6e417f4ea5456ddbe8ed015, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -7233,7 +7242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &230271820
 Transform:
   m_ObjectHideFlags: 0
@@ -7263,13 +7272,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   speed: 50
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 15
   amountOfBullets: 1
   spawnPoint: {fileID: 1508964201}
   timeBeforeNextShot: 0.1
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -7416,7 +7426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &242159085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7474,6 +7484,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1442855119}
   - {fileID: 791145256}
+  isdeadalready: 0
 --- !u!195 &242159086
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7593,7 +7604,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1353871268}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -7615,8 +7626,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1353871268}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Gun
+  WhatDirection: SouthEast
   DoWeWantFurniture: 0
 --- !u!1 &245861910
 GameObject:
@@ -7649,6 +7660,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 313265532}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &263142025 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7672292635617380135, guid: 45a9e6a7e6e417f4ea5456ddbe8ed015, type: 3}
+  m_PrefabInstance: {fileID: 215816438}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276790706
 GameObject:
   m_ObjectHideFlags: 0
@@ -7728,6 +7750,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 975349962}
   - {fileID: 1264851995}
+  isdeadalready: 0
 --- !u!195 &276790708
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7847,7 +7870,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1526034435}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -7869,8 +7892,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1526034435}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Gun
+  WhatDirection: West
   DoWeWantFurniture: 0
 --- !u!1 &277677338
 GameObject:
@@ -8437,13 +8460,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   speed: 50
   projectilePrefab: {fileID: 4194129993850988559, guid: 703bd300ab5fb814393ea2c0ff66665f, type: 3}
   spread: 1
   amountOfBullets: 1
   spawnPoint: {fileID: 245861911}
   timeBeforeNextShot: 1
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -9265,6 +9289,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1193722414}
   - {fileID: 1968471803}
+  isdeadalready: 0
 --- !u!195 &364199342
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -9384,7 +9409,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1070232859}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -9406,8 +9431,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1070232859}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Chainsaw
+  WhatDirection: NorthEast
   DoWeWantFurniture: 0
 --- !u!1 &369080673
 GameObject:
@@ -9706,13 +9731,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: WoodenAxe
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -10245,13 +10271,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Knife
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -10586,7 +10613,7 @@ SpriteRenderer:
   m_SortingLayerID: 1381856639
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f205a9183db48ca498414c5c0233547b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9871b9e51a6675f4caa748f0c9df489a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -12167,13 +12194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   speed: 50
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 7
   amountOfBullets: 8
   spawnPoint: {fileID: 437081068}
   timeBeforeNextShot: 1
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -12872,6 +12900,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 932227612}
   - {fileID: 343848516}
+  isdeadalready: 0
 --- !u!195 &807619737
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -12991,7 +13020,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1420766779}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -13013,8 +13042,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1130138101}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Shotgun
+  WhatDirection: South
   DoWeWantFurniture: 0
 --- !u!1 &810224731
 GameObject:
@@ -14729,73 +14758,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &920669807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 920669809}
-  - component: {fileID: 920669808}
-  - component: {fileID: 920669810}
-  m_Layer: 0
-  m_Name: Game Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &920669808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920669807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5004b982b0947cf4cb21ff91bbc4fb2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverTxt: {fileID: 215816439}
---- !u!4 &920669809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920669807}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.45674, y: 4.529058, z: -0.1717653}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &920669810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 920669807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5501f014fd4ead64084b75737cc12bb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sfx: {fileID: 877547975}
-  loadSFx: {fileID: 877547974}
-  meleeAttackRange: {fileID: 84305362}
-  whoosh: {fileID: 8300000, guid: 8e019085b48281a48925805686b75c7c, type: 3}
-  slash: {fileID: 8300000, guid: eb0c8b82eac738f428c3e0e9cd1dce07, type: 3}
-  chainsaw: {fileID: 8300000, guid: a7a975fc17dc2824589060edb4dea596, type: 3}
-  shotgun: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
-  warArms: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
-  handguns: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
 --- !u!1 &920989285
 GameObject:
   m_ObjectHideFlags: 0
@@ -15507,6 +15469,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1336431308}
   - {fileID: 1753515767}
+  isdeadalready: 0
 --- !u!195 &956189710
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -15626,7 +15589,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 149381148}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -15649,7 +15612,7 @@ MonoBehaviour:
   DesiredGoal: {fileID: 149381148}
   furntiurewanted: []
   DeathbyWhat: Knife
-  WhatDirection: South
+  WhatDirection: North
   DoWeWantFurniture: 0
 --- !u!1 &975349959
 GameObject:
@@ -16208,7 +16171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1004181401
 Transform:
   m_ObjectHideFlags: 0
@@ -16238,13 +16201,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Assault
+  weaponName: Gun
   speed: 100
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 4
   amountOfBullets: 1
   spawnPoint: {fileID: 793711136}
   timeBeforeNextShot: 0.2
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -16992,6 +16956,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 1681421439}
   - {fileID: 858385550}
+  isdeadalready: 0
 --- !u!195 &1054561357
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -17111,7 +17076,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1010608644}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -17133,8 +17098,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 1010608644}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Gun
+  WhatDirection: South
   DoWeWantFurniture: 0
 --- !u!1 &1057771760
 GameObject:
@@ -24300,7 +24265,7 @@ Transform:
   m_GameObject: {fileID: 1278115611}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.5868, y: 26.6612, z: 0}
+  m_LocalPosition: {x: 10.58, y: 15.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -24320,13 +24285,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   speed: 100
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 3
   amountOfBullets: 1
   spawnPoint: {fileID: 1709038452}
   timeBeforeNextShot: 0.5
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -24736,6 +24702,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 215343881}
   - {fileID: 2024375693}
+  isdeadalready: 0
 --- !u!195 &1301361223
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -24855,7 +24822,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1130138101}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -24877,8 +24844,8 @@ MonoBehaviour:
   weaponhurtbyscore: 
   DesiredGoal: {fileID: 492765353}
   furntiurewanted: []
-  DeathbyWhat: Knife
-  WhatDirection: North
+  DeathbyWhat: Gun
+  WhatDirection: West
   DoWeWantFurniture: 0
 --- !u!1 &1330786163
 GameObject:
@@ -25153,13 +25120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Sword
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -25395,7 +25363,7 @@ SpriteRenderer:
   m_SortingLayerID: 1381856639
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f205a9183db48ca498414c5c0233547b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9871b9e51a6675f4caa748f0c9df489a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -35298,9 +35266,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb0968eafa2079d4a88802f4ba68acae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  customCursor: {fileID: 0}
-  normalCursor: {fileID: 0}
-  lckedOnCursor: {fileID: 0}
+  customCursor: {fileID: 263142025}
+  normalCursor: {fileID: 21300000, guid: 6260d50879973134b879e429cc7e029a, type: 3}
+  lckedOnCursor: {fileID: 21300000, guid: ec710e9642a8c6346a68fa5392faec69, type: 3}
   State: 0
   speed: 15
   isLockedOn: 0
@@ -35876,6 +35844,7 @@ MonoBehaviour:
   motionState:
   - {fileID: 676995226}
   - {fileID: 126997555}
+  isdeadalready: 0
 --- !u!195 &1459774092
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -35995,7 +35964,7 @@ MonoBehaviour:
   DirectionOfmelwep: 
   DirectionOfgun: 
   stateofenemy: 
-  targetArea: {fileID: 0}
+  targetArea: {fileID: 1996899216}
   deadDistance: 0
   img: {fileID: 0}
   live: {fileID: 0}
@@ -36018,7 +35987,7 @@ MonoBehaviour:
   DesiredGoal: {fileID: 1996899216}
   furntiurewanted: []
   DeathbyWhat: Knife
-  WhatDirection: North
+  WhatDirection: East
   DoWeWantFurniture: 0
 --- !u!1 &1462884143
 GameObject:
@@ -36905,13 +36874,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Bottle
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -37223,13 +37193,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   speed: 50
   projectilePrefab: {fileID: 4194129993850988559, guid: 918b693bc9bdaca45bc898ebadd0a95e, type: 3}
   spread: 20
   amountOfBullets: 1
   spawnPoint: {fileID: 1053250568}
   timeBeforeNextShot: 0.1
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -38739,7 +38710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1744529425
 Transform:
   m_ObjectHideFlags: 0
@@ -38781,13 +38752,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Bottle
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -48859,7 +48831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1859687972
 Transform:
   m_ObjectHideFlags: 0
@@ -48921,13 +48893,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   speed: 50
   projectilePrefab: {fileID: 4194129993850988559, guid: 703bd300ab5fb814393ea2c0ff66665f, type: 3}
   spread: 1
   amountOfBullets: 1
   spawnPoint: {fileID: 565107369}
   timeBeforeNextShot: 1
+  playersWeapon: 0
   meleeAttackRadius: 0
   targetMask:
     serializedVersion: 2
@@ -50950,7 +50923,7 @@ Transform:
   m_GameObject: {fileID: 2084709142}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.75636744, w: 0.65414697}
-  m_LocalPosition: {x: 4.034912, y: 13.067766, z: 0}
+  m_LocalPosition: {x: 5.16, y: 17.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50976,6 +50949,7 @@ MonoBehaviour:
   amountOfBullets: 0
   spawnPoint: {fileID: 0}
   timeBeforeNextShot: 0
+  playersWeapon: 0
   meleeAttackRadius: 0.7
   targetMask:
     serializedVersion: 2
@@ -51615,12 +51589,85 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 1
+--- !u!1001 &8552497917407781476
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.45674
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.529058
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1717653
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1466593949509020480, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2759174809719181556, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: m_Name
+      value: Game Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310253984549330752, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: Sfx
+      value: 
+      objectReference: {fileID: 877547975}
+    - target: {fileID: 5310253984549330752, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: loadSFx
+      value: 
+      objectReference: {fileID: 877547974}
+    - target: {fileID: 5310253984549330752, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: meleeAttackRange
+      value: 
+      objectReference: {fileID: 84305362}
+    - target: {fileID: 5545811473918821501, guid: 2efeef7f48a78da48b45078756069801, type: 3}
+      propertyPath: gameOverTxt
+      value: 
+      objectReference: {fileID: 215816439}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2efeef7f48a78da48b45078756069801, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1833939278}
-  - {fileID: 920669809}
+  - {fileID: 8552497917407781476}
   - {fileID: 188275754}
   - {fileID: 1414819942}
   - {fileID: 215816438}

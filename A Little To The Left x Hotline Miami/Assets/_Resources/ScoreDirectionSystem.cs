@@ -62,11 +62,14 @@ public class ScoreDirectionSystem : MonoBehaviour
         //if (other.gameObject.transform.parent== true && other.gameObject.transform.parent.gameObject.layer == 7) //&& other.gameObject.transform.parent.name != "Cute Environment" && other.gameObject.transform.parent.gameObject.layer != 6)
         //{
             //Debug.Log(other.gameObject.name);
+           
         if (player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false && player.GetComponent<PlayerInteraction>().hasWeapon == true)// && other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
         {
-            if (other.gameObject.tag == "Bullet") //what about enemy bullets? this need to be updated
+                //Debug.Log("SHIIIIIIIIT:" + other.tag);
+            if (other.tag == "Bullet" && other.GetComponent<Bullet>().playersWeapon == true) //what about enemy bullets? this need to be updated
             {
-                power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
+                    Debug.Log("BULLLLLLL");
+                //power = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponpower;
                 weaponhurtby = GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<GrabWeapon>().weaponname;
                 Vector3 dir = (transform.position - player.transform.position).normalized;
                 //rb.AddForce(dir * power, ForceMode2D.Impulse);
@@ -78,7 +81,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
                 // Now you can use hitPoint and direction as needed
 
-                DirectionOfBullet = GetHitDirection(angle);
+                
                 /*if (DirectionOfBullet != "Error")
                 {
                     if (DirectionOfBullet == "South")
@@ -86,16 +89,18 @@ public class ScoreDirectionSystem : MonoBehaviour
                         transform.rotation = Quaternion.Euler(0, 0, 0);
                     }
                 }*/
+                DirectionOfBullet = GetHitDirection(angle);
                 setTransformRotation(DirectionOfBullet);
                 determineDistanceAndSnap();
+                EnemyController enemy = GetComponent<EnemyController>();
+                enemy.baseState = EnemyController.enemyState.dead;
+                enemy.deathBy = "Gun";
                 stateofenemy = "DeadbyBull";
-                //EnemyController enemy = other.GetComponent<EnemyController>();
-                //enemy.baseState = EnemyController.enemyState.dead;
-                //enemy.deathBy = other.GetComponent<WeaponAttributes>().weaponName;
                 Debug.Log("Killed by Bullet");//ded
+                    Destroy(other);
 
             }
-            else if (other.gameObject.tag == "Melee")//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
+            else if (other.gameObject.tag == "Melee" && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)//&& other.gameObject.transform.parent == true && other.gameObject.transform.parent.gameObject.layer == 7)
             {//&& player.GetComponent<PlayerInteraction>() == true && player.GetComponent<PlayerInteraction>().hasthrownWeapon == false&& player.GetComponent<PlayerInteraction>().hasWeapon == true 
                 Debug.Log(other.gameObject.name);
                 //power = origpower;
@@ -121,7 +126,7 @@ public class ScoreDirectionSystem : MonoBehaviour
 
             }
         }
-        else if (player.GetComponent<PlayerInteraction>() == true && (other.gameObject.tag == "Melee"|| other.gameObject.tag == "Ranged") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false && other.gameObject.transform.parent == false)
+        else if (player.GetComponent<PlayerInteraction>() == true && (other.gameObject.tag == "Melee"|| other.gameObject.tag == "Ranged") && player.GetComponent<PlayerInteraction>().hasthrownWeapon == true && player.GetComponent<PlayerInteraction>().hasWeapon == false && other.gameObject.transform.parent == false && other.GetComponent<WeaponAttributes>() != null && other.GetComponent<WeaponAttributes>().playersWeapon == true)
         {
             Vector3 dir = (transform.position - player.transform.position).normalized;
                 Vector2 direction = dir;

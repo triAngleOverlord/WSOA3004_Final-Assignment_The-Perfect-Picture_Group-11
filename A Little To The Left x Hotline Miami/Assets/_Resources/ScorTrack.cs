@@ -342,7 +342,9 @@ public class ScorTrack : MonoBehaviour
        
     public void checkDirectionDistanceAndScore(string givenDirection)
     {
+        Debug.Log(givenDirection);
         int directionPosAr = System.Array.IndexOf(directions, givenDirection);
+        Debug.Log(directionPosAr);
         string[] shiftedDirectArray = arrayShifter.ShiftArray(directions, 3 - directionPosAr);
         Debug.Log("Shifted array: " + string.Join(", ", shiftedDirectArray));
         //check direction
@@ -362,7 +364,7 @@ public class ScorTrack : MonoBehaviour
         {
             Debug.Log("Three directions off");
         }
-        else if (directions[directions.Length] == WhatDirection)
+        else if (directions[7] == WhatDirection)
         {
             Debug.Log("Opposite Direction");
         }

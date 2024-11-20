@@ -98,7 +98,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animator[] motionState;
 
 
-    bool isdeadalready = false;
+    public bool isdeadalready = false;
 
     //path
     private NavMeshPath path;
@@ -485,6 +485,7 @@ public class EnemyController : MonoBehaviour
             {
                 if(this.gameObject.GetComponent<ScoreDirectionSystem>().stateofenemy == "DeadbyBull")
                 {
+                    Debug.Log("IN HEREE");
                     SCTrack.DeathBYBULLET();
                     isdeadalready = true;
                      Dead();
@@ -822,17 +823,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Bullet") // THIS WONT WORK AS ENEMY BULLETS PHASE THROUGH OTHER ENEMIES
-        {
-            baseState = enemyState.dead;
-
-            
-
-            SpriteManager(enemyState.dead);
-
-        }
-    }
+    
 }
 

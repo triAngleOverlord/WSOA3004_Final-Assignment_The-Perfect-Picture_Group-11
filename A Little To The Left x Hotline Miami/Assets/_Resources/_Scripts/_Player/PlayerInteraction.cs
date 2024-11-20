@@ -321,6 +321,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     weaponData = null;
                     equippedWeaponBC.isTrigger = false;
+                    equippedWeapon.GetComponent<WeaponAttributes>().startPlayerWeaponCountDown();
                     equippedWeapon = null;
                 }
                 hasthrownWeapon = true;
@@ -405,6 +406,7 @@ public class PlayerInteraction : MonoBehaviour
                 equippedWeapon.localRotation = Quaternion.identity;
                 equippedWeapon.localPosition = Vector3.zero;
                 equippedWeaponBC.isTrigger = true;
+                equippedWeapon.GetComponent<WeaponAttributes>().playersWeapon = true;
             }
         }
     }
