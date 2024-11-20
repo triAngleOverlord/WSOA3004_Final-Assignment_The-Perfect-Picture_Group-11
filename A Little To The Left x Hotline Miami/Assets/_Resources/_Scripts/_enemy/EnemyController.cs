@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using UnityEngine;
@@ -729,7 +730,17 @@ public class EnemyController : MonoBehaviour
             else if (currentSate == enemyState.dead)
             {
                 kiaSprite.SetActive(true);
-                whichDeadBodySprite();
+                SpriteRenderer sp = kiaSprite.GetComponent<SpriteRenderer>();
+                if (deathBy == "Knife")
+                    sp.GetComponent<SpriteRenderer>().sprite = deadBodySprites.stabbed;
+                else if (deathBy == "Gun")
+                    sp.sprite = deadBodySprites.headShot;
+                if (deathBy == "Chainsaw")
+                    sp.sprite = deadBodySprites.gutsOut;
+                else if (deathBy == "Shotgun")
+                    sp.sprite = deadBodySprites.limbsOff;
+                else if (deathBy == "Sword")
+                    sp.sprite = deadBodySprites.inHalf;
                 aliveSprite.SetActive(false);
                 knockedOutSprite.SetActive(false);
             }
@@ -829,24 +840,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    private void whichDeadBodySprite()
-    {
-        SpriteRenderer sp = kiaSprite.GetComponent<SpriteRenderer>();
-        if (deathBy=="Knife")
-            sp.sprite = deadBodySprites.stabbed;
-        else if (deathBy =="Gun")
-            sp.sprite = deadBodySprites.headShot;
-        if (deathBy =="Chainsaw")
-            sp.sprite = deadBodySprites.gutsOut;
-        else if (deathBy =="Shotgun")
-            sp.sprite = deadBodySprites.limbsOff;
-        else if (deathBy =="Katana")
-            sp.sprite = deadBodySprites.inHalf;
-        else
-            Debug.Log("No dead body sprite found for "+ deathBy);
-        
-        
-    }
+    
     
 }
 
