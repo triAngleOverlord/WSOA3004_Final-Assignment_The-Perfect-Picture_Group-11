@@ -5,9 +5,12 @@ using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+using TMPro;
 public class ScorTrack : MonoBehaviour
 {
-    
+
+        
         Rigidbody2D rb;
         
         private GameObject player;
@@ -29,6 +32,12 @@ public class ScorTrack : MonoBehaviour
 
         private bool AlreadyDead;
 
+        private int DIAMONDHANDS;
+
+        public TMP_Text SCALEOFPERFECTION;
+
+        private GameObject GETMEMANAGER;
+
     private ScoreDirectionSystem scoreDirect;
 
     private string[] directions = new string[] {"North", "NorthEast", "East", "SouthEast", "South", "SouthWest", "West", "NorthWest"};
@@ -43,7 +52,8 @@ public class ScorTrack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         scoreobj = GameObject.FindGameObjectWithTag("scoring");
         scoreDirect = GetComponent<ScoreDirectionSystem>();
-        
+        GETMEMANAGER = GameObject.FindGameObjectWithTag("GAMEMANAGER");
+        DIAMONDHANDS = 0;
     }
 
     // Update is called once per frame
@@ -59,13 +69,18 @@ public class ScorTrack : MonoBehaviour
             if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat)
             {
                 Debug.Log("Correct weapon");
+                DIAMONDHANDS += 250;
+
             }
             else if (GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat)
             {
                 Debug.Log("Incorrect weapon");
+                DIAMONDHANDS -= 250;
             }
 
             checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
+            DisplayThatScore();
+            GETMEMANAGER.GetComponent<GameManager>().scorevalue += DIAMONDHANDS;
 
             /*else if(GameObject.FindGameObjectWithTag("playershootpoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat)// && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
@@ -162,14 +177,17 @@ public class ScorTrack : MonoBehaviour
             if (GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat)
             {
                 Debug.Log("Correct weapon");
+                DIAMONDHANDS += 250;
             }
             else if (GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName != DeathbyWhat)
             {
                 Debug.Log("Incorrect weapon");
+                DIAMONDHANDS -= 250;
             }
 
             checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfMelee);
-
+            DisplayThatScore();
+            GETMEMANAGER.GetComponent<GameManager>().scorevalue += DIAMONDHANDS;
             /*Debug.Log("WE IN AGAIN");
             AlreadyDead =true; 
             if(GameObject.FindGameObjectWithTag("playermeleepoint").GetComponentInChildren<WeaponAttributes>().weaponName == DeathbyWhat && distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
@@ -257,13 +275,17 @@ public class ScorTrack : MonoBehaviour
             if (GetComponent<EnemyController>().deathBy == DeathbyWhat)
             {
                 Debug.Log("Correct weapon");
+                DIAMONDHANDS += 250;
             }
             else if (GetComponent<EnemyController>().deathBy != DeathbyWhat)
             {
                 Debug.Log("Incorrect weapon");
+                DIAMONDHANDS -= 250;
             }
 
             checkDirectionDistance(GetComponent<ScoreDirectionSystem>().DirectionOfBullet);
+            DisplayThatScore();
+            GETMEMANAGER.GetComponent<GameManager>().scorevalue += DIAMONDHANDS;
 
             /*if (GetComponent<EnemyController>().deathBy == DeathbyWhat )//&& distanceToTarget <= 2 && this.gameObject.GetComponent<ScoreDirectionSystem>().DirectionOfBullet == WhatDirection)
             {
@@ -353,40 +375,77 @@ public class ScorTrack : MonoBehaviour
         if (shiftedDirectArray[directionPosAr] == WhatDirection)
         {
             Debug.Log("Perfect Direction");
+           
+            DIAMONDHANDS += 1000;
         }
         else if (shiftedDirectArray[directionPosAr - 1] == WhatDirection || (shiftedDirectArray[directionPosAr + 1] == WhatDirection))
         {
             Debug.Log("One direction off");
+            
+            DIAMONDHANDS += 750;
         }
         else if (shiftedDirectArray[directionPosAr - 2] == WhatDirection || (shiftedDirectArray[directionPosAr + 2] == WhatDirection))
         {
             Debug.Log("Two directions off");
+
+            DIAMONDHANDS += 500;
         }
         
         else if (shiftedDirectArray[directionPosAr - 3] == WhatDirection || (shiftedDirectArray[directionPosAr + 3] == WhatDirection))
         {
             Debug.Log("Three directions off");
+            DIAMONDHANDS += 250;
         }
         else if (shiftedDirectArray[7] == WhatDirection)
         {
             Debug.Log("Opposite Direction");
+            DIAMONDHANDS -= -250;
         }
 
         //check distance
         if (scoreDirect.deadDistance == 0f)
         {
             Debug.Log("Perfect Distance");
+            DIAMONDHANDS += 1000;
         }
         else if (scoreDirect.deadDistance == 0.7f)
         {
             Debug.Log("Distance Too Close");
+            DIAMONDHANDS += 500;
         }
         else if (scoreDirect.deadDistance == 1.5f)
         {
             Debug.Log("Distance A lil too far");
+            DIAMONDHANDS += 250;
         }
-        else
+        else{
             Debug.Log("Distance Too far");
+            DIAMONDHANDS -= Mathf.RoundToInt(scoreDirect.deadDistance / 2f) * 100;
+            }
+    }
+
+    public void DisplayThatScore()
+    {
+        if(DIAMONDHANDS >= 2200)
+        {
+            SCALEOFPERFECTION.text = "!!!PERFECTION!!!";
+        }
+        else if(DIAMONDHANDS < 2200 && DIAMONDHANDS >= 1500)
+        {
+            SCALEOFPERFECTION.text = "GOOD ENOUGH!";
+        }
+        else if(DIAMONDHANDS < 1500 && DIAMONDHANDS >= 1000)
+        {
+            SCALEOFPERFECTION.text = "MEDIOCRE";
+        }
+        else if(DIAMONDHANDS < 1000 && DIAMONDHANDS >= 500)
+        {
+            SCALEOFPERFECTION.text = "MISTAKES, MISTAKES!!!";
+        }
+        else if(DIAMONDHANDS < 500)
+        {
+            SCALEOFPERFECTION.text = "YOU ARE USELESS TO MY ART!";
+        }
     }
     
 }
