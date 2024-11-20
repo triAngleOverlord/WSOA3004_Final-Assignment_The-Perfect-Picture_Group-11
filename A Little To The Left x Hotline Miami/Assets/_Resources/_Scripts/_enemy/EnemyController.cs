@@ -105,26 +105,23 @@ public class EnemyController : MonoBehaviour
     private bool intel;
 
     //sfx and music
-    [Header("Weapon Source")]
-    public AudioSource weaponSFx;
-    public AudioSource shotgunSFx;
+
     AudioSource weaponSFx;
     AudioSource shotgunSFx;
 
 
     void Start()
     {
-<<<<<<< HEAD
+
         SCDirection = this.gameObject.GetComponent<ScoreDirectionSystem>();
         SCTrack = this.gameObject.GetComponent<ScorTrack>();
-=======
+
         weaponSFx = transform.Find("_sfx").Find("_weaponSFx").GetComponent<AudioSource>();
         shotgunSFx = transform.Find("_sfx").Find("_shotgunSFx").GetComponent<AudioSource>();
 
         viewRadius = 8f;
         viewAngle = 170f;
 
->>>>>>> Wandile
         SpriteManager(enemyState.idle);
 
         rb = GetComponent<Rigidbody2D>();
