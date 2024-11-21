@@ -441,18 +441,22 @@ public class ScorTrack : MonoBehaviour
         else if(DIAMONDHANDS < 2200 && DIAMONDHANDS >= 1500)
         {
            // SCALEOFPERFECTION.text = "GOOD ENOUGH!";
+           StartCoroutine(GOODENOUGH());
         }
         else if(DIAMONDHANDS < 1500 && DIAMONDHANDS >= 1000)
         {
            // SCALEOFPERFECTION.text = "MEDIOCRE";
+           StartCoroutine(MEDIOCRE());
         }
         else if(DIAMONDHANDS < 1000 && DIAMONDHANDS >= 500)
         {
            // SCALEOFPERFECTION.text = "MISTAKES, MISTAKES!!!";
+           StartCoroutine(MISTAKES());
         }
         else if(DIAMONDHANDS < 500)
         {
            // SCALEOFPERFECTION.text = "YOU ARE USELESS TO MY ART!";
+           StartCoroutine(USELESS());
         }
     }
     
@@ -491,10 +495,98 @@ public class ScorTrack : MonoBehaviour
     
 
     // Update the text
-    Text textComponent = SCALE.GetComponent<Text>();
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
     if (textComponent != null)
     {
         textComponent.text = "!!!PERFECTION!!!";
+    }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Destroy the instantiated object
+    textComponent.text = "...";
+}
+
+ public IEnumerator GOODENOUGH()
+{
+    // Instantiate the text object in the Canvas
+    
+    // Position it near the top-left corner
+    //RectTransform rectTransform = SCALE.GetComponent<RectTransform>();
+    
+
+    // Update the text
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
+    if (textComponent != null)
+    {
+        textComponent.text = "GOOD ENOUGH!!";
+    }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Destroy the instantiated object
+    textComponent.text = "...";
+}
+
+public IEnumerator MEDIOCRE()
+{
+    // Instantiate the text object in the Canvas
+    
+    // Position it near the top-left corner
+    //RectTransform rectTransform = SCALE.GetComponent<RectTransform>();
+    
+
+    // Update the text
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
+    if (textComponent != null)
+    {
+        textComponent.text = "MEDIOCRE";
+    }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Destroy the instantiated object
+    textComponent.text = "...";
+}
+
+public IEnumerator MISTAKES()
+{
+    // Instantiate the text object in the Canvas
+    
+    // Position it near the top-left corner
+    //RectTransform rectTransform = SCALE.GetComponent<RectTransform>();
+    
+
+    // Update the text
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
+    if (textComponent != null)
+    {
+        textComponent.text = "MISTAKES, MISTAKES!!";
+    }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Destroy the instantiated object
+    textComponent.text = "...";
+}
+
+public IEnumerator USELESS()
+{
+    // Instantiate the text object in the Canvas
+    
+    // Position it near the top-left corner
+    //RectTransform rectTransform = SCALE.GetComponent<RectTransform>();
+    
+
+    // Update the text
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
+    if (textComponent != null)
+    {
+        textComponent.text = "YOU ARE USELESS TO MY ART!!!";
     }
 
     // Wait for 5 seconds

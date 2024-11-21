@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
    
 
     // Update the text
-    Text textComponent = SCALE.GetComponent<Text>();
+    TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
     if (textComponent != null)
     {
         textComponent.text = "!!!ART DEMANDS PARTS!!!";
