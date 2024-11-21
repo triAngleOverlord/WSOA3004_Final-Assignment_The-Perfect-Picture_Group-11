@@ -860,6 +860,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -2237,6 +2238,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -7474,6 +7476,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -7879,6 +7882,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -9422,6 +9426,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -11326,6 +11331,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &561505761
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.45674
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.529058
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.1717653
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866711916001891328, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3761351414991194127, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_Name
+      value: LineRenderer
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+--- !u!114 &561505762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2070787750977794559, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+  m_PrefabInstance: {fileID: 561505761}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ab48398b7a9204abff90021f169282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &565107368
 GameObject:
   m_ObjectHideFlags: 0
@@ -13305,6 +13378,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -15878,6 +15952,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -17499,6 +17574,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -25249,6 +25325,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -35846,6 +35923,7 @@ MonoBehaviour:
   lckedOnCursor: {fileID: 21300000, guid: ec710e9642a8c6346a68fa5392faec69, type: 3}
   State: 0
   speed: 15
+  mousePos: {x: 0, y: 0}
   isLockedOn: 0
   animator:
   - {fileID: 991188829}
@@ -36395,6 +36473,7 @@ MonoBehaviour:
     m_Bits: 64
   detectionDistance: 0.04
   deathBy: 
+  knife: Knife
   viewRadius: 20
   viewAngle: 200
   targetMask:
@@ -40126,6 +40205,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &1812740434 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1027508637913404323, guid: 45a9e6a7e6e417f4ea5456ddbe8ed015, type: 3}
+  m_PrefabInstance: {fileID: 215816438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1820355268
 GameObject:
   m_ObjectHideFlags: 0
@@ -40320,6 +40404,7 @@ GameObject:
   - component: {fileID: 1833939276}
   - component: {fileID: 1833939280}
   - component: {fileID: 1833939279}
+  - component: {fileID: 1833939281}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -40431,6 +40516,22 @@ MonoBehaviour:
   tiltAmount: 2
   tiltSpeed: 2
   displacementMultiplier: 0
+--- !u!114 &1833939281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1833939275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3161c85865ad6374c9f06ab7a4fda392, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points:
+  - {fileID: 1405246609}
+  - {fileID: 1812740434}
+  line: {fileID: 561505762}
 --- !u!1 &1845167665
 GameObject:
   m_ObjectHideFlags: 0
@@ -52565,6 +52666,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 561505761}
   - {fileID: 1833939278}
   - {fileID: 8552497917407781476}
   - {fileID: 188275754}

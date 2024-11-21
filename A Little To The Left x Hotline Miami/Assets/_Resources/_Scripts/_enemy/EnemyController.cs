@@ -613,7 +613,7 @@ public class EnemyController : MonoBehaviour
        // rb.AddForce(-fallDir * power, ForceMode2D.Impulse);
         rb.drag = 5f;
         theWeapon = null;
-        GameObject.Find("Game Manager").GetComponent<checkIfAllEnemiesDead>().checkEnemies();
+        //GameObject.Find("Game Manager").GetComponent<checkIfAllEnemiesDead>().checkEnemies();
         ClearChildren(weaponPos.gameObject);
         //Destroy(gameObject.GetComponent<Rigidbody2D>());
 
