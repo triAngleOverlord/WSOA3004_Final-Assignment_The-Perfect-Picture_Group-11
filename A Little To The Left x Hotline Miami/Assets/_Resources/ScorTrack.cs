@@ -499,13 +499,14 @@ public class ScorTrack : MonoBehaviour
     if (textComponent != null)
     {
         textComponent.text = "!!!PERFECTION!!!";
+        textComponent.color = Color.magenta;
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
  public IEnumerator GOODENOUGH()
@@ -521,13 +522,14 @@ public class ScorTrack : MonoBehaviour
     if (textComponent != null)
     {
         textComponent.text = "GOOD ENOUGH!!";
+        textComponent.color = Color.green;
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator MEDIOCRE()
@@ -543,13 +545,14 @@ public IEnumerator MEDIOCRE()
     if (textComponent != null)
     {
         textComponent.text = "MEDIOCRE";
+        textComponent.color = Color.yellow;
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator MISTAKES()
@@ -565,13 +568,14 @@ public IEnumerator MISTAKES()
     if (textComponent != null)
     {
         textComponent.text = "MISTAKES, MISTAKES!!";
+        textComponent.color =  new Color(1f, 0.5f, 0f);;
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator USELESS()
@@ -587,13 +591,14 @@ public IEnumerator USELESS()
     if (textComponent != null)
     {
         textComponent.text = "YOU ARE USELESS TO MY ART!!!";
+        textComponent.color = Color.red;
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 

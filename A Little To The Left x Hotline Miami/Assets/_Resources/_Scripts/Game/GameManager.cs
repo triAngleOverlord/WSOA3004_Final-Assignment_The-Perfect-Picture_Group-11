@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
     // Wait for 5 seconds
     yield return new WaitForSeconds(1f);
 
-    textComponent.text = "...";
+    textComponent.text = "";
     
 
     // Destroy the instantiated object

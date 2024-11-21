@@ -3,7 +3,7 @@ using UnityEngine;
 public class PulsatingUI : UIAnimator
 {
     private RectTransform rectTransform;
-    public float speed, minSize, maxSize;
+    public float speed, minSize, maxSize, rot;
 
     private void Start()
     {
@@ -11,6 +11,6 @@ public class PulsatingUI : UIAnimator
     }
     private void Update()
     {
-        Animate(rectTransform, speed, minSize, maxSize);
+        Animate(rectTransform, speed, minSize, maxSize, rot);
     }
 }
