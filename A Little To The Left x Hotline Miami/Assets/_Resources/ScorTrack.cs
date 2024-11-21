@@ -502,10 +502,10 @@ public class ScorTrack : MonoBehaviour
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
  public IEnumerator GOODENOUGH()
@@ -524,10 +524,10 @@ public class ScorTrack : MonoBehaviour
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator MEDIOCRE()
@@ -546,10 +546,10 @@ public IEnumerator MEDIOCRE()
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator MISTAKES()
@@ -568,10 +568,10 @@ public IEnumerator MISTAKES()
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 public IEnumerator USELESS()
@@ -590,10 +590,10 @@ public IEnumerator USELESS()
     }
 
     // Wait for 5 seconds
-    yield return new WaitForSeconds(5f);
+    yield return new WaitForSeconds(2.5f);
 
     // Destroy the instantiated object
-    textComponent.text = "...";
+    textComponent.text = "";
 }
 
 

@@ -21,6 +21,8 @@ TagManager:
   - GAMEMANAGER
   - SCALEOFPERFECT
   - MYSCORETEXT
+  - TIPS
+  - boxes
   layers:
   - Default
   - TransparentFX
