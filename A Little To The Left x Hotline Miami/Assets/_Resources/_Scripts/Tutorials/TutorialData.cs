@@ -1,19 +1,36 @@
 using System.Collections;
+using System.Drawing;
+using System.Text.RegularExpressions;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
+using UnityEngine.U2D.IK;
+using UnityEngine.UIElements.Experimental;
+using UnityEngine.WSA;
+using UnityEngine.SceneManagement;
 
 public class TutorialData : MonoBehaviour 
 {
     const string move = "Use WASD/ Arrow keys to move";
     const string pickUpWeapons = "Now that you know how to move, why don't you go pick up that knife? Use the 'Right Mouse' button to pick up the weapon";
     const string Attack = "Well, well, look who’s armed and dangerous! Use the 'Left Mouse' button to swing that knife. Pretend you’re chopping onions but but violent onions.";
-    const string targetArea = "Bravo, you wield that knife like a pro! See that enemy? Before you go wild, check their color and the kill spot’s visuals. Slashes mean stab. Holes mean shoot. Colors gotta match too. No pressure, but get it wrong, and... well, you’ll find out. ";
-    const string gunAttack = "Nice work with the knife! Now, let’s graduate to the big leagues. Head to the other room and grab that shotgun. Yes, it's as loud as it looks.";
-    const string attackNow = "Alright, you’ve got the gun. Feeling dangerous yet? Now, see that enemy? Check the kill spot, angles matter. Precision is key, not just wild shooting. Hover over them and press the 'Scroll' button to lock on. Because missing would be, well, embarrassing.";
-    const string throwWeapon = "Look at you, mastering the art of locking on. Feeling fancy? Let’s take it up a notch, throw that weapon. 'Right Mouse' to toss it like a pro, or 'G' to drop it like yesterday’s trash. The rules? Melee weapons = instant kill, ranged weapons = knock ‘em flat. Lock on, aim for the sweet spot, and let it fly. But hey, don’t go playing dodgeball with everything you see. Timing’s key, genius. Oh, and a heads-up...guns are loud. Like, ‘invite all the enemies to a party’ loud. Use them wisely unless you’re ready to deal with the crowd.";
-    const string moveBoxes = "Throwing weapons? Old news. Let’s move on to some pro-level trickery. See that box? Pick it up with 'I' and drop it wherever you want. Place it in the path of that patrolling enemy, they’ll steer clear like it’s cursed. Blocking enemies? That’s strategy, my friend. Oh, and if someone’s lurking behind a door? Slam it open, and boom, instant knockdown. Who knew doors could be so deadly?";
-    const string enemyBehaviour = "Remember that enemy you stabbed with a knife? Or the one you flattened with a door? Maybe the one you blasted with a shotgun? Yeah, those were the easy ones—static enemies. They don’t move an inch, but don’t be fooled—they’re watching, listening, and ready to pounce if you wander into their sight. Now, the one you blocked with a box? That’s a patrolling enemy.They’ve got a route to follow but are just as nosy.And see that other one, wandering aimlessly like it lost its keys? That’s a roaming enemy—no set path, unpredictable as your internet connection on a bad day.Approach it carefully, or it’ll surprise you when you least expect it.";
-    const string restarting = "And with that, my friend, our little tutorial tour comes to an end. From here on out, it’s all you. Remember the golden rule: aim for a perfect kill. Check the kill spot’s direction, its marks, and the matching colors on the enemy. That’s your blueprint for a flawless takedown. Need a do-over? No problem—press 'R' to restart the level whenever you want.Now, go out there and show them who’s boss.Good luck… you’ll need it.";
+    const string targetArea = "Bravo, you wield that knife like a pro! See that enemy? Before you go wild, pay attention to the following:  1. Direction: Check where the target spot is facing.If it’s facing north/up, you need to kill the enemy while also facing north, and so on. 2. Color: Look at the marks on the target spot.These indicate which enemy to kill.For example, if the enemy is orange, make sure the target spot’s marks match that color. 3. Weapon Choice: Use the right weapon for the job: - Stab wounds? Use a knife. - Torso and legs split? Grab a katana. - Guts pulled out? That’s chainsaw work.- Knocked out? Finish them with a bat or glass bottle. - Headshot? Any gun will do, just not the shotgun.  - Limbs missing? That’s a shotgun’s calling.  4. Distance: Make sure the enemy is killed nearby or directly at the target spot for the perfect distance.No pressure, but if you mess this up...well, let’s just say you’ll find out!";
+    const string gunAttack = "Great job with the knife! Now it’s time to bring out the big guns. Head to the other room and grab that shotgun. It’s loud, it’s powerful, and it’s got your back. Just don’t forget, with great firepower comes great responsibility, or at least, great noise.";
+
+    const string attackNow = "Alright, you’ve got the gun. Feeling unstoppable yet? Check out that enemy ahead. Take a moment to inspect the kill spot, angles matter, and precision is everything. Hover over them and press 'Scroll' to lock on. Aim carefully, because missing isn’t just embarrassing, it’s dangerous.";
+
+    const string throwWeapon = "Locking on like a pro, huh? Let’s kick it up a notch: throwing weapons. Press 'Right Mouse' to throw or 'G' to drop. Here’s the deal: all weapons knock enemies down when thrown, but the results differ. Melee weapons like the knife, chainsaw, wooden axe, and katana are lethal and will kill on contact. The bat and bottle? They’re more like guns, they knock enemies down but don’t finish them. So, lock on, aim for the kill spot, and make your move. Just remember, timing is everything. Oh, and guns? Still loud enough to summon the whole neighborhood, so plan accordingly!";
+
+    const string moveBoxes = "Think you’ve mastered weapons? Time to level up your strategy. See that box? Pick it up with 'I' and drop it to block an enemy’s path, they’ll avoid it like it’s cursed. Or, if there’s someone behind a door, slam it open for an instant knockdown. Who knew everyday objects could be so deadly?";
+
+    const string enemyBehaviour = "By now, you’ve dealt with a variety of enemies. The knife stab? The door slam? The shotgun blast? Those were static enemies, easy targets. But don’t let their stillness fool you, they’re sharp. Then there’s the patrolling enemy you blocked with a box. They follow set routes, but they’re just as nosy. And the roaming enemies? They’re unpredictable wanderers with no set path. Stay alert and be ready for surprises.";
+    const string cameraControl = "Before we wrap this up, let me clue you in on a handy trick: camera control. Hold the 'Left Shift' button and move the mouse around to survey the level. You’ll be able to see beyond walls, spot enemies, and get a better idea of the layout. Use it anytime, it’s always available. Now go on, take a look. It will help you plan your moves like a true strategist!";
+
+    const string restarting = "That’s it for the tutorial! From here on out, it’s all you. Just remember the golden rule for a perfect kill: check the kill spot’s direction, its marks, and matching colors on the enemy. Timing, precision, and the right weapon are your keys to success. Messed up? No worries, press 'R' to restart the level. Now go show them who’s boss. Good luck, you’re going to need it!";
+
 
     public GameObject tutBackground;
     public TMP_Text tutTxt;
@@ -43,6 +60,11 @@ public class TutorialData : MonoBehaviour
 
     public Transform cam;
 
+    public GameObject [] fakeDoor;
+    public GameObject[] doors;
+
+    public bool hasWeapon = false;
+
     void Start()
     {
         playerInteraction = FindObjectOfType<PlayerInteraction>();
@@ -57,14 +79,29 @@ public class TutorialData : MonoBehaviour
         secondEnemy = enemyTwo.GetComponent<EnemyController>();
         fourthEnemy = enemyFour.GetComponent<EnemyController>();
         fifthEnemy = enemyFive.GetComponent<EnemyController>();
+
+        foreach (GameObject go in fakeDoor)
+        {
+            go.SetActive(true);
+        }
+
+        foreach (GameObject go in doors)
+        {
+            go.SetActive(false);
+        }
     }
 
     void Update()
     {
+        if (playerInteraction.hasthrownWeapon && index == 6)
+        {
+            hasWeapon = true;
+        }
+
         Dialogue();
         InstructionDone();
 
-        if (Input.GetMouseButtonDown(0) && tutBackground.gameObject.activeSelf)
+        if (Input.GetKeyDown(KeyCode.KeypadEnter) && tutBackground.gameObject.activeSelf)
         {
             tutBackground.gameObject.SetActive(false);
         }
@@ -121,7 +158,8 @@ public class TutorialData : MonoBehaviour
                 case 6: tutTxt.text = throwWeapon; break;
                 case 7: tutTxt.text = moveBoxes; break;
                 case 8: tutTxt.text = enemyBehaviour;  break;
-                case 9: tutTxt.text = restarting; break;
+                case 9: tutTxt.text = cameraControl; break;
+                case 10: tutTxt.text = restarting; break;
         }
     }
 
@@ -149,6 +187,8 @@ public class TutorialData : MonoBehaviour
         else if (index == 2 && !tutBackground.gameObject.activeSelf)
         {
             StartCoroutine(EnableGameObjects(enemyOne, 1));
+            doors[0].SetActive(true);
+            fakeDoor[0].SetActive(false);
             if (Input.GetMouseButtonDown(0) && playerInteraction.equippedWeapon == meleeWeapon.transform)
             {
                 StartCoroutine(PopUp(5));
@@ -161,6 +201,8 @@ public class TutorialData : MonoBehaviour
             {
                 StartCoroutine(PopUp(3));
                 StartCoroutine(EnableGameObjects(rangedWeapon, 1));
+                doors[1].SetActive(true);
+                fakeDoor[1].SetActive(false);
             }
         }
 
@@ -175,19 +217,21 @@ public class TutorialData : MonoBehaviour
 
         else if (index == 5 && !tutBackground.gameObject.activeSelf)
         {
-            if (playerInteraction.equippedWeapon == rangedWeapon.transform && playerController.isLockedOn && Input.GetMouseButtonDown(0) && secondEnemy.baseState == EnemyController.enemyState.dead )
+            if (playerInteraction.equippedWeapon == rangedWeapon.transform && playerController.isLockedOn && Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(PopUp(1));
-                fourthEnemy.state = EnemyController.idleStates.patrol;
-                fifthEnemy.state = EnemyController.idleStates.roamer;
             }
         }
 
         else if (index == 6 && !tutBackground.gameObject.activeSelf)
         {
-            if (Input.GetMouseButtonDown(1))
+            if (hasWeapon)
             {
                 StartCoroutine(PopUp(5));
+                fourthEnemy.state = EnemyController.idleStates.patrol;
+
+                doors[2].SetActive(true);
+                fakeDoor[2].SetActive(false);
             }
         }
 
@@ -196,13 +240,30 @@ public class TutorialData : MonoBehaviour
             //enemy has avoided the interactable box
             if (fourthEnemy.hasInteractedWithBox)
             {
-                StartCoroutine(PopUp(5));
+                fifthEnemy.state = EnemyController.idleStates.roamer;
+                StartCoroutine(PopUp(7));
             }
         }
 
-        if (index == 8 && !tutBackground.gameObject.activeSelf)
+        else if (index == 8 && !tutBackground.gameObject.activeSelf)
         {
-            StartCoroutine(PopUp(5));
+
+             StartCoroutine(PopUp(5));
+
+        }
+
+        else if (index == 9 && !tutBackground.gameObject.activeSelf)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                StartCoroutine(PopUp(10));
+            }
+        }
+
+        if (index == 10 && Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            tutBackground.gameObject.SetActive(false);
+            SceneManager.LoadScene("Level 1");
         }
     }
 
