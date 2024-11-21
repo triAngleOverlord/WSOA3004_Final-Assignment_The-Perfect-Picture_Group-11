@@ -16,6 +16,9 @@ public class GameManager : MonoBehaviour
     public GameObject GETMESCALE; // Reference to the prefab with a Text component
     public Canvas canvas; 
 
+    public GameObject SCALE;
+
+
     private void Start()
     {
         scorevalue = 0;
@@ -51,24 +54,51 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public IEnumerator START()
-    {
+   // public IEnumerator START()
+   // {
         
 
         // Position it in the top-left corner
         
         
-        GameObject textComponent = GETMESCALE;
-        textComponent.GetComponent<Text>().enabled = true;
+     //   GameObject textComponent = GETMESCALE;
+       // textComponent.GetComponent<Text>().enabled = true;
        
-        textComponent.GetComponent<Text>().text = "!!!ART DEMANDS PARTS!!!";
+      //  textComponent.GetComponent<Text>().text = "!!!ART DEMANDS PARTS!!!";
         
 
         // Wait for 5 seconds
-        yield return new WaitForSeconds(1f);
+        // yield return new WaitForSeconds(1f);
 
-        textComponent.GetComponent<Text>().enabled = false;
+      //  textComponent.GetComponent<Text>().enabled = false;
         // Destroy the instantiated object
+  //  }
+
+  public IEnumerator START()
+{
+    // Instantiate the text object in the Canvas
+    //GameObject instance = Instantiate(SCALE, canvas.transform);
+
+    // Position it near the top-left corner
+   // RectTransform rectTransform = instance.GetComponent<RectTransform>();
+   
+
+    // Update the text
+    Text textComponent = SCALE.GetComponent<Text>();
+    if (textComponent != null)
+    {
+        textComponent.text = "!!!ART DEMANDS PARTS!!!";
     }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(1f);
+
+    textComponent.text = "...";
+    
+
+    // Destroy the instantiated object
+   // Destroy(instance);
+}
+
 
 }

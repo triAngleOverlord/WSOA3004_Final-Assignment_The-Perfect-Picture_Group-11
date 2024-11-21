@@ -8,6 +8,7 @@ using UnityEngine;
 
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 public class ScorTrack : MonoBehaviour
 {
 
@@ -40,6 +41,8 @@ public class ScorTrack : MonoBehaviour
         private GameObject GETMEMANAGER;
 
        public GameObject GETMESCALE;
+
+       public GameObject SCALE;
        public Canvas canvas; 
 
     private ScoreDirectionSystem scoreDirect;
@@ -454,8 +457,8 @@ public class ScorTrack : MonoBehaviour
     }
     
     
-    public IEnumerator PERFECTION()
-   {
+    //public IEnumerator PERFECTION()
+  // {
      
         
 
@@ -463,20 +466,43 @@ public class ScorTrack : MonoBehaviour
         
        
     
-        GameObject textComponent = GETMESCALE;
-        textComponent.GetComponent<Text>().enabled = true;
-       
-        textComponent.GetComponent<Text>().text = "!!!PERFECTION!!!";
+   //     GameObject textComponent = GETMESCALE;
+    //    textComponent.GetComponent<Text>().enabled = true;
+    //   
+   //     textComponent.GetComponent<Text>().text = "!!!PERFECTION!!!";
         
 
         // Wait for 5 seconds
-        yield return new WaitForSeconds(5f);
+   //     yield return new WaitForSeconds(5f);
 
-        textComponent.GetComponent<Text>().enabled = false;
-        // Destroy the instantiated object
+    //    textComponent.GetComponent<Text>().enabled = false;
+     //   // Destroy the instantiated object
         
       
       
-   }
+  // }
+
+  public IEnumerator PERFECTION()
+{
+    // Instantiate the text object in the Canvas
+    
+    // Position it near the top-left corner
+    //RectTransform rectTransform = SCALE.GetComponent<RectTransform>();
+    
+
+    // Update the text
+    Text textComponent = SCALE.GetComponent<Text>();
+    if (textComponent != null)
+    {
+        textComponent.text = "!!!PERFECTION!!!";
+    }
+
+    // Wait for 5 seconds
+    yield return new WaitForSeconds(5f);
+
+    // Destroy the instantiated object
+    textComponent.text = "...";
+}
+
 
 }
