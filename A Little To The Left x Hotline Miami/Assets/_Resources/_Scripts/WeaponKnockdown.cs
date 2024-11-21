@@ -15,6 +15,10 @@ public class WeaponKnockdown : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if(this.gameObject.name == "Bottle")
+        {
+            Destroy(this.gameObject);
+        }
         if (collision != null && collision.gameObject.layer == 6)
         {
             //rb.totalForce = Vector2.zero;
