@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-
+using UnityEngine.UI;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     internal static bool gameOver;
@@ -12,12 +13,16 @@ public class GameManager : MonoBehaviour
 
     public int scorevalue;
 
+    public GameObject GETMESCALE; // Reference to the prefab with a Text component
+    public Canvas canvas; 
+
     private void Start()
     {
         scorevalue = 0;
         
         gameOver = false;
         gameOverTxt.SetActive(false);
+        StartCoroutine(START());
     }
 
     private void Update()
@@ -44,4 +49,26 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
+
+
+    public IEnumerator START()
+    {
+        
+
+        // Position it in the top-left corner
+        
+        
+        GameObject textComponent = GETMESCALE;
+        textComponent.GetComponent<Text>().enabled = true;
+       
+        textComponent.GetComponent<Text>().text = "!!!ART DEMANDS PARTS!!!";
+        
+
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(1f);
+
+        textComponent.GetComponent<Text>().enabled = false;
+        // Destroy the instantiated object
+    }
+
 }

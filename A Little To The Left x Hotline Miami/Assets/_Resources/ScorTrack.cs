@@ -39,7 +39,8 @@ public class ScorTrack : MonoBehaviour
 
         private GameObject GETMEMANAGER;
 
-      [SerializeField]  public GameObject GETMESCALE;
+       public GameObject GETMESCALE;
+       public Canvas canvas; 
 
     private ScoreDirectionSystem scoreDirect;
 
@@ -432,33 +433,48 @@ public class ScorTrack : MonoBehaviour
     {
         if(DIAMONDHANDS >= 2200)
         {
-            SCALEOFPERFECTION.text = "!!!PERFECTION!!!";
+            StartCoroutine(PERFECTION());
         }
         else if(DIAMONDHANDS < 2200 && DIAMONDHANDS >= 1500)
         {
-            SCALEOFPERFECTION.text = "GOOD ENOUGH!";
+           // SCALEOFPERFECTION.text = "GOOD ENOUGH!";
         }
         else if(DIAMONDHANDS < 1500 && DIAMONDHANDS >= 1000)
         {
-            SCALEOFPERFECTION.text = "MEDIOCRE";
+           // SCALEOFPERFECTION.text = "MEDIOCRE";
         }
         else if(DIAMONDHANDS < 1000 && DIAMONDHANDS >= 500)
         {
-            SCALEOFPERFECTION.text = "MISTAKES, MISTAKES!!!";
+           // SCALEOFPERFECTION.text = "MISTAKES, MISTAKES!!!";
         }
         else if(DIAMONDHANDS < 500)
         {
-            SCALEOFPERFECTION.text = "YOU ARE USELESS TO MY ART!";
+           // SCALEOFPERFECTION.text = "YOU ARE USELESS TO MY ART!";
         }
     }
     
-
+    
     public IEnumerator PERFECTION()
    {
-      Instantiate(GETMESCALE);
-      GETMESCALE.GetComponent<Text>().text = "!!!PERFECTION!!!";
-      yield return new WaitForSeconds(5f);
-      Destroy(GETMESCALE);
+     
+        
+
+        // Position it in the top-left corner
+        
+       
+    
+        GameObject textComponent = GETMESCALE;
+        textComponent.GetComponent<Text>().enabled = true;
+       
+        textComponent.GetComponent<Text>().text = "!!!PERFECTION!!!";
+        
+
+        // Wait for 5 seconds
+        yield return new WaitForSeconds(5f);
+
+        textComponent.GetComponent<Text>().enabled = false;
+        // Destroy the instantiated object
+        
       
       
    }
