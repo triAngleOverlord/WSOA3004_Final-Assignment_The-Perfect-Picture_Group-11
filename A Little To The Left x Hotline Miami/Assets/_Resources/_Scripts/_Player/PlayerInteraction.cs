@@ -296,7 +296,7 @@ public class PlayerInteraction : MonoBehaviour
 
                     if (weaponType == WeaponTypeNew.melee)
                     {
-                        //equippedWeapon.GetComponent<Animator>().enabled = false;
+                        equippedWeapon.GetComponent<Animator>().enabled = false;
                     }
 
                     equippedWeapon.SetParent(null);
@@ -307,7 +307,7 @@ public class PlayerInteraction : MonoBehaviour
                     equippedWeaponRB.AddForce(directTarget.normalized);
                     equippedWeaponRB.AddForce(transform.up * throwPower, ForceMode2D.Impulse);
                     equippedWeaponRB.AddTorque(spinningSpeed, ForceMode2D.Impulse);
-                    equippedWeaponRB.angularDrag = 2f;
+                    //equippedWeaponRB.angularDrag = 2f;
 
                     int layerIndex = LayerMask.NameToLayer(weaponMask);
                     equippedWeapon.gameObject.layer = layerIndex;
