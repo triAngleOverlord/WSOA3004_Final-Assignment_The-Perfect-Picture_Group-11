@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
     TextMeshProUGUI textComponent = SCALE.GetComponent<TextMeshProUGUI>();
     if (textComponent != null)
     {
-        textComponent.text = "!!!ART DEMANDS PARTS!!!";
+        textComponent.text = "ART DEMANDS PARTS!!!";
     }
 
     // Wait for 5 seconds
