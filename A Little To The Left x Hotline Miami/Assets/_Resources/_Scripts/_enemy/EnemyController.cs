@@ -325,14 +325,14 @@ public class EnemyController : MonoBehaviour
                         {
                             if (Vector2.Distance(transform.position, player.position) < 20f)
                             {
-                            RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot, weaponSFx, weaponAttributes.rangedSFx);
+                                RangeStyle(weaponAttributes.projectilePrefab, weaponAttributes.spawnPoint, weaponAttributes.amountOfBullets, weaponAttributes.spread, weaponAttributes.speed, weaponAttributes.timeBeforeNextShot, weaponSFx, weaponAttributes.rangedSFx);
                             }
                         }
                         else if (weapon == EnemyWeapon.melee)
                         {
                             if (Vector2.Distance(transform.position, player.position) < 2f)
                             {
-                            MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim, weaponSFx, weaponAttributes.meleeSFx);
+                                MeleeStyle(meleeAttackRangePos, transform, weaponAttributes.meleeAttackRadius, weaponAttributes.targetMask, weaponAttributes.meleeWaitTime, weaponAttributes.anim, weaponSFx, weaponAttributes.meleeSFx);
                             }
                         }
                     }
@@ -434,8 +434,7 @@ public class EnemyController : MonoBehaviour
 
     public void HearSound(Vector2 soundSite)
     {
-        if (hasWeapon)
-        if (hasWeapon && CheckPathStatus(player.position))
+        if (hasWeapon && CheckPathStatus(soundSite))
         {
             baseState = enemyState.inspect;
             soundState = inspectStates.sound;
@@ -646,8 +645,6 @@ public class EnemyController : MonoBehaviour
         {
             baseState = enemyState.lookForWeapon;
         }
-        hasSeenPlayer = false;
-        foundTargets.Clear();
     }
 
     private void Inspect()
@@ -657,30 +654,24 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(GoBackToIdle());
         GoToDestination(siteToInspect);
 
-        if (soundState == inspectStates.sight)
         if (soundState == inspectStates.sight || soundState == inspectStates.sound)
         {
             if (Vector2.Distance(transform.position, siteToInspect) < 0.1f)
             {
                 hasHeardPlayer = false;
                 baseState = enemyState.idle;
-            }
+
+                    if (hasWeapon)
+                    {
+                        StartCoroutine(SearchTime());
+                    }
+                    else
+                    {
+                        baseState = enemyState.lookForWeapon;
+                    }
+                }
         }
-        else if (soundState == inspectStates.sound)
-        {
-            if (Vector2.Distance(transform.position, siteToInspect) < 0.1f)
-
-                if (hasWeapon)
-                {
-                    StartCoroutine(SearchTime());
-                }
-                else
-                {
-                    baseState = enemyState.lookForWeapon;
-                }
-            }
         
-
         //handle the hasseeenplayer boolean
         if (agent.velocity == Vector3.zero && foundTargets.Count <= 0)
         {

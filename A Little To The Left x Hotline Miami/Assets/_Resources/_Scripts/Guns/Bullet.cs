@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public string gunName;
     public Vector3 direction;
     string creator;
 
