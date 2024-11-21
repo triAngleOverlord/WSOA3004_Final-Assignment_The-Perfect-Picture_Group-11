@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72141005c5444d4a81f3d0460537bdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Chainsaw
   speed: 0
   projectilePrefab: {fileID: 0}
   spread: 0
@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Chainsaw
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0.02
@@ -320,7 +320,7 @@ MonoBehaviour:
   targetMask:
     serializedVersion: 2
     m_Bits: 512
-  anim: {fileID: 0}
+  anim: {fileID: 178400}
   meleeWaitTime: 0.1
   sfxSource: {fileID: 0}
   loadsfxSource: {fileID: 0}
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   projectileSpawnPoint: {fileID: 1062475091}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 3
@@ -1542,7 +1542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Bat
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -1854,8 +1854,8 @@ Transform:
   m_GameObject: {fileID: 95701074}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.05, y: -0.54, z: 0.10604364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.05, y: -0.5078, z: 0.10604364}
+  m_LocalScale: {x: 0.98251945, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 598071323}
@@ -2206,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114395302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2228,7 +2228,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   baseState: 0
-  state: 2
+  state: 0
   soundState: 0
   patrolPoints:
   - {fileID: 295218666}
@@ -6862,6 +6862,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7536520992642109634, guid: 45a9e6a7e6e417f4ea5456ddbe8ed015, type: 3}
+      propertyPath: rot
+      value: 70
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -7404,7 +7408,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   projectileSpawnPoint: {fileID: 1508964201}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
@@ -7445,7 +7449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &242159085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7851,7 +7855,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276790707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8439,7 +8443,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -8788,7 +8792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   projectileSpawnPoint: {fileID: 245861911}
   projectile: {fileID: 4194129993850988559, guid: 470adada21d872d45ba7291cfef09a6f, type: 3}
   spread: 1
@@ -9446,7 +9450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &364199341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10085,7 +10089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: WoodenAxe
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -10656,7 +10660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Knife
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -12927,7 +12931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   projectileSpawnPoint: {fileID: 437081068}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 7
@@ -13139,7 +13143,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -13662,7 +13666,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &807619736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14254,8 +14258,8 @@ Transform:
   m_GameObject: {fileID: 838152151}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.05, y: -0.54, z: 0.10604364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.05, y: -0.4532, z: 0.10604364}
+  m_LocalScale: {x: 0.9529231, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1639414853}
@@ -15546,7 +15550,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -16087,7 +16091,7 @@ Transform:
   m_GameObject: {fileID: 935920485}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: -1.47, z: 0}
+  m_LocalPosition: {x: 1.34, y: -1.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16192,7 +16196,7 @@ Transform:
   m_GameObject: {fileID: 951053795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.04, y: -1.48, z: 0}
+  m_LocalPosition: {x: -1.53, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16291,7 +16295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &956189709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17327,7 +17331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   projectileSpawnPoint: {fileID: 793711136}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 4
@@ -17913,7 +17917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1054561356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25416,7 +25420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   projectileSpawnPoint: {fileID: 1709038452}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 3
@@ -25660,7 +25664,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1301361222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26277,7 +26281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Katana
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -35727,7 +35731,7 @@ Transform:
   m_GameObject: {fileID: 1375738565}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.04, y: -1.48, z: 0}
+  m_LocalPosition: {x: -1.69, y: -1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -35835,8 +35839,8 @@ Transform:
   m_GameObject: {fileID: 1377023322}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.05, y: -0.54, z: 0.10604364}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.05, y: -0.5451, z: 0.10604364}
+  m_LocalScale: {x: 0.9626479, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 362058495}
@@ -36811,7 +36815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1459774091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38038,7 +38042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Bottle
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -38336,7 +38340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Gun
   projectileSpawnPoint: {fileID: 1053250568}
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 20
@@ -49913,7 +49917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Shotgun
   projectileSpawnPoint: {fileID: 565107369}
   projectile: {fileID: 4194129993850988559, guid: 470adada21d872d45ba7291cfef09a6f, type: 3}
   spread: 1
@@ -52128,7 +52132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81a38c993aca33f48a87e7af18468197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: 
+  weaponName: Knife
   projectileSpawnPoint: {fileID: 0}
   projectile: {fileID: 0}
   spread: 0
@@ -52923,7 +52927,7 @@ MonoBehaviour:
   speed: 0.75
   minSize: 0.75
   maxSize: 1
-  rot: 5
+  rot: 50
 --- !u!1 &8390117160053165360
 GameObject:
   m_ObjectHideFlags: 0
