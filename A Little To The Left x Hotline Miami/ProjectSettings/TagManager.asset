@@ -18,6 +18,9 @@ TagManager:
   - playermeleepoint
   - shotgun
   - revolver
+  - GAMEMANAGER
+  - SCALEOFPERFECT
+  - MYSCORETEXT
   layers:
   - Default
   - TransparentFX

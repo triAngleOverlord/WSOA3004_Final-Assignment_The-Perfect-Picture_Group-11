@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1466593949509020480}
   - component: {fileID: 5545811473918821501}
   - component: {fileID: 5310253984549330752}
+  - component: {fileID: 7937443193855169721}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -46,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverTxt: {fileID: 0}
+  SCORE: {fileID: 0}
+  scorevalue: 0
 --- !u!114 &5310253984549330752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,3 +70,15 @@ MonoBehaviour:
   shotgun: {fileID: 8300000, guid: f7d35e6821cbc774d9fac3e3e799791a, type: 3}
   warArms: {fileID: 8300000, guid: 7a74e55d73737424ea53d3b27d5f5517, type: 3}
   handguns: {fileID: 8300000, guid: b1a3d83845ce12e4885f1dd1ff4fc83a, type: 3}
+--- !u!114 &7937443193855169721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2759174809719181556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c4061f836c4c0e4c9050add661f7ac0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
