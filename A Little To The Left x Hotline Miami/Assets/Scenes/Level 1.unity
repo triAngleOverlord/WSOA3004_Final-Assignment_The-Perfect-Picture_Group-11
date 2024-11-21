@@ -17669,9 +17669,9 @@ MonoBehaviour:
   WhatDirection: South
   DoWeWantFurniture: 0
   SCALEOFPERFECTION: {fileID: 0}
-  GETMESCALE: {fileID: 0}
-  SCALE: {fileID: 0}
-  canvas: {fileID: 0}
+  GETMESCALE: {fileID: 713881643574272733}
+  SCALE: {fileID: 713881643574272733}
+  canvas: {fileID: 573915968}
 --- !u!1 &1057771760
 GameObject:
   m_ObjectHideFlags: 0
