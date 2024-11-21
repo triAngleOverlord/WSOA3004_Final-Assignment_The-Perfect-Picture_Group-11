@@ -94,7 +94,7 @@ public class ScoreDirectionSystem : MonoBehaviour
                 determineDistanceAndSnap();
                 EnemyController enemy = GetComponent<EnemyController>();
                 enemy.baseState = EnemyController.enemyState.dead;
-                enemy.deathBy = "Gun";
+                enemy.deathBy = other.GetComponent<Bullet>().gunName;
                 stateofenemy = "DeadbyBull";
                 //Debug.Log("Killed by Bullet");//ded
                     Destroy(other);

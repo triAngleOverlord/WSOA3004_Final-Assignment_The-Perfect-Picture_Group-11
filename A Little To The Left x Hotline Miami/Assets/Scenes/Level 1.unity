@@ -824,7 +824,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &23471703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,7 +868,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -1838,7 +1838,7 @@ GameObject:
   - component: {fileID: 95701077}
   - component: {fileID: 95701076}
   - component: {fileID: 95701080}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CustomDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2206,7 +2206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &114395302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,7 +2246,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -6171,6 +6171,7 @@ Transform:
   - {fileID: 1330786164}
   - {fileID: 84305362}
   - {fileID: 522084412}
+  - {fileID: 750430105}
   m_Father: {fileID: 1405246609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &163079382
@@ -7220,7 +7221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 229730107}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: DoorMk2 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7449,7 +7450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &242159085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7491,7 +7492,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -7855,7 +7856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &276790707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7897,7 +7898,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -9176,7 +9177,7 @@ GameObject:
   - component: {fileID: 362058498}
   - component: {fileID: 362058497}
   - component: {fileID: 362058496}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateClockwise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9450,7 +9451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &364199341
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9492,7 +9493,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -11472,6 +11473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LineRenderer
       objectReference: {fileID: 0}
+    - target: {fileID: 4520009885647969314, guid: fd85237a15f521a42a63fd43a6b12e73, type: 3}
+      propertyPath: m_SortingOrder
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11731,7 +11736,7 @@ GameObject:
   - component: {fileID: 598071326}
   - component: {fileID: 598071325}
   - component: {fileID: 598071324}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateClockwise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13264,6 +13269,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1993956748}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &750430104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750430105}
+  m_Layer: 7
+  m_Name: _preventThrowing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750430105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750430104}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.1100006, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 159753160}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &752092864
 GameObject:
   m_ObjectHideFlags: 0
@@ -13666,7 +13702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &807619736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13710,7 +13746,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -13887,7 +13923,7 @@ GameObject:
   - component: {fileID: 810224732}
   - component: {fileID: 810224734}
   - component: {fileID: 810224733}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14242,7 +14278,7 @@ GameObject:
   - component: {fileID: 838152155}
   - component: {fileID: 838152154}
   - component: {fileID: 838152153}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CustomDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15864,7 +15900,7 @@ GameObject:
   - component: {fileID: 930809445}
   - component: {fileID: 930809447}
   - component: {fileID: 930809446}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16075,7 +16111,7 @@ GameObject:
   - component: {fileID: 935920486}
   - component: {fileID: 935920488}
   - component: {fileID: 935920487}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16180,7 +16216,7 @@ GameObject:
   - component: {fileID: 951053796}
   - component: {fileID: 951053798}
   - component: {fileID: 951053797}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16295,7 +16331,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &956189709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16335,7 +16371,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -17917,7 +17953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1054561356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17957,7 +17993,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -25287,7 +25323,7 @@ Transform:
   m_GameObject: {fileID: 1278115611}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.58, y: 15.66, z: 0}
+  m_LocalPosition: {x: 15.5868, y: 26.1612, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25664,7 +25700,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1301361222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25708,7 +25744,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -35715,7 +35751,7 @@ GameObject:
   - component: {fileID: 1375738566}
   - component: {fileID: 1375738568}
   - component: {fileID: 1375738567}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35823,7 +35859,7 @@ GameObject:
   - component: {fileID: 1377023326}
   - component: {fileID: 1377023325}
   - component: {fileID: 1377023324}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CustomDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36257,7 +36293,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   interactDist: 1.5
-  hearingRadius: 15
+  hearingRadius: 6
   hearingMask:
     serializedVersion: 2
     m_Bits: 512
@@ -36857,7 +36893,7 @@ MonoBehaviour:
     m_Bits: 128
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 1088
+    m_Bits: 5184
   foundTargets: []
   timeBeforeForget: 10
   searchDuration: 15
@@ -36887,7 +36923,7 @@ NavMeshAgent:
   m_Radius: 0.5
   m_Speed: 5
   m_Acceleration: 100
-  avoidancePriority: 30
+  avoidancePriority: 43
   m_AngularSpeed: 120
   m_StoppingDistance: 0.7
   m_AutoTraverseOffMeshLink: 1
@@ -38701,7 +38737,7 @@ GameObject:
   - component: {fileID: 1639414856}
   - component: {fileID: 1639414855}
   - component: {fileID: 1639414854}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateClockwise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38819,7 +38855,7 @@ GameObject:
   - component: {fileID: 1642976978}
   - component: {fileID: 1642976977}
   - component: {fileID: 1642976976}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateAntiClockwise (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38996,7 +39032,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646322671}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: DoorMk2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40835,7 +40871,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4095
+    m_Bits: 8191
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -40917,7 +40953,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1845167667}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: DoorMk2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50565,7 +50601,7 @@ GameObject:
   - component: {fileID: 1952813874}
   - component: {fileID: 1952813876}
   - component: {fileID: 1952813875}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DoorLimit1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51094,7 +51130,7 @@ GameObject:
   - component: {fileID: 2012640148}
   - component: {fileID: 2012640147}
   - component: {fileID: 2012640146}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateAntiClockwise (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51695,7 +51731,7 @@ GameObject:
   - component: {fileID: 2058609646}
   - component: {fileID: 2058609645}
   - component: {fileID: 2058609644}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: RotateAntiClockwise (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52631,7 +52667,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 28.644}
   m_AnchorMin: {x: 0.09372917, y: 0.033592593}
   m_AnchorMax: {x: 0.8841876, y: 0.943}
-  m_AnchoredPosition: {x: -0.37249756, y: 6.2153625}
+  m_AnchoredPosition: {x: -0.37243652, y: 6.215332}
   m_SizeDelta: {x: 32.074585, y: -724.42444}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1257085892871140482
