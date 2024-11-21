@@ -13,7 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Transform meleeWeaponPos;
     [SerializeField] private Transform rangedWeaponPos;
 
-    [SerializeField] private Transform equippedWeapon;
+    public Transform equippedWeapon;
 
     public string obj;
 
@@ -240,10 +240,6 @@ public class PlayerInteraction : MonoBehaviour
 
             timeBetweenShots = waitTime;
         }
-        else
-        {
-            timeBetweenShots -= Time.deltaTime;
-        }
     }
     
 
@@ -254,14 +250,10 @@ public class PlayerInteraction : MonoBehaviour
         {
             anim.SetTrigger("Attack");
 
-
-
             source.clip = sfx;
             source.Play();
-
             timeUntilMelee = waitTime;
-        }
-        
+        }        
     }
 
     internal void CooldownTimeUpdate()
