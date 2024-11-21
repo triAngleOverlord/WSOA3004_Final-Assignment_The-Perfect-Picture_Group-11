@@ -13,7 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private Transform meleeWeaponPos;
     [SerializeField] private Transform rangedWeaponPos;
 
-    [SerializeField] private Transform equippedWeapon;
+    public Transform equippedWeapon;
 
     public string obj;
 
@@ -240,29 +240,20 @@ public class PlayerInteraction : MonoBehaviour
 
             timeBetweenShots = waitTime;
         }
-        else
-        {
-            timeBetweenShots -= Time.deltaTime;
-        }
     }
     
 
 
     internal void MeleeAttack(Transform attackPos, Transform player, float attackRadius, LayerMask mask, float waitTime, Animator anim, AudioClip sfx, AudioSource source)
     {
-        if (timeUntilMelee < 0)
         if (timeUntilMelee <= 0)
         {
             anim.SetTrigger("Attack");
 
-
-
             source.clip = sfx;
             source.Play();
-
             timeUntilMelee = waitTime;
-        }
-        
+        }        
     }
 
     internal void CooldownTimeUpdate()

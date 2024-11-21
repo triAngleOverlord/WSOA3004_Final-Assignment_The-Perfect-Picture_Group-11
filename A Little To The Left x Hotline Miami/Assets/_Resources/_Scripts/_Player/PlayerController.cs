@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
     //look
     private Vector2 mousePos;
 
-    [SerializeField] private bool isLockedOn;
+    internal bool isLockedOn;
     private GameObject enemyToLockOn;
 
     //Animations

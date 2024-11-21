@@ -30,9 +30,6 @@ public class GameManager : MonoBehaviour
     }
     private void ReloadScene()
     {
-        if (gameOver)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

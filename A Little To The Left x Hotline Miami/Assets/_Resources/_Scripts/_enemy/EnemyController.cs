@@ -111,6 +111,7 @@ public class EnemyController : MonoBehaviour
     AudioSource weaponSFx;
     AudioSource shotgunSFx;
 
+    internal bool hasInteractedWithBox = false;
 
     void Start()
     {
@@ -528,6 +529,7 @@ public class EnemyController : MonoBehaviour
             if (hit.collider != null)
             {
                 pointIndex = (pointIndex + 1) % patrolPoints.Count;
+                hasInteractedWithBox = true;
                 return;
             }
 
