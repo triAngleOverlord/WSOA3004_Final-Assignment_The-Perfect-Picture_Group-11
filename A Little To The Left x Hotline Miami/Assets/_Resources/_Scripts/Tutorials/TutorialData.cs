@@ -1,15 +1,6 @@
 using System.Collections;
-using System.Drawing;
-using System.Text.RegularExpressions;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using static UnityEngine.UIElements.UxmlAttributeDescription;
-using UnityEngine.U2D.IK;
-using UnityEngine.UIElements.Experimental;
-using UnityEngine.WSA;
 using UnityEngine.SceneManagement;
 
 public class TutorialData : MonoBehaviour 
