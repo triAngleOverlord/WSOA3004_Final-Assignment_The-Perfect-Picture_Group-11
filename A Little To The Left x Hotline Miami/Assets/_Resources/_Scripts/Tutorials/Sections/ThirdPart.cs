@@ -42,10 +42,7 @@ public class ThirdPart : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D col)
     {
-        if(col.tag == "Player")
-        {
-         StartCoroutine(wait());
-        }
+       
     }
 
 
@@ -65,6 +62,7 @@ public class ThirdPart : MonoBehaviour
         yield return new WaitForSecondsRealtime(5f);
         commentTxt.text = "";
         Wall.SetActive(false);
+        StartCoroutine(wait());
 
     }
 
