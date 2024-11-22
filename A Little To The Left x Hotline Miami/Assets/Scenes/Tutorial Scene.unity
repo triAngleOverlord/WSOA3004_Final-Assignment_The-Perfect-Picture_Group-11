@@ -397,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 78024899}
   - component: {fileID: 78024898}
+  - component: {fileID: 78024900}
   m_Layer: 0
   m_Name: Triggers (1)
   m_TagString: Untagged
@@ -440,6 +441,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &78024900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78024897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c78082579ce6d3443ac7523999401f14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commentTxt: {fileID: 131392141}
+  enemy: {fileID: 771754635}
+  commentMessage: []
+  Wall: {fileID: 301911478}
 --- !u!1 &78577034
 GameObject:
   m_ObjectHideFlags: 0
@@ -2884,11 +2901,6 @@ BoxCollider2D:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7570604902263213986, guid: aabca48e8505ae24c803dbd1d2ee3b91, type: 3}
   m_PrefabInstance: {fileID: 5544140660088712748}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &401032996 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3019693816118013406, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
-  m_PrefabInstance: {fileID: 5334370792771503519}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &417555257
 GameObject:
@@ -11569,7 +11581,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
   m_PrefabInstance: {fileID: 5281316668008678926}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452959811
+--- !u!114 &1452959817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452959806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa69a2aa3be4584a84cc49675260b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  commentTxt: {fileID: 2025855176}
+  commentBox: {fileID: 0}
+  commentMessage:
+  - 'Throwing SHARP weapons can be deadly! Throwing others can knock them out! '
+  - Guns are VERY fast but have limited AMMO
+  enemy: {fileID: 0}
+  Wall: {fileID: 0}
+--- !u!114 &1452959818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11586,16 +11617,6 @@ MonoBehaviour:
   commentMessage:
   - 'Beginner guide to be the cutest and most perfect killer! '
   - Check the top left for basic controls before we move on
-  - Throwing SHARP weapons can be deadly! Throwing others can knock them out!
-  - Guns are VERY fast but have limited AMMO
-  - Did you see those cool texts and the score up there??
-  - Did you see those cool texts and the score up there??
-  - "You\u2019re here to get the BEST SCORE and PERFECT KILLS"
-  - "You\u2019re here to get the BEST SCORE and PERFECT KILLS"
-  - PERFECT KILL= direction, distance and kill method are all perfect
-  - Be sure of what weapons you are using and who you are killing
-  - "If everything is WRONG you\u2019ll get too little points"
-  - Kill that guy!
   tasks:
   - {fileID: 281487543}
   - {fileID: 157972578}
@@ -11612,47 +11633,7 @@ MonoBehaviour:
   fakeDoor3: {fileID: 278751626}
   nxtBtn: {fileID: 1764723589}
   weapon1: {fileID: 1856339644}
---- !u!114 &1452959816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452959806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c78082579ce6d3443ac7523999401f14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commentTxt: {fileID: 131392141}
-  enemy: {fileID: 771754635}
-  commentMessage: []
-  Wall: {fileID: 301911478}
---- !u!114 &1452959817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452959806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa69a2aa3be4584a84cc49675260b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  knifeEnemy: {fileID: 239578424}
-  batAndGunEnemy: {fileID: 769939477}
-  bat: {fileID: 401032996}
-  gun: {fileID: 1477345699}
-  tasks: []
-  commentTxt: {fileID: 2025855176}
-  commentBox: {fileID: 0}
-  commentMessage:
-  - 'Throwing SHARP weapons can be deadly! Throwing others can knock them out! '
-  - Guns are VERY fast but have limited AMMO
-  index: 0
-  commentIndex: 0
-  secondPartGo: 0
+  Wall: {fileID: 1500303318}
 --- !u!1 &1460800606
 GameObject:
   m_ObjectHideFlags: 0
@@ -11721,7 +11702,7 @@ Transform:
   m_GameObject: {fileID: 1474534675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.85, y: 8.7, z: 0}
+  m_LocalPosition: {x: 1.93, y: 8.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11757,9 +11738,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1474534675}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88635c525b17bb74d8671b4bb7dc9693, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fa69a2aa3be4584a84cc49675260b71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  commentTxt: {fileID: 2025855176}
+  commentBox: {fileID: 0}
+  commentMessage:
+  - Throwing SHARP weapons can be deadly! Throwing others can knock them out!
+  - 'Guns are VERY fast but have limited AMMO '
+  enemy: {fileID: 0}
+  Wall: {fileID: 0}
 --- !u!1 &1477345699
 GameObject:
   m_ObjectHideFlags: 0
@@ -12396,6 +12384,59 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 670901909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1500303318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1500303320}
+  - component: {fileID: 1500303319}
+  m_Layer: 0
+  m_Name: wall (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1500303319
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500303318}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.105116, y: 1, z: 1}
+  m_Center: {x: 0.005581081, y: 0, z: 0}
+--- !u!4 &1500303320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500303318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.58, y: 6.23, z: 0}
+  m_LocalScale: {x: 1.76, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539033816
 GameObject:
@@ -14942,19 +14983,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1764723591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1452959811}
-        m_TargetAssemblyTypeName: FirstPart, Assembly-CSharp
-        m_MethodName: NextButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1771143640
 GameObject:
   m_ObjectHideFlags: 0
@@ -14970,7 +14999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1771143641
 Transform:
   m_ObjectHideFlags: 0
@@ -27259,13 +27288,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1452959811}
-    - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1452959816}
-    - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1452959817}
+    - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452959818}
   m_SourcePrefab: {fileID: 100100000, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
 --- !u!1001 &5334370792771503519
 PrefabInstance:
@@ -30929,3 +30955,4 @@ SceneRoots:
   - {fileID: 1474534676}
   - {fileID: 78024899}
   - {fileID: 301911480}
+  - {fileID: 1500303320}

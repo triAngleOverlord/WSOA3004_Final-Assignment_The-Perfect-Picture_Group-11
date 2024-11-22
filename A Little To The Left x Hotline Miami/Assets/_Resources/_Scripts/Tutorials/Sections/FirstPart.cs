@@ -30,7 +30,7 @@ public class FirstPart : MonoBehaviour
     void Start()
     {
     
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        
 
         fakeDoor1.SetActive(true);
         fakeDoor2.SetActive(true);
@@ -51,10 +51,7 @@ public class FirstPart : MonoBehaviour
         
     }
 
-    public void NextButton()
-    {
-        index += 1;
-    }
+    
 
    // private void CompleteTasks()
  //   {
@@ -114,14 +111,6 @@ public class FirstPart : MonoBehaviour
         yield return new WaitForSecondsRealtime(7f);
          commentTxt.text = commentMessage[1];
         yield return new WaitForSecondsRealtime(7f);
-         commentTxt.text = commentMessage[2];
-        yield return new WaitForSecondsRealtime(7f);
-          commentTxt.text = commentMessage[3];
-        yield return new WaitForSecondsRealtime(7f);
-           commentTxt.text = commentMessage[4];
-        yield return new WaitForSecondsRealtime(7f);
-          commentTxt.text = commentMessage[5];
-        yield return new WaitForSecondsRealtime(5f);
         commentTxt.text = "";
         StartCoroutine(wait());
     }

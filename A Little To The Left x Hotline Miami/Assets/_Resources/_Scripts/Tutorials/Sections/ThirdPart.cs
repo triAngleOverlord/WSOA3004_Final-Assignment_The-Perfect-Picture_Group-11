@@ -42,7 +42,7 @@ public class ThirdPart : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-        StartCoroutine(wait());
+         StartCoroutine(wait());
         }
     }
 
