@@ -48,7 +48,7 @@ public class KillTheGuy : MonoBehaviour
     private IEnumerator HitNext()
     {
         yield return new WaitForSeconds(5);
-        txt.text = "You can pick up ORANGE boxes. Go ahead and block that enemy’s path.";
+        txt.text = "You can pick up ORANGE boxes with I. Go ahead and block that enemy’s path.";
         Next();
 
         yield return new WaitForSeconds(5);
