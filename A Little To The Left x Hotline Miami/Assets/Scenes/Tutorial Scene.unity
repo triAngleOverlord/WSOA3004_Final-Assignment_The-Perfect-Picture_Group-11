@@ -2885,6 +2885,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7570604902263213986, guid: aabca48e8505ae24c803dbd1d2ee3b91, type: 3}
   m_PrefabInstance: {fileID: 5544140660088712748}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &401032996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3019693816118013406, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+  m_PrefabInstance: {fileID: 5334370792771503519}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &417555257
 GameObject:
   m_ObjectHideFlags: 0
@@ -11623,6 +11628,31 @@ MonoBehaviour:
   enemy: {fileID: 771754635}
   commentMessage: []
   Wall: {fileID: 301911478}
+--- !u!114 &1452959817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452959806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa69a2aa3be4584a84cc49675260b71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knifeEnemy: {fileID: 239578424}
+  batAndGunEnemy: {fileID: 769939477}
+  bat: {fileID: 401032996}
+  gun: {fileID: 1477345699}
+  tasks: []
+  commentTxt: {fileID: 2025855176}
+  commentBox: {fileID: 0}
+  commentMessage:
+  - 'Throwing SHARP weapons can be deadly! Throwing others can knock them out! '
+  - Guns are VERY fast but have limited AMMO
+  index: 0
+  commentIndex: 0
+  secondPartGo: 0
 --- !u!1 &1460800606
 GameObject:
   m_ObjectHideFlags: 0
@@ -11674,6 +11704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1474534676}
   - component: {fileID: 1474534677}
+  - component: {fileID: 1474534678}
   m_Layer: 0
   m_Name: Triggers
   m_TagString: Untagged
@@ -11690,7 +11721,7 @@ Transform:
   m_GameObject: {fileID: 1474534675}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 7.5, z: 0}
+  m_LocalPosition: {x: 1.85, y: 8.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11717,6 +11748,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.105116, y: 1, z: 1}
   m_Center: {x: 0.005581081, y: 0, z: 0}
+--- !u!114 &1474534678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474534675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88635c525b17bb74d8671b4bb7dc9693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1477345699
 GameObject:
   m_ObjectHideFlags: 0
@@ -27220,6 +27263,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1452959816}
+    - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1452959817}
   m_SourcePrefab: {fileID: 100100000, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
 --- !u!1001 &5334370792771503519
 PrefabInstance:
