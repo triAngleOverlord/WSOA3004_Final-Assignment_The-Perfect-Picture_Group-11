@@ -24,11 +24,9 @@ public class ThirdPart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(enemy.GetComponent<EnemyController>() == null && !alreadydead)
-        {
-            alreadydead = true;
-            StartCoroutine(wait());
-        }
+       
+            
+        
     }
 
     public void OnTriggerEnter2D(Collider2D col)
@@ -38,6 +36,14 @@ public class ThirdPart : MonoBehaviour
             StartCoroutine(waittoupdate());
         }
         
+    }
+
+    public void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.tag == "Player")
+        {
+        StartCoroutine(wait());
+        }
     }
 
 

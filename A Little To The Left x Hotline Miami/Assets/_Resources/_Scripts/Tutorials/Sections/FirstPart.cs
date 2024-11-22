@@ -25,9 +25,11 @@ public class FirstPart : MonoBehaviour
 
     public GameObject nxtBtn;
     public GameObject weapon1;
+
+    public GameObject Wall;
     void Start()
     {
-        ManageArray(tasks, true);
+    
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         fakeDoor1.SetActive(true);
@@ -36,41 +38,17 @@ public class FirstPart : MonoBehaviour
 
         door1.SetActive(false);
         door2.SetActive(false);
-        door3.SetActive(false);
+       door3.SetActive(false);
 
         nxtBtn.SetActive(true);
+
+        StartCoroutine(waittoupdate());
     }
 
     void Update()
     {
-        CompleteTasks();
+       // CompleteTasks();
         
-        if (index == 0)
-        {
-            commentTxt.text = commentMessage[0];
-        }
-        else if (index == 1)
-        {
-            commentTxt.text = commentMessage[1];
-        }
-
-        else if (index == 2)
-        {
-            commentTxt.text = commentMessage[2];
-        }
-        else if (index == 3)
-        {
-            commentTxt.text = commentMessage[3];
-        }
-
-        else if (index == 4)
-        {
-            commentTxt.text = commentMessage[4];
-        }
-        else if (index == 5)
-        {
-            commentTxt.text = commentMessage[5];
-        }
     }
 
     public void NextButton()
@@ -78,66 +56,87 @@ public class FirstPart : MonoBehaviour
         index += 1;
     }
 
-    private void CompleteTasks()
-    {
+   // private void CompleteTasks()
+ //   {
 
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
-            {
-                Debug.Log("imherenot");
-                tasks[0].SetActive(false);
-            }
-            if (Input.GetMouseButtonDown(1))
-            {
-                if (playerInteraction.equippedWeapon == weapon1.transform)
-                {
-                    Debug.Log("imherenot");
-                    tasks[1].SetActive(false);
-                }
+          //  if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+          //  {
+         //       Debug.Log("imherenot");
+          //      tasks[0].SetActive(false);
+          //  }
+         ///   if (Input.GetMouseButtonDown(1))
+         //   {
+         //       if (playerInteraction.equippedWeapon == weapon1.transform)
+         //       {
+          //          Debug.Log("imherenot");
+          //          tasks[1].SetActive(false);
+          //      }
 
-            }
-            if (playerInteraction.hasWeapon && Input.GetMouseButtonDown(0))
-            {
-                Debug.Log("imherenot");
-                tasks[2].SetActive(false);
-            }
-
-            if (Input.GetKeyDown(KeyCode.G)) //&& !)
-            {
-                Debug.Log("imhere");
-                tasks[3].SetActive(false);
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Debug.Log("imherenot");
-                tasks[4].SetActive(false);
-            }
+         //   }
+         //   if (playerInteraction.hasWeapon && Input.GetMouseButtonDown(0))
+          //  {
+             //   Debug.Log("imherenot");
+           //     tasks[2].SetActive(false);
+          //  }
+//
+          //  if (Input.GetKeyDown(KeyCode.G)) //&& !)
+        //    {
+         //       Debug.Log("imhere");
+//                tasks[3].SetActive(false);
+          //  }
+       //     if (Input.GetKey(KeyCode.LeftShift))
+         //   {
+           //     Debug.Log("imherenot");
+//                tasks[4].SetActive(false);
+        //    }
         
-        foreach (var task in tasks)
-        {
-            if (!task.activeSelf)
-            {
-                fakeDoor1.SetActive(false);
-                door1.SetActive(true);
-            }
-        }
+      //  for(int i = 0; i < 5; i++)
+     //   {
+       ///     if (tasks[i].activeSelf == true)
+     //       {
+         //       Debug.Log("why");
+       //         return;
+         //   }
+           // else if (tasks[i].activeSelf == false)
+           // {
+            //    Debug.Log("why not");
+             //   fakeDoor1.SetActive(false);
+              //  door1.SetActive(true);
+           // }
+       // }
 
-    }
 
-    private void ManageArray(GameObject[] tasks, bool state)
+    //}
+
+     private IEnumerator waittoupdate()
     {
-        if (state)
-        {
-            foreach (GameObject task in tasks)
-            {
-                task.SetActive(true);
-            }
-        }
-        else
-        {
-            foreach (GameObject task in tasks)
-            {
-                task.SetActive(false);
-            }
-        }
+        commentTxt.text = commentMessage[0];
+        yield return new WaitForSecondsRealtime(7f);
+         commentTxt.text = commentMessage[1];
+        yield return new WaitForSecondsRealtime(7f);
+         commentTxt.text = commentMessage[2];
+        yield return new WaitForSecondsRealtime(7f);
+          commentTxt.text = commentMessage[3];
+        yield return new WaitForSecondsRealtime(7f);
+           commentTxt.text = commentMessage[4];
+        yield return new WaitForSecondsRealtime(7f);
+          commentTxt.text = commentMessage[5];
+        yield return new WaitForSecondsRealtime(5f);
+        commentTxt.text = "";
+        StartCoroutine(wait());
     }
+
+     private IEnumerator wait()
+    {
+       
+        yield return new WaitForSecondsRealtime(1f);
+        
+        this.gameObject.GetComponent<FirstPart>().fakeDoor1.SetActive(false);
+        this.gameObject.GetComponent<FirstPart>().door1.SetActive(true);
+        
+
+    }
+
+
+   
 }
