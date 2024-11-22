@@ -28,11 +28,10 @@ public class SecondPart : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D col)
     {
-
-            Debug.Log("im here");
-        
+        if(col.tag == "Player")
+        {
             StartCoroutine(waittoupdate());
-        
+        }
         
     }
 
