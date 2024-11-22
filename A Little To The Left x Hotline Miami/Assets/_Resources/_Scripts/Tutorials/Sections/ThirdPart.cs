@@ -73,6 +73,7 @@ public class ThirdPart : MonoBehaviour
         commentTxt.text = "";
         firstblood.GetComponent<FirstPart>().fakeDoor3.SetActive(false);
         firstblood.GetComponent<FirstPart>().door3.SetActive(true);
+        this.gameObject.SetActive(false);
         
 
     }
