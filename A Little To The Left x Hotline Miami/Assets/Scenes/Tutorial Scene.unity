@@ -3448,7 +3448,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 20
   speed: 50
-  magazineSize: 45
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -3631,7 +3631,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 470adada21d872d45ba7291cfef09a6f, type: 3}
   spread: 1
   speed: 60
-  magazineSize: 6
+  magazineSize: 1
   amountOfBullets: 1
   totalMag: 0
   waitTime: 1
@@ -9425,7 +9425,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 3
   speed: 70
-  magazineSize: 13
+  magazineSize: 1
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.5
@@ -11560,7 +11560,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
-  magazineSize: 30
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -12089,7 +12089,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
-  magazineSize: 30
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -12327,7 +12327,7 @@ Transform:
   m_GameObject: {fileID: 1486444236}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.96, y: 30.44, z: 0}
+  m_LocalPosition: {x: 1.99, y: 29.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14884,7 +14884,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
-  magazineSize: 30
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -16927,7 +16927,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
-  magazineSize: 30
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -17319,7 +17319,7 @@ MonoBehaviour:
   projectile: {fileID: 4194129993850988559, guid: 0c46ff390b719f14393aac4faeccc288, type: 3}
   spread: 15
   speed: 50
-  magazineSize: 30
+  magazineSize: 5
   amountOfBullets: 1
   totalMag: 0
   waitTime: 0.1
@@ -18501,11 +18501,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4538971015420888451, guid: 757620da42ca2e2478f81e7bd21864e3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.03
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4538971015420888451, guid: 757620da42ca2e2478f81e7bd21864e3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.58
+      value: 29.69
       objectReference: {fileID: 0}
     - target: {fileID: 4748674154762973739, guid: 757620da42ca2e2478f81e7bd21864e3, type: 3}
       propertyPath: m_Name
@@ -27993,6 +27993,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2658888785103539751, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: magazineSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2722098534645997519, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.37
@@ -28057,6 +28061,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 38.33
       objectReference: {fileID: 0}
+    - target: {fileID: 6540224634342373317, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: magazineSize
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6914938804439697108, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -28069,9 +28077,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 24.59
       objectReference: {fileID: 0}
+    - target: {fileID: 7854208578141507777, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: magazineSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238456354192344662, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: magazineSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8534811134103630381, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916248103308829100, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8916248103308829100, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.74
       objectReference: {fileID: 0}
     - target: {fileID: 9130966868805772809, guid: 45a2cc6d6f1762f479c5b92b0e3fda02, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28361,7 +28385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6226239874205043175, guid: 1e0d68a0c3e7c5748867150d88d92d69, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.57
+      value: 29.07
       objectReference: {fileID: 0}
     - target: {fileID: 6226239874205043175, guid: 1e0d68a0c3e7c5748867150d88d92d69, type: 3}
       propertyPath: m_LocalPosition.z

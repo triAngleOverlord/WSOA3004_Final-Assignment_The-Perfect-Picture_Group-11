@@ -423,11 +423,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         equippedWeaponRB.AddForce(transform.up * throwPower, ForceMode2D.Impulse);
         yield return new WaitForSeconds(0.05f);
+        if(equippedWeaponRB != null){
         equippedWeaponRB.AddTorque(spinningSpeed, ForceMode2D.Impulse);
         equippedWeaponRB.angularDrag = 2f;
         equippedWeapon = null;
         yield return new WaitForSeconds(0.25f);
         hasthrownWeapon = false;
+        }
     }
 
     public void StatusUpdate()
