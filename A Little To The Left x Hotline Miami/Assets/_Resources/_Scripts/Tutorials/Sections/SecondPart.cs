@@ -14,6 +14,8 @@ public class SecondPart : MonoBehaviour
     public GameObject commentBox;
     public string[] commentMessage;
 
+    public GameObject firstblood;
+
     
 
     
@@ -55,8 +57,8 @@ public class SecondPart : MonoBehaviour
        
         yield return new WaitForSecondsRealtime(1f);
         commentTxt.text = "";
-        this.gameObject.GetComponent<FirstPart>().fakeDoor2.SetActive(false);
-        this.gameObject.GetComponent<FirstPart>().door2.SetActive(true);
+        firstblood.GetComponent<FirstPart>().fakeDoor2.SetActive(false);
+        firstblood.GetComponent<FirstPart>().door2.SetActive(true);
         
 
     }

@@ -15,6 +15,8 @@ public class ThirdPart : MonoBehaviour
 
     bool alreadydead = false;
 
+    public GameObject firstblood;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,8 +73,8 @@ public class ThirdPart : MonoBehaviour
         commentTxt.text = "Notice how enemies can hear gunshots";
         yield return new WaitForSecondsRealtime(7f);
         commentTxt.text = "";
-        this.gameObject.GetComponent<FirstPart>().fakeDoor3.SetActive(false);
-        this.gameObject.GetComponent<FirstPart>().door3.SetActive(true);
+        firstblood.GetComponent<FirstPart>().fakeDoor3.SetActive(false);
+        firstblood.GetComponent<FirstPart>().door3.SetActive(true);
         
 
     }
