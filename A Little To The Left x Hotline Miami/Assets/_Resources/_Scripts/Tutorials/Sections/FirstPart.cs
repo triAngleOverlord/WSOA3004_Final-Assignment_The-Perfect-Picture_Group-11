@@ -83,27 +83,32 @@ public class FirstPart : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
             {
+                Debug.Log("imherenot");
                 tasks[0].SetActive(false);
             }
             if (Input.GetMouseButtonDown(1))
             {
                 if (playerInteraction.equippedWeapon == weapon1.transform)
                 {
+                    Debug.Log("imherenot");
                     tasks[1].SetActive(false);
                 }
 
             }
             if (playerInteraction.hasWeapon && Input.GetMouseButtonDown(0))
             {
+                Debug.Log("imherenot");
                 tasks[2].SetActive(false);
             }
 
-            if (Input.GetKeyDown(KeyCode.G) && playerInteraction.hasWeapon)
+            if (Input.GetKeyDown(KeyCode.G)) //&& !)
             {
+                Debug.Log("imhere");
                 tasks[3].SetActive(false);
             }
             if (Input.GetKey(KeyCode.LeftShift))
             {
+                Debug.Log("imherenot");
                 tasks[4].SetActive(false);
             }
         
