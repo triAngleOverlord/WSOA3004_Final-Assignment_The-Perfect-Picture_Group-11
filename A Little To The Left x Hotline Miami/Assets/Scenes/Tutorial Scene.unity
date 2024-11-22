@@ -11581,25 +11581,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
   m_PrefabInstance: {fileID: 5281316668008678926}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1452959817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1452959806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa69a2aa3be4584a84cc49675260b71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  commentTxt: {fileID: 2025855176}
-  commentBox: {fileID: 0}
-  commentMessage:
-  - 'Throwing SHARP weapons can be deadly! Throwing others can knock them out! '
-  - Guns are VERY fast but have limited AMMO
-  enemy: {fileID: 0}
-  Wall: {fileID: 0}
 --- !u!114 &1452959818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12401,7 +12382,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1500303319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27286,9 +27267,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1452959817}
     - targetCorrespondingSourceObject: {fileID: 5921653759284208448, guid: 371de34fcb2722141b96f330c69dacaa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1452959818}
